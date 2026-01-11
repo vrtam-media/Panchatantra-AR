@@ -65,9 +65,9 @@ Material:
     - _BlendDst: 10
     - _BlendSrc: 5
     - _BumpScale: 1
-    - _ChromaKeyBrightnessRange: 0.5
-    - _ChromaKeyHueRange: 0.1
-    - _ChromaKeySaturationRange: 0.5
+    - _ChromaKeyBrightnessRange: 0.624
+    - _ChromaKeyHueRange: 0.095
+    - _ChromaKeySaturationRange: 0.637
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -85,7 +85,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _ChromaKeyColor: {r: 0.03137255, g: 0.8196079, b: 0.050980397, a: 0}
+    - _ChromaKeyColor: {r: 0.043137256, g: 0.04705883, b: 0.8000001, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
