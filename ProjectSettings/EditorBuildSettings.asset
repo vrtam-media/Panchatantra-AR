@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SamplesResources/Scenes/0-Main.unity
     guid: a09cb257d566c489595b16ab37547666
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/jan-6-test.unity
     guid: ba68945e9749f344384ceeb92ba1d614
+  - enabled: 1
+    path: Assets/Scenes/jan-12-1.unity
+    guid: 6bce0a123c529a74fb6c7ff99ab535ff
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
