@@ -3,7 +3,27 @@ guid: 156c7dda85a0868488de142074dc5858
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface4
+    second: {fileID: 2100000, guid: ef8fb5366bc6b874f816c8dd4f0ef97a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bangle
+    second: {fileID: 2100000, guid: ff502ac20937b5b43bc583b5a9bf0bd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye1
+    second: {fileID: 2100000, guid: 7dfdc3d2879779e43bb6e790ce42b7ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: king_body1
+    second: {fileID: 2100000, guid: 043a39f93e4dc1045af281b256dddca6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

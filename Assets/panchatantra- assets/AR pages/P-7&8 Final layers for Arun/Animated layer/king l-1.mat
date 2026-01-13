@@ -65,8 +65,8 @@ Material:
     - _BlendDst: 10
     - _BlendSrc: 5
     - _BumpScale: 1
-    - _ChromaKeyBrightnessRange: 1
-    - _ChromaKeyHueRange: 0.01
+    - _ChromaKeyBrightnessRange: 0.319
+    - _ChromaKeyHueRange: 0.028
     - _ChromaKeySaturationRange: 1
     - _Cull: 2
     - _Cutoff: 0.5

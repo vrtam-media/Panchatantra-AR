@@ -1,9 +1,29 @@
 fileFormatVersion: 2
 guid: 9ac52cc9d22b0634a89a244fdfcec97a
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface4
+    second: {fileID: 2100000, guid: 35f899a8698eb554285667bbe0548cd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bangle
+    second: {fileID: 2100000, guid: 5d7a669500f5266408d3dcd311c62c26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye1
+    second: {fileID: 2100000, guid: d011450f978e11e46babb5b5b449d50b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: king_body1
+    second: {fileID: 2100000, guid: b43fda7f9a2ef534bb0814265c60dc22, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,6 +76,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
