@@ -1387,7 +1387,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283124613}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 9d00ce1bea9584942a4bb33715265f10, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 38fca238ffb5ff6449baa8fece34d02e, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -8515,6 +8515,8 @@ GameObject:
   - component: {fileID: 1852800252}
   - component: {fileID: 1852800251}
   - component: {fileID: 1852800254}
+  - component: {fileID: 1852800256}
+  - component: {fileID: 1852800255}
   m_Layer: 0
   m_Name: king v l-4
   m_TagString: Untagged
@@ -8624,7 +8626,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852800249}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2dd5e7cdea258cf4d85c24e6ea6e18d2, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -8652,6 +8654,135 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!82 &1852800255
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852800249}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1852800256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852800249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7887f9e7eddb245b7378fc653d1cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VuforiaVideoFreezeSystem
+  videoClip: {fileID: 32900000, guid: 2dd5e7cdea258cf4d85c24e6ea6e18d2, type: 3}
+  vuforiaObserver: {fileID: 748189278}
+  treatExtendedTrackedAsTracked: 1
+  loopEveryTime: 1
+  freezeFirstEveryLoop: 1
+  freezeLastEveryLoop: 1
+  freezeFirst:
+    enabled: 0
+    audio: {fileID: 8300000, guid: 60a514700e13d484684118c93c2afa57, type: 3}
+    volume: 1
+    source: {fileID: 1852800255}
+  freezeLast:
+    enabled: 0
+    audio: {fileID: 0}
+    volume: 1
+    source: {fileID: 0}
+  muteAll: 0
+  controlVideoAudio: 1
+  videoAudioVolume: 1
+  videoAudioSource: {fileID: 0}
 --- !u!1 &1893980391
 GameObject:
   m_ObjectHideFlags: 0
