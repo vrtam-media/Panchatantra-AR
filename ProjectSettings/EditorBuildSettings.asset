@@ -11,8 +11,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/jan-6-test.unity
     guid: ba68945e9749f344384ceeb92ba1d614
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/jan-12-1.unity
     guid: 6bce0a123c529a74fb6c7ff99ab535ff
+  - enabled: 1
+    path: Assets/Scenes/jan-14.unity
+    guid: 15605d7537b165c458bf8dc83672eaa7
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
