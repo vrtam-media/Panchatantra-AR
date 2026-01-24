@@ -3,7 +3,22 @@ guid: c89d9be8bea7ef34d8e7aeb7dce66120
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ornament
+    second: {fileID: 2100000, guid: 3754a05a3e8dc3a44a5d48e62f689aec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pillow
+    second: {fileID: 2100000, guid: 23275a7ec0e9af04ba7440b993d182c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: throne
+    second: {fileID: 2100000, guid: 385b48832342e50449999075c4bb484c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

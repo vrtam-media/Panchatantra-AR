@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: 3b9088d435d5174478c36107b84d383c
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part1
+    second: {fileID: 2100000, guid: 06d367d93b4b5834aaa90aa1b6aafaac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part_02
+    second: {fileID: 2100000, guid: 2e51052d3e100a545be6ac34398509fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: new_body
+    second: {fileID: 2100000, guid: 0b59c07d299e7bf448282489aa7e4ae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_crown4
+    second: {fileID: 2100000, guid: 77215e98c55fd474b933ff3554556a1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_gold1
+    second: {fileID: 2100000, guid: a963b6362a727d84caa1771e5da0ca85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_vest_and_jewllery1
+    second: {fileID: 2100000, guid: 85b1e366d49953c4192d2a9929cf3c9a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,6 +86,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
