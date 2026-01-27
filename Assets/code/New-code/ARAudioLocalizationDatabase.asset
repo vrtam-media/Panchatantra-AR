@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce617cd019754794ba211267ee1c23d5, type: 3}
+  m_Script: {fileID: 11500000, guid: ba612902ecfe0554fa2f47cc25a8e0df, type: 3}
   m_Name: ARAudioLocalizationDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ARAudioLocalizationDatabase
   languages:
-  - languageName: english
+  - languageName: English
     pages:
-    - pageId: ImageTarget page-5-6 (7)
+    - pageId: ImageTarget page-5-6 (1)
       segments:
-      - clip: {fileID: 8300000, guid: 5559ddde43ac2e543a8ac360678725bb, type: 3}
+      - clip: {fileID: 8300000, guid: cad2b654bf9cb1441aacf0da2a0fbc3c, type: 3}
         delayBefore: 0
         volume: 0
       - clip: {fileID: 8300000, guid: 56af30b40b6da4744870b156acc09e29, type: 3}
@@ -25,21 +25,13 @@ MonoBehaviour:
         volume: 0
       extraStartSilence: 0
       extraEndSilence: 0
-      overrideVideoHolds: 0
-      videoHoldStart: 0
-      videoHoldEnd: 0
-    - pageId: 
-      segments: []
+    - pageId: ImageTarget page-11-12-(1)
+      segments:
+      - clip: {fileID: 8300000, guid: af1a6cae75f513f4ba7e39d975402a0d, type: 3}
+        delayBefore: 0
+        volume: 0
       extraStartSilence: 0
       extraEndSilence: 0
-      overrideVideoHolds: 0
-      videoHoldStart: 0
-      videoHoldEnd: 0
-    - pageId: 
-      segments: []
-      extraStartSilence: 0
-      extraEndSilence: 0
-      overrideVideoHolds: 0
-      videoHoldStart: 0
-      videoHoldEnd: 0
+  - languageName: 
+    pages: []
   fallbackLanguage: English

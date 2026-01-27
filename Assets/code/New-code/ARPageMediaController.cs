@@ -1,583 +1,502 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.UI;
 using Vuforia;
+using System.Collections.Generic;
 
 [DisallowMultipleComponent]
 public class ARPageMediaController : MonoBehaviour
 {
-    [Header("Vuforia Tracking")]
-    [SerializeField] private ObserverBehaviour vuforiaObserver;
-    [SerializeField] private bool treatExtendedTrackedAsTracked = true;
+    [Header("Tracking (Vuforia)")]
+    [Tooltip("Assign ImageTarget's ObserverBehaviour here (ImageTarget Behaviour).")]
+    public ObserverBehaviour imageTarget;
 
-    [Tooltip("If tracking returns within this window, resume from same time. If later, restart from 0.")]
-    [SerializeField] private float resumeGraceSeconds = 1f;
+    [Tooltip("If tracking comes back within this time, resume. If later, restart.")]
+    public float resumeGraceSeconds = 1f;
+
+    [Tooltip("Disable visuals when not tracked.")]
+    public bool hideRenderersWhenNotTracked = true;
 
     [Header("Parallax (optional)")]
-    [SerializeField] private ParallaxLayerStack parallaxStack;
+    public ParallaxLayerStack parallaxStack;
 
     [Header("Video (one or many players)")]
-    [SerializeField] private List<VideoPlayer> videoPlayers = new List<VideoPlayer>();
-    [SerializeField] private VideoClip videoClipOverride;
-    [SerializeField] private bool muteVideoAudio = true;
+    [Tooltip("Add ALL VideoPlayers on this page (can be 1 or more).")]
+    public List<VideoPlayer> videoPlayers = new List<VideoPlayer>();
 
-    [Header("Audio Localization")]
-    [SerializeField] private ARAudioLocalizationDatabase audioDatabase;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private string pageIdOverride;
-    [SerializeField] private string currentLanguage = "English";
+    [Tooltip("Mute video audio so ONLY localized audio plays.")]
+    public bool muteVideoAudio = true;
 
-    [Header("Video Hold and Sync")]
-    [Tooltip("Extend video duration to match audio by holding first and last frame.")]
-    [SerializeField] private bool autoExtendVideoToAudio = true;
+    [Header("Audio (localized)")]
+    public ARAudioLocalizationDatabase audioDatabase;
+    public AudioSource audioSource;
 
-    [Tooltip("0 means add extension mostly to START hold, 1 means add extension mostly to END hold.")]
+    [Tooltip("Must match the Page Id in the database exactly.")]
+    public string pageId;
+
+    [Tooltip("Overall audio volume multiplier.")]
     [Range(0f, 1f)]
-    [SerializeField] private float extendSplitToEnd = 0.5f;
+    public float masterVolume = 1f;
 
-    [SerializeField] private float baseHoldStart = 0f;
-    [SerializeField] private float baseHoldEnd = 0f;
+    [Tooltip("Mute localized audio (debug).")]
+    public bool muteAudio = false;
 
-    [Header("Replay UI")]
-    [SerializeField] private Button replayButton;
-    [SerializeField] private bool billboardReplayToCamera = true;
-    [SerializeField] private Transform replayBillboardCamera;
-    [SerializeField] private Vector3 replayWorldOffsetLocal = new Vector3(0f, 0.02f, 0f);
+    [Header("Replay UI (Screen Space Overlay)")]
+    [Tooltip("Assign the UI Button. It will be hidden until media finishes.")]
+    public Button replayButton;
 
-    [Header("Audio Controls")]
-    [Range(0f, 1f)]
-    [SerializeField] private float masterVolume = 1f;
-    [SerializeField] private bool muteAudio = false;
+    [Header("Language UI (Button + Dropdown)")]
+    [Tooltip("Button at top-left that opens/closes the dropdown panel.")]
+    public Button languageButton;
 
-    // Runtime state
+    [Tooltip("Panel GameObject that contains the dropdown. We toggle it ON/OFF.")]
+    public GameObject languagePanel;
+
+    [Tooltip("Dropdown listing languages from the database.")]
+    public Dropdown languageDropdown;
+
+    // tracking state
     private bool isTracked;
-    private bool isPlaying;
-    private bool isCompleted;
-    private bool isPrepared;
+    private float lostAtTime;
 
-    private float lostAtTime = -999f;
+    // completion state
+    private int finishedVideos;
+    private bool audioFinished;
 
-    private float mediaTime; // seconds since page start
-    private float pageTotalDuration;
-    private float holdStart;
-    private float holdEnd;
+    // audio state machine
+    private ARAudioLocalizationDatabase.Page activePage;
+    private int segIndex;
+    private float delayRemaining;
+    private bool audioRunning;
 
-    private float longestVideoLength;
+    // renderers cache
+    private Renderer[] cachedRenderers;
 
-    private ARAudioLocalizationDatabase.PageAudio resolvedPage;
-    private List<SegmentTimeline> timeline = new List<SegmentTimeline>();
-    private int currentSegmentIndex = -1;
-
-    private struct SegmentTimeline
+    void Awake()
     {
-        public float startTime;
-        public float endTime;
-        public AudioClip clip;
-        public float volume;
-    }
-
-    private void OnEnable()
-    {
-        if (vuforiaObserver != null)
-            vuforiaObserver.OnTargetStatusChanged += OnTargetStatusChanged;
+        cachedRenderers = GetComponentsInChildren<Renderer>(true);
 
         if (replayButton != null)
-        {
-            replayButton.onClick.RemoveListener(OnReplayClicked);
-            replayButton.onClick.AddListener(OnReplayClicked);
             replayButton.gameObject.SetActive(false);
-        }
+
+        if (languagePanel != null)
+            languagePanel.SetActive(false);
     }
 
-    private void OnDisable()
+    void OnEnable()
     {
-        if (vuforiaObserver != null)
-            vuforiaObserver.OnTargetStatusChanged -= OnTargetStatusChanged;
-
-        if (replayButton != null)
-            replayButton.onClick.RemoveListener(OnReplayClicked);
+        if (imageTarget != null)
+            imageTarget.OnTargetStatusChanged += OnTargetStatusChanged;
     }
 
-    private void Start()
+    void OnDisable()
     {
-        ConfigureVideoPlayers();
-        HideReplay();
+        if (imageTarget != null)
+            imageTarget.OnTargetStatusChanged -= OnTargetStatusChanged;
     }
 
-    private void Update()
+    void Start()
     {
-        if (billboardReplayToCamera)
-            UpdateReplayBillboard();
+        SetupReplayButton();
+        SetupLanguageUI();
+        SetupVideos();
 
-        if (!isTracked) return;
-        if (!isPlaying) return;
+        // Start in paused/off until tracked
+        SetTracked(false);
+    }
 
-        mediaTime += Time.unscaledDeltaTime;
+    void SetupReplayButton()
+    {
+        if (replayButton == null) return;
 
-        ApplyVideoAtMediaTime(mediaTime);
-        ApplyAudioAtMediaTime(mediaTime);
+        replayButton.onClick.RemoveAllListeners();
+        replayButton.onClick.AddListener(ReplayAll);
+        replayButton.gameObject.SetActive(false);
+    }
 
-        if (mediaTime >= pageTotalDuration)
+    void SetupLanguageUI()
+    {
+        if (languageButton != null)
         {
-            CompletePlayback();
-        }
-    }
-
-    private void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus targetStatus)
-    {
-        bool trackedNow =
-            targetStatus.Status == Status.TRACKED ||
-            (treatExtendedTrackedAsTracked && targetStatus.Status == Status.EXTENDED_TRACKED);
-
-        if (trackedNow && !isTracked)
-        {
-            isTracked = true;
-            OnTrackingFound();
-        }
-        else if (!trackedNow && isTracked)
-        {
-            isTracked = false;
-            OnTrackingLost();
-        }
-    }
-
-    private void OnTrackingFound()
-    {
-        if (parallaxStack != null)
-            parallaxStack.SetTracked(true);
-
-        float lostDuration = Time.unscaledTime - lostAtTime;
-
-        // Rule: auto play
-        if (lostDuration <= resumeGraceSeconds && !isCompleted && mediaTime > 0f)
-        {
-            ResumeFromMediaTime(mediaTime);
-        }
-        else
-        {
-            RestartFromBeginning();
-        }
-    }
-
-    private void OnTrackingLost()
-    {
-        lostAtTime = Time.unscaledTime;
-
-        PausePlayback();
-
-        if (parallaxStack != null)
-            parallaxStack.SetTracked(false);
-    }
-
-    // ---------------------- Playback core ----------------------
-
-    private void RestartFromBeginning()
-    {
-        BuildPlanForCurrentPage();
-
-        mediaTime = 0f;
-        isCompleted = false;
-
-        PrepareVideoPlayers();
-        isPrepared = true;
-
-        HideReplay();
-
-        // Start playing immediately; holds handled by ApplyVideoAtMediaTime
-        isPlaying = true;
-
-        ApplyVideoAtMediaTime(0f);
-        ApplyAudioAtMediaTime(0f);
-    }
-
-    private void ResumeFromMediaTime(float t)
-    {
-        if (!isPrepared)
-        {
-            PrepareVideoPlayers();
-            isPrepared = true;
+            languageButton.onClick.RemoveAllListeners();
+            languageButton.onClick.AddListener(ToggleLanguagePanel);
         }
 
-        isPlaying = true;
+        if (audioDatabase == null || languageDropdown == null) return;
 
-        ApplyVideoAtMediaTime(t);
-        ApplyAudioAtMediaTime(t);
-        HideReplay();
+        var langs = audioDatabase.GetLanguageNames();
+        languageDropdown.ClearOptions();
+        languageDropdown.AddOptions(langs);
+
+        int idx = Mathf.Max(0, langs.IndexOf(ARAudioLocalizationDatabase.CurrentLanguage));
+        languageDropdown.SetValueWithoutNotify(idx);
+
+        languageDropdown.onValueChanged.RemoveAllListeners();
+        languageDropdown.onValueChanged.AddListener(OnLanguageSelected);
     }
 
-    private void PausePlayback()
+    void ToggleLanguagePanel()
     {
-        isPlaying = false;
-
-        // Video pause
-        for (int i = 0; i < videoPlayers.Count; i++)
-        {
-            var vp = videoPlayers[i];
-            if (!vp) continue;
-            vp.Pause();
-        }
-
-        // Audio pause
-        if (audioSource != null)
-            audioSource.Pause();
+        if (languagePanel == null) return;
+        languagePanel.SetActive(!languagePanel.activeSelf);
     }
 
-    private void CompletePlayback()
+    void OnLanguageSelected(int index)
     {
-        isPlaying = false;
-        isCompleted = true;
+        if (audioDatabase == null) return;
 
-        // Freeze on last frame (all players)
-        ApplyVideoAtMediaTime(pageTotalDuration);
+        var langs = audioDatabase.GetLanguageNames();
+        if (index < 0 || index >= langs.Count) return;
 
-        // Stop audio
-        if (audioSource != null)
-            audioSource.Stop();
+        ARAudioLocalizationDatabase.CurrentLanguage = langs[index];
 
-        ShowReplay();
+        if (languagePanel != null)
+            languagePanel.SetActive(false);
+
+        // For clarity: restart everything in the new language
+        RestartFromStart();
     }
 
-    private void OnReplayClicked()
-    {
-        // Rule 3A: always restart from 0
-        RestartFromBeginning();
-    }
-
-    // ---------------------- Plan building ----------------------
-
-    private void BuildPlanForCurrentPage()
-    {
-        string pageId = ResolvePageId();
-
-        resolvedPage = null;
-        timeline.Clear();
-        currentSegmentIndex = -1;
-
-        float audioDuration = 0f;
-        holdStart = Mathf.Max(0f, baseHoldStart);
-        holdEnd = Mathf.Max(0f, baseHoldEnd);
-
-        if (audioDatabase != null && audioDatabase.TryGetPage(currentLanguage, pageId, out resolvedPage))
-        {
-            // Build audio timeline for seeking/resume
-            float t = 0f;
-            t += Mathf.Max(0f, resolvedPage.extraStartSilence);
-
-            for (int i = 0; i < resolvedPage.segments.Count; i++)
-            {
-                var seg = resolvedPage.segments[i];
-                if (seg == null) continue;
-
-                t += Mathf.Max(0f, seg.delayBefore);
-
-                if (seg.clip != null)
-                {
-                    float start = t;
-                    float end = t + (float)seg.clip.length;
-
-                    timeline.Add(new SegmentTimeline
-                    {
-                        startTime = start,
-                        endTime = end,
-                        clip = seg.clip,
-                        volume = Mathf.Clamp01(seg.volume)
-                    });
-
-                    t = end;
-                }
-            }
-
-            t += Mathf.Max(0f, resolvedPage.extraEndSilence);
-            audioDuration = t;
-
-            if (resolvedPage.overrideVideoHolds)
-            {
-                holdStart = Mathf.Max(0f, resolvedPage.videoHoldStart);
-                holdEnd = Mathf.Max(0f, resolvedPage.videoHoldEnd);
-            }
-        }
-
-        // Video duration uses longest clip across all players
-        longestVideoLength = GetLongestVideoLength();
-
-        // Auto extend video to match audio (only extends video, does not extend audio)
-        if (autoExtendVideoToAudio && audioDuration > 0f && longestVideoLength > 0f)
-        {
-            float baseVideoDuration = holdStart + longestVideoLength + holdEnd;
-            if (audioDuration > baseVideoDuration)
-            {
-                float extra = audioDuration - baseVideoDuration;
-                float extraToEnd = extra * Mathf.Clamp01(extendSplitToEnd);
-                float extraToStart = extra - extraToEnd;
-
-                holdStart += extraToStart;
-                holdEnd += extraToEnd;
-            }
-        }
-
-        float videoTotal = (longestVideoLength > 0f) ? (holdStart + longestVideoLength + holdEnd) : 0f;
-        pageTotalDuration = Mathf.Max(videoTotal, audioDuration);
-
-        // If no media, still avoid 0 duration
-        if (pageTotalDuration <= 0f)
-            pageTotalDuration = 0.01f;
-    }
-
-    private string ResolvePageId()
-    {
-        if (!string.IsNullOrWhiteSpace(pageIdOverride))
-            return pageIdOverride.Trim();
-
-        if (vuforiaObserver != null && !string.IsNullOrWhiteSpace(vuforiaObserver.TargetName))
-            return vuforiaObserver.TargetName;
-
-        // last fallback
-        return gameObject.name;
-    }
-
-    private float GetLongestVideoLength()
-    {
-        float maxLen = 0f;
-
-        for (int i = 0; i < videoPlayers.Count; i++)
-        {
-            var vp = videoPlayers[i];
-            if (!vp) continue;
-
-            VideoClip clip = videoClipOverride != null ? videoClipOverride : vp.clip;
-            if (clip != null)
-            {
-                float len = (float)clip.length;
-                if (len > maxLen) maxLen = len;
-            }
-        }
-
-        return maxLen;
-    }
-
-    // ---------------------- Video handling ----------------------
-
-    private void ConfigureVideoPlayers()
+    void SetupVideos()
     {
         for (int i = 0; i < videoPlayers.Count; i++)
         {
-            var vp = videoPlayers[i];
-            if (!vp) continue;
+            VideoPlayer vp = videoPlayers[i];
+            if (vp == null) continue;
 
             vp.playOnAwake = false;
             vp.isLooping = false;
             vp.waitForFirstFrame = true;
             vp.skipOnDrop = true;
-            vp.timeUpdateMode = VideoTimeUpdateMode.UnscaledGameTime;
 
             if (muteVideoAudio)
-            {
-                // Mute direct audio tracks if any
-                try
-                {
-                    vp.audioOutputMode = VideoAudioOutputMode.Direct;
-                    ushort tracks = vp.audioTrackCount;
-                    for (ushort t = 0; t < tracks; t++)
-                        vp.SetDirectAudioMute(t, true);
-                }
-                catch
-                {
-                    // Safe fallback: do nothing
-                }
-            }
+                vp.audioOutputMode = VideoAudioOutputMode.None;
+
+            vp.loopPointReached -= OnVideoCompleted;
+            vp.loopPointReached += OnVideoCompleted;
+
+            vp.errorReceived -= OnVideoError;
+            vp.errorReceived += OnVideoError;
+
+            vp.prepareCompleted -= OnVideoPrepared;
+            vp.prepareCompleted += OnVideoPrepared;
         }
     }
 
-    private void PrepareVideoPlayers()
+    void OnVideoError(VideoPlayer source, string message)
+    {
+        Debug.LogWarning("VideoPlayer error: " + message, source);
+    }
+
+    void OnVideoPrepared(VideoPlayer vp)
+    {
+        // Only auto-play when tracked
+        if (isTracked)
+            vp.Play();
+    }
+
+    void OnVideoCompleted(VideoPlayer vp)
+    {
+        // Force last frame hold (avoid jumping to first frame)
+        try
+        {
+            if (vp.length > 0.01)
+            {
+                vp.time = vp.length - 0.03;
+                vp.Pause();
+            }
+        }
+        catch { }
+
+        finishedVideos++;
+        CheckReplayAvailability();
+    }
+
+    void OnTargetStatusChanged(ObserverBehaviour obs, TargetStatus status)
+    {
+        bool trackedNow =
+            status.Status == Status.TRACKED ||
+            status.Status == Status.EXTENDED_TRACKED;
+
+        SetTracked(trackedNow);
+    }
+
+    void SetTracked(bool trackedNow)
+    {
+        if (trackedNow == isTracked) return;
+
+        isTracked = trackedNow;
+
+        if (!isTracked)
+        {
+            lostAtTime = Time.time;
+
+            PauseVideos();
+            PauseAudio();
+
+            if (hideRenderersWhenNotTracked)
+                SetRenderersVisible(false);
+
+            if (replayButton != null)
+                replayButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (hideRenderersWhenNotTracked)
+                SetRenderersVisible(true);
+
+            // Resume or restart based on grace
+            float lostDuration = Time.time - lostAtTime;
+
+            if (lostDuration <= resumeGraceSeconds)
+                ResumeFromPaused();
+            else
+                RestartFromStart();
+        }
+    }
+
+    void SetRenderersVisible(bool visible)
+    {
+        if (cachedRenderers == null) return;
+        for (int i = 0; i < cachedRenderers.Length; i++)
+        {
+            if (cachedRenderers[i] != null)
+                cachedRenderers[i].enabled = visible;
+        }
+    }
+
+    void ResumeFromPaused()
+    {
+        ResumeVideos();
+        ResumeAudio();
+    }
+
+    void RestartFromStart()
+    {
+        if (replayButton != null)
+            replayButton.gameObject.SetActive(false);
+
+        finishedVideos = 0;
+        audioFinished = false;
+
+        StartVideosFromBeginning();
+        StartAudioFromBeginning();
+    }
+
+    void ReplayAll()
+    {
+        RestartFromStart();
+    }
+
+    void PauseVideos()
     {
         for (int i = 0; i < videoPlayers.Count; i++)
         {
             var vp = videoPlayers[i];
-            if (!vp) continue;
-
-            if (videoClipOverride != null)
-                vp.clip = videoClipOverride;
-
-            vp.Stop();
-            vp.Prepare();
+            if (vp == null) continue;
+            if (vp.isPlaying) vp.Pause();
         }
     }
 
-    private void ApplyVideoAtMediaTime(float t)
-    {
-        if (videoPlayers.Count == 0) return;
-
-        float clipLen = longestVideoLength;
-
-        // During holdStart: freeze at first frame (time 0)
-        if (t < holdStart)
-        {
-            SetAllVideoTime(0f, playing: false);
-            return;
-        }
-
-        float clipTime = t - holdStart;
-
-        // During main clip
-        if (clipTime <= clipLen)
-        {
-            // Keep near-sync without setting time every frame if already close
-            SetAllVideoTime(clipTime, playing: true);
-            return;
-        }
-
-        // During holdEnd: freeze at last frame
-        SetAllVideoTime(Mathf.Max(0f, clipLen - 0.02f), playing: false);
-    }
-
-    private void SetAllVideoTime(float time, bool playing)
+    void ResumeVideos()
     {
         for (int i = 0; i < videoPlayers.Count; i++)
         {
             var vp = videoPlayers[i];
-            if (!vp) continue;
+            if (vp == null) continue;
 
-            // If not prepared yet, do minimal setup and try anyway
-            if (videoClipOverride != null && vp.clip != videoClipOverride)
-                vp.clip = videoClipOverride;
+            // If video ended already, do not restart on resume
+            if (vp.length > 0.01 && vp.time >= vp.length - 0.05) continue;
 
-            // Seek only if drift is noticeable
-            if (Mathf.Abs((float)vp.time - time) > 0.03f)
+            if (!vp.isPrepared)
             {
-                vp.time = time;
-            }
-
-            if (playing)
-            {
-                if (!vp.isPlaying)
-                    vp.Play();
+                vp.Prepare();
             }
             else
             {
-                if (vp.isPlaying)
-                    vp.Pause();
-                else
-                    vp.Pause();
+                vp.Play();
             }
         }
     }
 
-    // ---------------------- Audio handling ----------------------
+    void StartVideosFromBeginning()
+    {
+        for (int i = 0; i < videoPlayers.Count; i++)
+        {
+            var vp = videoPlayers[i];
+            if (vp == null) continue;
 
-    private void ApplyAudioAtMediaTime(float t)
+            vp.Stop();
+            vp.time = 0;
+
+            if (!vp.isPrepared)
+                vp.Prepare();
+            else
+                vp.Play();
+        }
+    }
+
+    void StartAudioFromBeginning()
+    {
+        audioRunning = false;
+        audioFinished = false;
+
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.mute = muteAudio;
+            audioSource.volume = masterVolume;
+        }
+
+        if (audioDatabase == null || audioSource == null)
+        {
+            audioFinished = true;
+            CheckReplayAvailability();
+            return;
+        }
+
+        bool ok = audioDatabase.TryGetPage(ARAudioLocalizationDatabase.CurrentLanguage, pageId, out activePage);
+        if (!ok || activePage == null)
+        {
+            audioFinished = true;
+            CheckReplayAvailability();
+            return;
+        }
+
+        segIndex = -1;
+        delayRemaining = Mathf.Max(0f, activePage.extraStartSilence);
+        audioRunning = true;
+    }
+
+    void PauseAudio()
     {
         if (audioSource == null) return;
+        if (audioSource.isPlaying) audioSource.Pause();
+    }
 
-        audioSource.volume = muteAudio ? 0f : masterVolume;
+    void ResumeAudio()
+    {
+        if (!audioRunning) return;
+        if (audioSource == null) return;
 
-        if (timeline.Count == 0)
+        // If currently in a delay, no need to unpause
+        if (audioSource.clip != null && audioSource.time > 0f)
+            audioSource.UnPause();
+    }
+
+    void Update()
+    {
+        if (!isTracked) return;
+
+        // Parallax should update only when tracked
+        // (ParallaxLayerStack already uses camera, but this avoids "parallax moving while hidden")
+        if (parallaxStack != null)
+            parallaxStack.enableParallax = true;
+
+        TickAudio(Time.deltaTime);
+    }
+
+    void TickAudio(float dt)
+    {
+        if (!audioRunning) return;
+        if (audioFinished) return;
+        if (audioSource == null) return;
+        if (activePage == null) { audioFinished = true; CheckReplayAvailability(); return; }
+
+        // If we are delaying before next segment
+        if (delayRemaining > 0f)
         {
-            if (audioSource.isPlaying)
-                audioSource.Stop();
+            delayRemaining -= dt;
+            if (delayRemaining > 0f) return;
+
+            // Delay finished, advance to next segment
+            AdvanceToNextSegment();
             return;
         }
 
-        // Find active segment by time
-        int segIndex = -1;
-        for (int i = 0; i < timeline.Count; i++)
+        // If a clip is playing, wait for it to end
+        if (audioSource.isPlaying) return;
+
+        // Clip ended or nothing playing
+        if (audioSource.clip != null && audioSource.time > 0f && audioSource.time < audioSource.clip.length - 0.01f)
         {
-            if (t >= timeline[i].startTime && t < timeline[i].endTime)
+            // tiny gap case, ignore
+            return;
+        }
+
+        // After segment completed, advance
+        AdvanceToNextSegment();
+    }
+
+    void AdvanceToNextSegment()
+    {
+        segIndex++;
+
+        // End of segments, apply end silence then finish
+        if (segIndex >= activePage.segments.Count)
+        {
+            float endSilence = Mathf.Max(0f, activePage.extraEndSilence);
+            if (endSilence > 0f)
             {
-                segIndex = i;
-                break;
+                delayRemaining = endSilence;
+                // mark finished after this delay ends
+                audioRunning = false;
+                Invoke(nameof(FinishAudioAfterEndSilence), endSilence);
             }
-        }
-
-        // In silence parts
-        if (segIndex < 0)
-        {
-            if (audioSource.isPlaying)
-                audioSource.Pause();
-            currentSegmentIndex = -1;
+            else
+            {
+                audioFinished = true;
+                CheckReplayAvailability();
+            }
             return;
         }
 
-        var seg = timeline[segIndex];
-        float clipTime = t - seg.startTime;
-
-        // If we changed segment, swap clip and play from correct time
-        if (segIndex != currentSegmentIndex || audioSource.clip != seg.clip)
+        var seg = activePage.segments[segIndex];
+        if (seg == null)
         {
-            audioSource.clip = seg.clip;
-            audioSource.time = Mathf.Clamp(clipTime, 0f, seg.clip.length - 0.01f);
-            audioSource.volume = (muteAudio ? 0f : masterVolume) * seg.volume;
-            audioSource.Play();
-            currentSegmentIndex = segIndex;
+            AdvanceToNextSegment();
             return;
         }
 
-        // Same segment: keep in sync if drift
-        if (Mathf.Abs(audioSource.time - clipTime) > 0.05f)
+        delayRemaining = Mathf.Max(0f, seg.delayBefore);
+        if (delayRemaining > 0f)
+            return;
+
+        PlaySegment(seg);
+    }
+
+    void FinishAudioAfterEndSilence()
+    {
+        audioFinished = true;
+        CheckReplayAvailability();
+    }
+
+    void PlaySegment(ARAudioLocalizationDatabase.Segment seg)
+    {
+        if (seg.clip == null)
         {
-            audioSource.time = Mathf.Clamp(clipTime, 0f, seg.clip.length - 0.01f);
+            AdvanceToNextSegment();
+            return;
         }
 
-        if (!audioSource.isPlaying)
-            audioSource.Play();
+        audioSource.clip = seg.clip;
+        audioSource.time = 0f;
+        audioSource.volume = masterVolume;
+        audioSource.mute = muteAudio;
+
+        audioSource.Play();
     }
 
-    // ---------------------- Replay UI ----------------------
-
-    private void ShowReplay()
+    void CheckReplayAvailability()
     {
-        if (replayButton == null) return;
-        replayButton.gameObject.SetActive(true);
-        UpdateReplayBillboard();
-    }
+        // Video must finish AND audio must finish
+        bool videosDone = (finishedVideos >= videoPlayers.Count);
+        bool audioDone = audioFinished;
 
-    private void HideReplay()
-    {
-        if (replayButton == null) return;
-        replayButton.gameObject.SetActive(false);
-    }
-
-    private void UpdateReplayBillboard()
-    {
-        if (replayButton == null) return;
-        if (!replayButton.gameObject.activeInHierarchy) return;
-
-        Transform cam = replayBillboardCamera != null ? replayBillboardCamera : (Camera.main ? Camera.main.transform : null);
-        if (cam == null) return;
-
-        // Position: relative to this object (page root)
-        replayButton.transform.position = transform.TransformPoint(replayWorldOffsetLocal);
-
-        // Face camera
-        Vector3 toCam = cam.position - replayButton.transform.position;
-        if (toCam.sqrMagnitude > 0.0001f)
+        if (videosDone && audioDone)
         {
-            replayButton.transform.rotation = Quaternion.LookRotation(toCam.normalized, Vector3.up);
+            if (replayButton != null)
+                replayButton.gameObject.SetActive(true);
         }
-    }
-
-    // ---------------------- Public helpers ----------------------
-
-    public void SetLanguage(string languageName)
-    {
-        currentLanguage = string.IsNullOrWhiteSpace(languageName) ? currentLanguage : languageName;
-        // If currently tracked, restart to apply new language immediately
-        if (isTracked)
-            RestartFromBeginning();
-    }
-
-    public void SetMuteAudio(bool mute)
-    {
-        muteAudio = mute;
-        if (audioSource != null)
-            audioSource.volume = muteAudio ? 0f : masterVolume;
-    }
-
-    public void SetMasterVolume(float v01)
-    {
-        masterVolume = Mathf.Clamp01(v01);
-        if (audioSource != null)
-            audioSource.volume = muteAudio ? 0f : masterVolume;
     }
 }

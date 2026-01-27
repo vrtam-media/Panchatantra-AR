@@ -1,136 +1,112 @@
+using UnityEngine;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [CreateAssetMenu(menuName = "AR/Audio Localization Database", fileName = "ARAudioLocalizationDatabase")]
 public class ARAudioLocalizationDatabase : ScriptableObject
 {
+    public static string CurrentLanguage = "English";
+
     [Serializable]
     public class Segment
     {
         public AudioClip clip;
-        [Tooltip("Seconds of silence before this clip starts.")]
+        [Tooltip("Seconds before this segment starts")]
         public float delayBefore = 0f;
-
         [Range(0f, 1f)]
         public float volume = 1f;
     }
 
     [Serializable]
-    public class PageAudio
+    public class Page
     {
         public string pageId;
-
-        [Tooltip("One page can have 1, 2, or 3 clips. They play in order.")]
         public List<Segment> segments = new List<Segment>();
-
-        [Tooltip("Extra silence added at the start of the whole page audio timeline.")]
         public float extraStartSilence = 0f;
-
-        [Tooltip("Extra silence added at the end of the whole page audio timeline.")]
         public float extraEndSilence = 0f;
-
-        [Header("Optional per-page override for video holds")]
-        public bool overrideVideoHolds = false;
-        public float videoHoldStart = 0f;
-        public float videoHoldEnd = 0f;
     }
 
     [Serializable]
-    public class LanguagePack
+    public class Language
     {
         public string languageName = "English";
-        public List<PageAudio> pages = new List<PageAudio>();
+        public List<Page> pages = new List<Page>();
     }
 
-    [Header("Languages")]
-    public List<LanguagePack> languages = new List<LanguagePack>();
-
-    [Header("Fallback")]
+    public List<Language> languages = new List<Language>();
     public string fallbackLanguage = "English";
 
-    public bool TryGetPage(string language, string pageId, out PageAudio page)
+    public bool TryGetPage(string languageName, string pageId, out Page page)
     {
         page = null;
+        if (string.IsNullOrEmpty(pageId)) return false;
 
-        if (string.IsNullOrWhiteSpace(pageId))
-            return false;
-
-        // 1) exact language
-        if (TryGetPageInternal(language, pageId, out page))
-            return true;
-
-        // 2) fallback language
-        if (!string.IsNullOrWhiteSpace(fallbackLanguage) && TryGetPageInternal(fallbackLanguage, pageId, out page))
-            return true;
-
-        // 3) any language (last resort)
-        for (int i = 0; i < languages.Count; i++)
+        Language lang = FindLanguage(languageName);
+        if (lang != null)
         {
-            var lp = languages[i];
-            if (lp == null) continue;
+            page = FindPage(lang, pageId);
+            if (page != null) return true;
+        }
 
-            for (int p = 0; p < lp.pages.Count; p++)
-            {
-                if (lp.pages[p] != null && string.Equals(lp.pages[p].pageId, pageId, StringComparison.OrdinalIgnoreCase))
-                {
-                    page = lp.pages[p];
-                    return true;
-                }
-            }
+        // fallback
+        Language fb = FindLanguage(fallbackLanguage);
+        if (fb != null)
+        {
+            page = FindPage(fb, pageId);
+            return page != null;
         }
 
         return false;
     }
 
-    private bool TryGetPageInternal(string language, string pageId, out PageAudio page)
+    public float GetTotalDurationSeconds(string languageName, string pageId)
     {
-        page = null;
-        if (string.IsNullOrWhiteSpace(language))
-            return false;
+        if (!TryGetPage(languageName, pageId, out Page page) || page == null)
+            return 0f;
 
-        for (int i = 0; i < languages.Count; i++)
-        {
-            var lp = languages[i];
-            if (lp == null) continue;
-
-            if (!string.Equals(lp.languageName, language, StringComparison.OrdinalIgnoreCase))
-                continue;
-
-            for (int p = 0; p < lp.pages.Count; p++)
-            {
-                if (lp.pages[p] == null) continue;
-                if (string.Equals(lp.pages[p].pageId, pageId, StringComparison.OrdinalIgnoreCase))
-                {
-                    page = lp.pages[p];
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return false;
-    }
-
-    public float ComputeTotalDuration(PageAudio page)
-    {
-        if (page == null) return 0f;
-
-        float t = 0f;
-        t += Mathf.Max(0f, page.extraStartSilence);
+        float total = 0f;
+        total += Mathf.Max(0f, page.extraStartSilence);
 
         for (int i = 0; i < page.segments.Count; i++)
         {
-            var seg = page.segments[i];
-            if (seg == null) continue;
-
-            t += Mathf.Max(0f, seg.delayBefore);
-            if (seg.clip != null)
-                t += Mathf.Max(0f, (float)seg.clip.length);
+            var s = page.segments[i];
+            if (s == null) continue;
+            total += Mathf.Max(0f, s.delayBefore);
+            if (s.clip != null) total += s.clip.length;
         }
 
-        t += Mathf.Max(0f, page.extraEndSilence);
-        return t;
+        total += Mathf.Max(0f, page.extraEndSilence);
+        return total;
+    }
+
+    public List<string> GetLanguageNames()
+    {
+        List<string> list = new List<string>();
+        for (int i = 0; i < languages.Count; i++)
+        {
+            if (!string.IsNullOrEmpty(languages[i].languageName))
+                list.Add(languages[i].languageName);
+        }
+        return list;
+    }
+
+    Language FindLanguage(string name)
+    {
+        for (int i = 0; i < languages.Count; i++)
+        {
+            if (string.Equals(languages[i].languageName, name, StringComparison.OrdinalIgnoreCase))
+                return languages[i];
+        }
+        return null;
+    }
+
+    Page FindPage(Language lang, string pageId)
+    {
+        for (int i = 0; i < lang.pages.Count; i++)
+        {
+            if (lang.pages[i] != null && lang.pages[i].pageId == pageId)
+                return lang.pages[i];
+        }
+        return null;
     }
 }
