@@ -19,6 +19,13 @@ public class ParallaxLayerStack : MonoBehaviour
     [Tooltip("If ON, gapY is auto-calculated once from current layer Y positions at Start().")]
     public bool autoComputeGapOnStart = true;
 
+    [Header("Runtime Layer Updates")]
+    [Tooltip("If ON, caches auto-rebuild when layers list changes (count or references).")]
+    public bool autoRefreshWhenLayersChange = true;
+
+    [Tooltip("If ON, when layers change we also recapture camera anchor (prevents sudden jump).")]
+    public bool recaptureAnchorOnLayerRefresh = true;
+
     [Header("Parallax (Portal feel)")]
     [Tooltip("Enable or disable parallax.")]
     public bool enableParallax = true;
@@ -43,6 +50,10 @@ public class ParallaxLayerStack : MonoBehaviour
     private Vector3[] baseLocalPositions;
     private Vector3[] vel;
 
+    // For detecting list changes at runtime
+    private int _lastLayerCount = -1;
+    private int _lastLayerHash = 0;
+
     void Start()
     {
         if (cameraTransform == null && Camera.main != null)
@@ -51,23 +62,88 @@ public class ParallaxLayerStack : MonoBehaviour
         if (autoComputeGapOnStart)
             ComputeGapFromCurrentY();
 
-        CaptureCurrentAsBase();
+        RefreshLayerCache(recaptureAnchorOnLayerRefresh);
     }
 
-    public void CaptureCurrentAsBase()
+#if UNITY_EDITOR
+    void OnValidate()
     {
-        int count = layers.Count;
+        // Editor-side safety: keep caches consistent while editing.
+        // This will not spam allocations in builds.
+        _lastLayerCount = -1;
+        _lastLayerHash = 0;
+    }
+#endif
+
+    /// <summary>
+    /// Call this after you change layers list (add/remove/reorder) at runtime.
+    /// </summary>
+    public void RefreshLayerCache(bool recaptureAnchor = true)
+    {
+        // Clean nulls to avoid mismatched arrays and gaps
+        if (layers != null)
+            layers.RemoveAll(t => t == null);
+
+        int count = (layers == null) ? 0 : layers.Count;
+
         baseLocalPositions = new Vector3[count];
         vel = new Vector3[count];
 
         for (int i = 0; i < count; i++)
-            baseLocalPositions[i] = layers[i] ? layers[i].localPosition : Vector3.zero;
+            baseLocalPositions[i] = layers[i].localPosition;
 
-        if (cameraTransform)
+        if (cameraTransform && recaptureAnchor)
         {
             camPosAnchorWorld = cameraTransform.position;
             camRotAnchorWorld = cameraTransform.rotation;
         }
+
+        _lastLayerCount = count;
+        _lastLayerHash = ComputeLayersHash();
+    }
+
+    /// <summary>
+    /// Convenience: replace the entire layer list at runtime.
+    /// </summary>
+    public void SetLayers(List<Transform> newLayers, bool recaptureAnchor = true)
+    {
+        layers = newLayers ?? new List<Transform>();
+        RefreshLayerCache(recaptureAnchor);
+    }
+
+    /// <summary>
+    /// Convenience: replace the entire layer list at runtime.
+    /// </summary>
+    public void SetLayers(Transform[] newLayers, bool recaptureAnchor = true)
+    {
+        layers = (newLayers == null) ? new List<Transform>() : new List<Transform>(newLayers);
+        RefreshLayerCache(recaptureAnchor);
+    }
+
+    int ComputeLayersHash()
+    {
+        unchecked
+        {
+            int h = 17;
+            if (layers == null) return h;
+            for (int i = 0; i < layers.Count; i++)
+            {
+                // InstanceID is stable for the object lifetime
+                h = h * 31 + (layers[i] ? layers[i].GetInstanceID() : 0);
+            }
+            return h;
+        }
+    }
+
+    bool LayersChanged()
+    {
+        int count = (layers == null) ? 0 : layers.Count;
+        if (count != _lastLayerCount) return true;
+
+        int h = ComputeLayersHash();
+        if (h != _lastLayerHash) return true;
+
+        return false;
     }
 
     [ContextMenu("Compute Gap From Current Y")]
@@ -106,7 +182,7 @@ public class ParallaxLayerStack : MonoBehaviour
             layers[i].localPosition = p;
         }
 
-        CaptureCurrentAsBase();
+        RefreshLayerCache(recaptureAnchorOnLayerRefresh);
     }
 
     void LateUpdate()
@@ -114,7 +190,12 @@ public class ParallaxLayerStack : MonoBehaviour
         if (!enableParallax) return;
         if (cameraTransform == null) return;
         if (layers == null || layers.Count == 0) return;
+
+        if (autoRefreshWhenLayersChange && LayersChanged())
+            RefreshLayerCache(recaptureAnchorOnLayerRefresh);
+
         if (baseLocalPositions == null || baseLocalPositions.Length != layers.Count) return;
+        if (vel == null || vel.Length != layers.Count) return;
 
         // Camera motion relative to anchor (world)
         Vector3 camDeltaWorld = cameraTransform.position - camPosAnchorWorld;
@@ -136,7 +217,6 @@ public class ParallaxLayerStack : MonoBehaviour
         Vector2 rotOffset = new Vector2(yaw, -pitch) * 0.0025f;
 
         float dt = Time.deltaTime;
-        float t = 1f - Mathf.Exp(-smoothness * dt);
 
         for (int i = 0; i < layers.Count; i++)
         {
@@ -148,14 +228,12 @@ public class ParallaxLayerStack : MonoBehaviour
             // Far layers move less, near layers move more
             float layerStrength = Mathf.Lerp(0.15f, 1f, depth01);
 
-            // Portal style: small shift based on camera local movement + view angle
             Vector3 offsetLocal = new Vector3(
                 (camDeltaLocal.x + rotOffset.x) * parallaxStrength * layerStrength,
                 (camDeltaLocal.y + rotOffset.y) * parallaxStrength * layerStrength,
                 0f
             );
 
-            // Base position + equal Y gap + parallax offset
             Vector3 target = baseLocalPositions[i];
             target.y = baseLocalPositions[0].y + gapY * i;
             target += offsetLocal;

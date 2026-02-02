@@ -20,7 +20,24 @@ MonoBehaviour:
       - clip: {fileID: 8300000, guid: cad2b654bf9cb1441aacf0da2a0fbc3c, type: 3}
         delayBefore: 0
         volume: 0
-      - clip: {fileID: 8300000, guid: 56af30b40b6da4744870b156acc09e29, type: 3}
+      - clip: {fileID: 8300000, guid: a1f6fbd16bc5b2845bebe48f684fd458, type: 3}
+        delayBefore: 0
+        volume: 0
+      extraStartSilence: 0
+      extraEndSilence: 0
+    - pageId: ImageTarget page-7-8
+      segments:
+      - clip: {fileID: 8300000, guid: 8871ecd98cb9f384dae3c1df8ebf5a42, type: 3}
+        delayBefore: 0
+        volume: 0
+      - clip: {fileID: 8300000, guid: cdb7f6053e462bd49a27a564c3e31509, type: 3}
+        delayBefore: 0
+        volume: 0
+      extraStartSilence: 0
+      extraEndSilence: 0
+    - pageId: ImageTarget page-9-10
+      segments:
+      - clip: {fileID: 8300000, guid: b0f69889694796a489e9110383a3a946, type: 3}
         delayBefore: 0
         volume: 0
       extraStartSilence: 0
@@ -32,6 +49,27 @@ MonoBehaviour:
         volume: 0
       extraStartSilence: 0
       extraEndSilence: 0
+    - pageId: ImageTarget page-15-16
+      segments:
+      - clip: {fileID: 8300000, guid: ef20e12232c606641a3bcf4037e55f1a, type: 3}
+        delayBefore: 0
+        volume: 0
+      extraStartSilence: 0
+      extraEndSilence: 0
+    - pageId: ImageTarget page-17-18
+      segments:
+      - clip: {fileID: 8300000, guid: a402860c09b58a242b824f301774f50b, type: 3}
+        delayBefore: 0
+        volume: 0
+      extraStartSilence: 0
+      extraEndSilence: 0
   - languageName: 
-    pages: []
+    pages:
+    - pageId: 
+      segments:
+      - clip: {fileID: 0}
+        delayBefore: 0
+        volume: 0
+      extraStartSilence: 0
+      extraEndSilence: 0
   fallbackLanguage: English
