@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AppUI.unity
     guid: 80b1a77922893bc4db1ecd7e8dba0022
   - enabled: 1
-    path: Assets/Scenes/page-01.unity
+    path: Assets/Scenes/AR/AR-story_selection.unity
     guid: 93e9cc6d615a1d24293044c92461016e
   - enabled: 1
     path: Assets/Scenes/page-02.unity
@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/jan-14-approved.unity
     guid: e3c4a1ffc94693346a0d9276e40e30e8
   - enabled: 1
-    path: Assets/Scenes/page- 2 -re.unity
+    path: Assets/Scenes/AR/AR-story1_parts.unity
     guid: 1656d5252c4fb454a90fbc9c39010ca9
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

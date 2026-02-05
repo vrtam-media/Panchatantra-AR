@@ -708,6 +708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567823740}
   - component: {fileID: 567823739}
+  - component: {fileID: 567823741}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -795,6 +796,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &567823741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567823738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &658070156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cade04dc98640d74ba9e443dfd953470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenSceneButton
-  sceneName: page-02
+  sceneName: AR-story1_parts
   sceneAsset: {fileID: 102900000, guid: 1656d5252c4fb454a90fbc9c39010ca9, type: 3}
 --- !u!1 &1166239888
 GameObject:
@@ -1525,7 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cade04dc98640d74ba9e443dfd953470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenSceneButton
-  sceneName: page-02
+  sceneName: AR-story1_parts
   sceneAsset: {fileID: 102900000, guid: 1656d5252c4fb454a90fbc9c39010ca9, type: 3}
 --- !u!1 &1282863049
 GameObject:
@@ -1764,8 +1794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cade04dc98640d74ba9e443dfd953470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenSceneButton
-  sceneName: jan-14-approved
-  sceneAsset: {fileID: 102900000, guid: e3c4a1ffc94693346a0d9276e40e30e8, type: 3}
+  sceneName: AR-main-scene
+  sceneAsset: {fileID: 102900000, guid: fd6b36181b38e7541967eb2621ad50ba, type: 3}
 --- !u!1 &1654241194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,7 +2232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cade04dc98640d74ba9e443dfd953470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenSceneButton
-  sceneName: page-02
+  sceneName: AR-story1_parts
   sceneAsset: {fileID: 102900000, guid: 1656d5252c4fb454a90fbc9c39010ca9, type: 3}
 --- !u!1 &2088512933
 GameObject:
