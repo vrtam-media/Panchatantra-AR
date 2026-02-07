@@ -278,7 +278,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.2
+  m_fontSize: 62.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -573,15 +573,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1800217550}
   - {fileID: 956045148}
+  - {fileID: 1800217550}
   - {fileID: 761005401}
   - {fileID: 1514567396}
   m_Father: {fileID: 408115105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -16}
   m_SizeDelta: {x: 950, y: 1400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380100962
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 400, y: 500}
+  m_CellSize: {x: 400, y: 600}
   m_Spacing: {x: 40, y: 40}
   m_Constraint: 1
   m_ConstraintCount: 2
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.2
+  m_fontSize: 62.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1613,6 +1613,7 @@ GameObject:
   - component: {fileID: 544717257}
   - component: {fileID: 544717256}
   - component: {fileID: 544717255}
+  - component: {fileID: 544717259}
   m_Layer: 5
   m_Name: DownloadBtn
   m_TagString: Untagged
@@ -1742,6 +1743,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544717253}
   m_CullTransparentMesh: 1
+--- !u!114 &544717259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544717253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1eb092b64360940a57900ebcb43cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageSelectAndOpenScene
+  languageName: Tamil
+  targetSceneName: AR-main-scene
+  button: {fileID: 544717256}
 --- !u!1 &567823738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,7 +2127,7 @@ GameObject:
   - component: {fileID: 761005403}
   - component: {fileID: 761005402}
   m_Layer: 5
-  m_Name: BookBtn_1 (2)
+  m_Name: Tamil_Btn_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hindi
+  m_text: English
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2346,7 +2362,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.2
+  m_fontSize: 62.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2654,7 +2670,7 @@ GameObject:
   - component: {fileID: 956045150}
   - component: {fileID: 956045149}
   m_Layer: 5
-  m_Name: BookBtn_1 (1)
+  m_Name: 'English_Btn_1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3035,6 +3051,7 @@ GameObject:
   - component: {fileID: 1214369188}
   - component: {fileID: 1214369187}
   - component: {fileID: 1214369186}
+  - component: {fileID: 1214369190}
   m_Layer: 5
   m_Name: DownloadBtn
   m_TagString: Untagged
@@ -3164,6 +3181,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214369184}
   m_CullTransparentMesh: 1
+--- !u!114 &1214369190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214369184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1eb092b64360940a57900ebcb43cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageSelectAndOpenScene
+  languageName: Kannada
+  targetSceneName: AR-main-scene
+  button: {fileID: 1214369187}
 --- !u!1 &1240416117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,6 +3488,7 @@ GameObject:
   - component: {fileID: 1297909888}
   - component: {fileID: 1297909887}
   - component: {fileID: 1297909890}
+  - component: {fileID: 1297909891}
   m_Layer: 5
   m_Name: DownloadBtn
   m_TagString: Untagged
@@ -3585,6 +3618,21 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1297909891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297909885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1eb092b64360940a57900ebcb43cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageSelectAndOpenScene
+  languageName: Sanskrit
+  targetSceneName: AR-main-scene
+  button: {fileID: 1297909887}
 --- !u!1 &1508133761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,7 +3717,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.2
+  m_fontSize: 62.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3737,7 +3785,7 @@ GameObject:
   - component: {fileID: 1514567398}
   - component: {fileID: 1514567397}
   m_Layer: 5
-  m_Name: BookBtn_1 (3)
+  m_Name: Kannada_Btn_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3901,6 +3949,7 @@ GameObject:
   - component: {fileID: 1602846850}
   - component: {fileID: 1602846849}
   - component: {fileID: 1602846848}
+  - component: {fileID: 1602846852}
   m_Layer: 5
   m_Name: DownloadBtn
   m_TagString: Untagged
@@ -4030,6 +4079,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602846846}
   m_CullTransparentMesh: 1
+--- !u!114 &1602846852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602846846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1eb092b64360940a57900ebcb43cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageSelectAndOpenScene
+  languageName: English
+  targetSceneName: AR-main-scene
+  button: {fileID: 1602846849}
 --- !u!1 &1666052058
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,6 +4382,7 @@ GameObject:
   - component: {fileID: 1751698475}
   - component: {fileID: 1751698474}
   - component: {fileID: 1751698473}
+  - component: {fileID: 1751698476}
   m_Layer: 5
   m_Name: BACK BTN
   m_TagString: Untagged
@@ -4342,7 +4407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000095367, y: 285}
+  m_AnchoredPosition: {x: -0.0000095367, y: 135}
   m_SizeDelta: {x: 458.609, y: 87.417}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1751698473
@@ -4427,6 +4492,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751698471}
   m_CullTransparentMesh: 1
+--- !u!114 &1751698476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751698471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1beaf5a6850dd048bbe01472f85b32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OpenReturnSceneButton
+  button: {fileID: 1751698473}
+  returnKey: ReturnScene
+  fallbackSceneName: AR-story_selection
 --- !u!1 &1777706421
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,7 +4664,7 @@ GameObject:
   - component: {fileID: 1800217551}
   - component: {fileID: 1800217555}
   m_Layer: 5
-  m_Name: BookBtn_1
+  m_Name: Sanskrit_Btn_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

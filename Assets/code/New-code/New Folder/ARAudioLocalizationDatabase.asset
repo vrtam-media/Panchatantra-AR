@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af348a135ab679447b523dba6ce8c25a, type: 3}
+  m_Name: ARAudioLocalizationDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ARAudioLocalizationDatabase
+  languages:
+  - languageName: English
+    pages:
+    - pageId: S1P1_P_5_6
+      segments:
+      - clip: {fileID: 8300000, guid: f00c1a93ceab0304898953942665c3db, type: 3}
+        delayBefore: 0
+        volume: 0.334
+      extraStartSilence: 0
+      extraEndSilence: 0
+    - pageId: S1P1_P_7_8
+      segments:
+      - clip: {fileID: 8300000, guid: 9797fd295269b3f449b7ba2cc5ad3cbc, type: 3}
+        delayBefore: 0
+        volume: 0.31
+      - clip: {fileID: 8300000, guid: d597161c28c82334cb2f05ead4c0fc46, type: 3}
+        delayBefore: 0
+        volume: 0.342
+      - clip: {fileID: 8300000, guid: 4c32b440f998ba14a9ff67652d1e9fe0, type: 3}
+        delayBefore: 0
+        volume: 0.793
+      extraStartSilence: 0
+      extraEndSilence: 0
+  - languageName: Sanskrit
+    pages:
+    - pageId: S1P1_P_5_6
+      segments:
+      - clip: {fileID: 8300000, guid: cad2b654bf9cb1441aacf0da2a0fbc3c, type: 3}
+        delayBefore: 0
+        volume: 0.236
+      - clip: {fileID: 8300000, guid: 56af30b40b6da4744870b156acc09e29, type: 3}
+        delayBefore: 0
+        volume: 0.394
+      extraStartSilence: 0
+      extraEndSilence: 0
+    - pageId: S1P1_P_7_8
+      segments:
+      - clip: {fileID: 8300000, guid: df817d058b4881f4f9543885cbf34d03, type: 3}
+        delayBefore: 0
+        volume: 0.333
+      - clip: {fileID: 8300000, guid: cdb7f6053e462bd49a27a564c3e31509, type: 3}
+        delayBefore: 0
+        volume: 0.474
+      extraStartSilence: 0
+      extraEndSilence: 0
+  fallbackLanguage: English
