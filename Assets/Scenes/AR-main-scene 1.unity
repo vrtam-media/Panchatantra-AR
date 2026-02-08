@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 35621096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00113, y: 0.0178, z: -0.026772745}
+  m_LocalPosition: {x: 0, y: 0.03240663, z: -0.0029}
   m_LocalScale: {x: 0.019558521, y: 0.019558521, z: 0.011747754}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -259,8 +259,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44594005}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.002, y: 0.021599999, z: 0.0119}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0269, z: -0.0039}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011683262}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -375,8 +375,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106870067}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.002, y: 0.0316, z: 0.0119}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0408, z: -0.0007}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288176}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -643,7 +643,6 @@ GameObject:
   - component: {fileID: 126256523}
   - component: {fileID: 126256525}
   - component: {fileID: 126256526}
-  - component: {fileID: 126256527}
   m_Layer: 0
   m_Name: ImageTarget page-cover
   m_TagString: Untagged
@@ -1016,12 +1015,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1P1_P_cover
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
-  splineMovers: []
+  animators:
+  - {fileID: 6157340629863882228}
+  trackableBehaviours:
+  - {fileID: 1794670165}
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -1039,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &126256526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,23 +1060,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 126256520}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &126256527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126256514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  segments: []
-  faceAlongSpline: 0
-  up: {x: 0, y: 1, z: 0}
 --- !u!1 &141375614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257182374}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: -0.0164, z: 0.0216}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.0071747876}
   m_ConstrainProportionsScale: 0
@@ -1934,8 +1918,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340415557}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0035999995, z: 0.0216}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0074, z: 0.0134}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288176}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2253,14 +2237,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae2684fe7e1d204cb74acd0bce2f688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARMediaManager
-  replayButton: {fileID: 1839091514}
   audioDatabase: {fileID: 11400000, guid: c7409ed92b6c34a41a5ae2ca3d84414e, type: 2}
   voiceSource: {fileID: 397100722}
   bgmSource: {fileID: 397100726}
-  defaultVoiceVolume: 0.6
-  defaultBgmVolume: 0.6
+  replayButtonRoot: {fileID: 1839091512}
   resumeGraceSeconds: 2
-  defaultLanguage: English
+  switchToMostRecentlyTracked: 1
+  restartOnTargetSwitch: 1
+  restartOnLanguageChange: 1
 --- !u!82 &397100726
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2478,12 +2462,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
-  backgroundLoopVideos: []
+  pageId: S1P1_P_7_8
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 2145162598}
+  backgroundLoopVideos:
+  - {fileID: 1653115325}
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -2501,7 +2487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &397886801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2720,47 +2706,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayerStack
   cameraTransform: {fileID: 1198933753}
   layers: []
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!1 &560899413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,47 +2918,15 @@ MonoBehaviour:
   - {fileID: 693335733}
   - {fileID: 925468354}
   - {fileID: 1154762683}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  - {fileID: 0}
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!82 &588656691
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3278,47 +3199,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayerStack
   cameraTransform: {fileID: 1198933753}
   layers: []
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!1 &672616916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,8 +3234,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672616916}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.00014, y: 0.0058, z: 0.0164}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0108, z: -0.0086}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.01213015}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3576,8 +3464,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681593251}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.023599999, z: 0.0216}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0221, z: 0.0017}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288176}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3758,8 +3646,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693335728}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.00379, z: 0.03328}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0, y: -0.00379, z: 0.03328}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.0065197553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3933,12 +3821,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1P1_P_11_12
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 1852800254}
   backgroundLoopVideos: []
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -3956,7 +3845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &748189283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4118,7 +4007,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851094557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcf44fa8d1b2a142b58acd12a1d30f8, type: 3}
   m_Name: 
@@ -4296,13 +4185,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: S1_P1_P_5_6
+  pageId: S1P1_P_5_6
   mediaManager: {fileID: 397100725}
   mainVideos:
   - {fileID: 1703435746}
-  backgroundLoopVideos: []
+  backgroundLoopVideos:
+  - {fileID: 0}
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -4320,7 +4210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 872302814}
+  pageNode: {fileID: 0}
 --- !u!114 &872302817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4423,47 +4313,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayerStack
   cameraTransform: {fileID: 1198933753}
   layers: []
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!1 &925468353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,8 +4348,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925468353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.00621, z: 0.03328}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0051, z: 0.018}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.018860284}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4635,8 +4492,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041103422}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.0064000003, z: 0.0216}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.0068, z: 0.0115}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.018860284}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4874,7 +4731,6 @@ GameObject:
   - component: {fileID: 1044559235}
   - component: {fileID: 1044559237}
   - component: {fileID: 1044559238}
-  - component: {fileID: 1044559239}
   m_Layer: 0
   m_Name: ImageTarget page-13-14
   m_TagString: Untagged
@@ -5202,12 +5058,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1P1_P_13_14
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
-  splineMovers: []
+  animators:
+  - {fileID: 2049359059}
+  - {fileID: 851094558}
+  trackableBehaviours:
+  - {fileID: 1507690612}
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -5225,7 +5084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &1044559238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,23 +5104,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1044559228}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1044559239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044559225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  segments: []
-  faceAlongSpline: 0
-  up: {x: 0, y: 1, z: 0}
 --- !u!1 &1130805499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,7 +5132,7 @@ Transform:
   m_GameObject: {fileID: 1130805499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00113, y: 0.0078, z: -0.026772745}
+  m_LocalPosition: {x: 0, y: 0.022406632, z: -0.0034}
   m_LocalScale: {x: 0.019558521, y: 0.019558521, z: 0.018779317}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5481,7 +5323,7 @@ Transform:
   m_GameObject: {fileID: 1141752243}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0053382404, y: 0, z: 0.0383}
+  m_LocalPosition: {x: -0.0053382404, y: 0, z: 0.048483912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5514,8 +5356,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142976370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.022, z: 0.0165}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.012085122}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5743,8 +5585,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154762678}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.01621, z: 0.03328}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0168, z: 0.0131}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288176}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5943,7 +5785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204998179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0.00014, y: -0.0042, z: 0.0164}
   m_LocalScale: {x: 0.018710025, y: 0.022154719, z: 0.008113812}
   m_ConstrainProportionsScale: 0
@@ -6233,12 +6075,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1P1_P_9_10
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 106870069}
   backgroundLoopVideos: []
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -6256,7 +6099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &1219454659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6303,8 +6146,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219529711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.00014, y: 0.0158, z: 0.0164}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.025799999, z: 0.0001}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.012121006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6444,47 +6287,14 @@ MonoBehaviour:
   - {fileID: 1497761118}
   - {fileID: 44594006}
   - {fileID: 106870068}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!82 &1266564119
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6637,47 +6447,14 @@ MonoBehaviour:
   - {fileID: 672616917}
   - {fileID: 1219529712}
   - {fileID: 1852800250}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.03
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 5
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.03
+  rotationClampDegrees: 5
+  smoothness: 14
 --- !u!82 &1295423631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6802,8 +6579,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308254511}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.013599999, z: 0.0216}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.0001, z: -0.0273}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.006157661}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7313,12 +7090,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1P1_P_15_16
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 681593252}
   backgroundLoopVideos: []
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -7336,7 +7114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &1405175065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7384,7 +7162,7 @@ Transform:
   m_GameObject: {fileID: 1438125826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00113, y: 0.0278, z: -0.026772745}
+  m_LocalPosition: {x: 0, y: 0.042406633, z: -0.0042}
   m_LocalScale: {x: 0.019558521, y: 0.019558521, z: 0.010485322}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7526,47 +7304,14 @@ MonoBehaviour:
   - {fileID: 340415558}
   - {fileID: 1308254512}
   - {fileID: 681593256}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!82 &1457958529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7691,8 +7436,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497761117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.002, y: 0.0116, z: 0.0119}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0149, z: -0.0063}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.016170947}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7935,15 +7680,14 @@ GameObject:
   - component: {fileID: 1562336162}
   - component: {fileID: 1562336164}
   - component: {fileID: 1562336166}
-  - component: {fileID: 1562336168}
-  - component: {fileID: 1562336169}
+  - component: {fileID: 1562336167}
   m_Layer: 0
   m_Name: ImageTarget page-3-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1562336157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8014,7 +7758,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1562336169}
+  mPreview: {fileID: 1562336167}
 --- !u!4 &1562336159
 Transform:
   m_ObjectHideFlags: 0
@@ -8038,7 +7782,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562336155}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883e4c30192ef024a8239ed6d07f3bee, type: 3}
   m_Name: 
@@ -8167,14 +7911,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: S1_P1_P_3_4
+  pageId: S1P1_P_3_4
   mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
   animators:
   - {fileID: 1816011484}
-  splineMovers:
-  - {fileID: 1562336168}
+  trackableBehaviours:
+  - {fileID: 1141752244}
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -8192,29 +7936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 1562336164}
---- !u!114 &1562336168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562336155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 1141752244}
-  splineIndex: 0
-  segments:
-  - startT: 0
-    endT: 0.971
-    moveSeconds: 3.2
-    waitAfterSeconds: 8.16
-  faceAlongSpline: 0
-  up: {x: 0, y: 1, z: 0}
---- !u!114 &1562336169
+  pageNode: {fileID: 0}
+--- !u!114 &1562336167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8629,7 +8352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653115319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.002, z: 0.0165}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.008824984}
   m_ConstrainProportionsScale: 0
@@ -8700,7 +8423,7 @@ Transform:
   m_GameObject: {fileID: 1680305124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00113, y: -0.0022, z: -0.026772745}
+  m_LocalPosition: {x: 0.00113, y: 0.012406632, z: -0.00845}
   m_LocalScale: {x: 0.017731734, y: 0.019558521, z: 0.0075825327}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8815,7 +8538,7 @@ Transform:
   m_GameObject: {fileID: 1703435742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00113, y: 0.0378, z: -0.026772745}
+  m_LocalPosition: {x: 0, y: 0.05240663, z: -0.0058}
   m_LocalScale: {x: 0.019558521, y: 0.019558521, z: 0.010485322}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9060,8 +8783,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762717627}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.012, z: 0.0165}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -3e-45, y: 0.014999999, z: 3e-45}
   m_LocalScale: {x: 0.02313983, y: 0.02313983, z: 0.018680967}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9173,7 +8896,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785670256}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -0.002, y: 0.0016, z: 0.0119}
   m_LocalScale: {x: 0.01859385, y: 0.019565258, z: 0.0076156845}
   m_ConstrainProportionsScale: 0
@@ -9388,7 +9111,6 @@ GameObject:
   - component: {fileID: 1815694542}
   - component: {fileID: 1815694544}
   - component: {fileID: 1815694545}
-  - component: {fileID: 1815694546}
   m_Layer: 0
   m_Name: ImageTarget page-19-20
   m_TagString: Untagged
@@ -9764,12 +9486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1P1_P_13_14
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
-  splineMovers: []
+  animators:
+  - {fileID: 859488200}
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -9787,7 +9510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &1815694545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9807,23 +9530,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1815694536}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1815694546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815694533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  segments: []
-  faceAlongSpline: 0
-  up: {x: 0, y: 1, z: 0}
 --- !u!1001 &1816011481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9860,7 +9566,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9ac52cc9d22b0634a89a244fdfcec97a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0383
+      value: 0.048483912
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ac52cc9d22b0634a89a244fdfcec97a,
         type: 3}
@@ -9988,7 +9694,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816011483}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcf44fa8d1b2a142b58acd12a1d30f8, type: 3}
   m_Name: 
@@ -10085,7 +9791,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1839091515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 397100725}
+        m_TargetAssemblyTypeName: ARMediaManager, Assembly-CSharp
+        m_MethodName: OnReplayPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1839091515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10154,8 +9872,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852800249}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.00014, y: 0.025799999, z: 0.0164}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.040799998, z: -0.0022}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288178}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10574,47 +10292,14 @@ MonoBehaviour:
   - {fileID: 35621097}
   - {fileID: 1438125827}
   - {fileID: 1703435743}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.01
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 1
-  rotationInfluence: 0.15
-  rotationClampDegrees: 5
-  follow: 14
-  previewInEditMode: 1
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.0861
+  rotationClampDegrees: 9.3
+  smoothness: 14
 --- !u!1 &1936556118
 GameObject:
   m_ObjectHideFlags: 0
@@ -10669,47 +10354,14 @@ MonoBehaviour:
   - {fileID: 1762717628}
   - {fileID: 1142976371}
   - {fileID: 2145162602}
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.0482
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.0482
+  rotationClampDegrees: 8
+  smoothness: 12.27
 --- !u!1 &1949823880
 GameObject:
   m_ObjectHideFlags: 0
@@ -10878,12 +10530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1P1_P_1_2
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 283124615}
   backgroundLoopVideos: []
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -10901,7 +10554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &1949823889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10971,47 +10624,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayerStack
   cameraTransform: {fileID: 1198933753}
   layers: []
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
+  gapY: 0.015
+  autoComputeGapOnStart: 1
   autoRefreshWhenLayersChange: 1
   recaptureAnchorOnLayerRefresh: 1
+  enableParallax: 1
+  parallaxStrength: 0.1649
+  rotationClampDegrees: 8
+  smoothness: 23
 --- !u!1 &2020627992
 GameObject:
   m_ObjectHideFlags: 0
@@ -11180,12 +10800,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1P1_P_17_18
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 1154762679}
   backgroundLoopVideos: []
   animators: []
-  splineMovers: []
+  trackableBehaviours: []
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -11203,7 +10824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  PageNode: {fileID: 0}
+  pageNode: {fileID: 0}
 --- !u!114 &2020628001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11662,8 +11283,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145162597}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.031999998, z: 0.0165}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.044999998, z: 0}
   m_LocalScale: {x: 0.019565258, y: 0.019565258, z: 0.011288176}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17691,7 +17312,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7717177681949372813}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcf44fa8d1b2a142b58acd12a1d30f8, type: 3}
   m_Name: 

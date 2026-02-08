@@ -12,49 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af348a135ab679447b523dba6ce8c25a, type: 3}
   m_Name: ARAudioLocalizationDatabase
   m_EditorClassIdentifier: Assembly-CSharp::ARAudioLocalizationDatabase
-  languages:
+  languagePacks:
   - languageName: English
     pages:
-    - pageId: S1P1_P_5_6
-      segments:
+    - pageId: S1_P1_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 50ad58bb32154da43a286a35d8780969, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+      bgmClips: []
+    - pageId: S1_P1_P_5_6
+      voiceClips:
       - clip: {fileID: 8300000, guid: f00c1a93ceab0304898953942665c3db, type: 3}
         delayBefore: 0
-        volume: 0.334
-      extraStartSilence: 0
-      extraEndSilence: 0
-    - pageId: S1P1_P_7_8
-      segments:
-      - clip: {fileID: 8300000, guid: 9797fd295269b3f449b7ba2cc5ad3cbc, type: 3}
-        delayBefore: 0
-        volume: 0.31
-      - clip: {fileID: 8300000, guid: d597161c28c82334cb2f05ead4c0fc46, type: 3}
-        delayBefore: 0
-        volume: 0.342
-      - clip: {fileID: 8300000, guid: 4c32b440f998ba14a9ff67652d1e9fe0, type: 3}
-        delayBefore: 0
-        volume: 0.793
-      extraStartSilence: 0
-      extraEndSilence: 0
+        delayAfter: 0
+        volume: 0.907
+      bgmClips: []
   - languageName: Sanskrit
     pages:
-    - pageId: S1P1_P_5_6
-      segments:
+    - pageId: S1_P1_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 81d29d740fd4bc041ac4b2600af88498, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+      bgmClips: []
+    - pageId: S1_P1_P_5_6
+      voiceClips:
       - clip: {fileID: 8300000, guid: cad2b654bf9cb1441aacf0da2a0fbc3c, type: 3}
         delayBefore: 0
-        volume: 0.236
+        delayAfter: 0
+        volume: 0.656
       - clip: {fileID: 8300000, guid: 56af30b40b6da4744870b156acc09e29, type: 3}
         delayBefore: 0
-        volume: 0.394
-      extraStartSilence: 0
-      extraEndSilence: 0
-    - pageId: S1P1_P_7_8
-      segments:
-      - clip: {fileID: 8300000, guid: df817d058b4881f4f9543885cbf34d03, type: 3}
-        delayBefore: 0
-        volume: 0.333
-      - clip: {fileID: 8300000, guid: cdb7f6053e462bd49a27a564c3e31509, type: 3}
-        delayBefore: 0
-        volume: 0.474
-      extraStartSilence: 0
-      extraEndSilence: 0
-  fallbackLanguage: English
+        delayAfter: 0
+        volume: 0.656
+      bgmClips: []

@@ -1,113 +1,125 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "AR/Audio Localization Database", fileName = "ARAudioLocalizationDatabase")]
+[CreateAssetMenu(menuName = "AR/Audio Localization Database")]
 public class ARAudioLocalizationDatabase : ScriptableObject
 {
-    // Global language for the whole app (your choice A)
-    public static string CurrentLanguage { get; private set; } = "English";
-
-    public static event Action<string> OnLanguageChanged;
-
-    private const string PrefKey = "AR_GlobalLanguage";
-
     [Serializable]
-    public class Segment
+    public class AudioSegment
     {
+        [Tooltip("Audio clip to play.")]
         public AudioClip clip;
+
+        [Min(0f)]
+        [Tooltip("Seconds to wait before playing this clip.")]
         public float delayBefore = 0f;
-        [Range(0f, 1f)] public float volume = 1f;
+
+        [Min(0f)]
+        [Tooltip("Seconds to wait after this clip finishes (before next clip).")]
+        public float delayAfter = 0f;
+
+        [Range(0f, 2f)]
+        [Tooltip("Per-clip volume multiplier. Default 0.6, max 2.")]
+        public float volume = 0.6f;
     }
 
     [Serializable]
-    public class Page
+    public class PageAudio
     {
+        [Tooltip("Must match ARTrackedPageNode Page Id (example: S1_P1_P_3_4).")]
         public string pageId;
-        public List<Segment> segments = new List<Segment>();
-        public float extraStartSilence = 0f;
-        public float extraEndSilence = 0f;
+
+        [Header("Voice Clips (sequential)")]
+        public List<AudioSegment> voiceClips = new List<AudioSegment>();
+
+        [Header("BGM Clips (sequential)")]
+        public List<AudioSegment> bgmClips = new List<AudioSegment>();
     }
 
     [Serializable]
-    public class Language
+    public class LanguagePack
     {
         public string languageName = "English";
-        public List<Page> pages = new List<Page>();
+        public List<PageAudio> pages = new List<PageAudio>();
     }
 
-    public List<Language> languages = new List<Language>();
-    public string fallbackLanguage = "English";
+    [SerializeField] private List<LanguagePack> languagePacks = new List<LanguagePack>();
 
-    public static void LoadGlobalLanguage(string defaultLanguage = "English")
+    // -----------------------------
+    // Public API (recommended)
+    // -----------------------------
+    public bool TryGetPageAudio(string language, string pageId, out PageAudio pageAudio)
     {
-        var saved = PlayerPrefs.GetString(PrefKey, defaultLanguage);
-        CurrentLanguage = string.IsNullOrEmpty(saved) ? defaultLanguage : saved;
-    }
+        pageAudio = null;
+        if (string.IsNullOrWhiteSpace(pageId)) return false;
 
-    public static void SetLanguageGlobal(string languageName)
-    {
-        if (string.IsNullOrEmpty(languageName)) return;
-        if (string.Equals(CurrentLanguage, languageName, StringComparison.OrdinalIgnoreCase)) return;
-
-        CurrentLanguage = languageName;
-        PlayerPrefs.SetString(PrefKey, CurrentLanguage);
-        PlayerPrefs.Save();
-
-        OnLanguageChanged?.Invoke(CurrentLanguage);
-    }
-
-    public bool TryGetPage(string languageName, string pageId, out Page page)
-    {
-        page = null;
-        if (string.IsNullOrEmpty(pageId)) return false;
-
-        // try requested
-        var lang = FindLanguage(languageName);
-        if (lang != null)
+        // 1) exact language
+        var pack = FindLanguage(language);
+        if (pack != null)
         {
-            page = FindPage(lang, pageId);
-            if (page != null) return true;
+            pageAudio = FindPage(pack, pageId);
+            if (pageAudio != null) return true;
         }
 
-        // fallback
-        var fb = FindLanguage(fallbackLanguage);
-        if (fb != null)
+        // 2) fallback English
+        var english = FindLanguage("English");
+        if (english != null)
         {
-            page = FindPage(fb, pageId);
-            return page != null;
+            pageAudio = FindPage(english, pageId);
+            if (pageAudio != null) return true;
         }
 
         return false;
     }
 
-    public List<string> GetLanguageNames()
+    // -----------------------------
+    // Compatibility helpers (older scripts)
+    // -----------------------------
+    public PageAudio GetPage(string language, string pageId)
     {
-        var list = new List<string>();
-        foreach (var l in languages)
-            if (l != null && !string.IsNullOrEmpty(l.languageName))
-                list.Add(l.languageName);
-        return list;
+        TryGetPageAudio(language, pageId, out var page);
+        return page;
     }
 
-    private Language FindLanguage(string name)
+    public IReadOnlyList<LanguagePack> GetAllLanguagePacks() => languagePacks;
+
+    // -----------------------------
+    // Internals
+    // -----------------------------
+    private LanguagePack FindLanguage(string language)
     {
-        foreach (var l in languages)
+        if (languagePacks == null) return null;
+
+        // If caller passes empty, treat as English
+        if (string.IsNullOrWhiteSpace(language))
+            language = "English";
+
+        for (int i = 0; i < languagePacks.Count; i++)
         {
-            if (l == null) continue;
-            if (string.Equals(l.languageName, name, StringComparison.OrdinalIgnoreCase))
-                return l;
+            var p = languagePacks[i];
+            if (p == null) continue;
+
+            if (string.Equals(p.languageName, language, StringComparison.OrdinalIgnoreCase))
+                return p;
         }
+
         return null;
     }
 
-    private Page FindPage(Language lang, string pageId)
+    private PageAudio FindPage(LanguagePack pack, string pageId)
     {
-        foreach (var p in lang.pages)
+        if (pack == null || pack.pages == null) return null;
+
+        for (int i = 0; i < pack.pages.Count; i++)
         {
-            if (p == null) continue;
-            if (p.pageId == pageId) return p;
+            var pg = pack.pages[i];
+            if (pg == null) continue;
+
+            if (string.Equals(pg.pageId, pageId, StringComparison.Ordinal))
+                return pg;
         }
+
         return null;
     }
 }

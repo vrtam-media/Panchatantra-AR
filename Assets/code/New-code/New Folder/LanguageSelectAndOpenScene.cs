@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Attach this to the Download button for a language card.
+/// On click: set language, then load the target AR scene.
+/// </summary>
+[DisallowMultipleComponent]
 public class LanguageSelectAndOpenScene : MonoBehaviour
 {
     [Header("Config")]
@@ -9,7 +14,7 @@ public class LanguageSelectAndOpenScene : MonoBehaviour
     public string targetSceneName = "AR-main-scene";
 
     [Header("Optional")]
-    public Button button;
+    [SerializeField] private Button button;
 
     private void Reset()
     {
@@ -24,11 +29,23 @@ public class LanguageSelectAndOpenScene : MonoBehaviour
             button.onClick.RemoveListener(OnClick);
             button.onClick.AddListener(OnClick);
         }
+        else
+        {
+            Debug.LogWarning($"{nameof(LanguageSelectAndOpenScene)}: No Button found on this GameObject.", this);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (button != null)
+        {
+            button.onClick.RemoveListener(OnClick);
+        }
     }
 
     private void OnClick()
     {
-        ARGlobalLanguage.Set(languageName);
+        ARGlobalLanguage.SetLanguage(languageName);
         SceneManager.LoadScene(targetSceneName);
     }
 }
