@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +11,10 @@ public class ARMediaManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private ARAudioLocalizationDatabase audioDatabase;
 
+    [Tooltip("Master volume multiplier for ALL audio (Voice + BGM). Range 0 to 2. Default 1.")]
+    [Range(0f, 2f)]
+    [SerializeField] private float masterVolume = 1f;
+
     [Header("Behavior")]
     [SerializeField, Min(0f)] private float resumeGraceSeconds = 2f;
     [SerializeField] private string defaultLanguage = "English";
@@ -18,7 +22,7 @@ public class ARMediaManager : MonoBehaviour
     private AudioSource _voiceSource;
     private AudioSource _bgmSource;
 
-    private readonly HashSet<ARTrackedPageNode> _nodes = new();
+    private readonly HashSet<ARTrackedPageNode> _nodes = new HashSet<ARTrackedPageNode>();
     private ARTrackedPageNode _activeNode;
 
     private Coroutine _voiceRoutine;
@@ -26,6 +30,7 @@ public class ARMediaManager : MonoBehaviour
 
     private int _voiceIndex;
     private float _delayTimer;
+
     private enum VoiceStage { None, DelayBefore, Playing, DelayAfter }
     private VoiceStage _stage = VoiceStage.None;
 
@@ -35,13 +40,17 @@ public class ARMediaManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey(ARGlobalLanguage.PlayerPrefsKey))
         {
-            ARGlobalLanguage.SetCurrentLanguage(string.IsNullOrWhiteSpace(defaultLanguage) ? "English" : defaultLanguage);
+            string lang = string.IsNullOrWhiteSpace(defaultLanguage) ? "English" : defaultLanguage;
+            ARGlobalLanguage.SetCurrentLanguage(lang);
         }
 
         if (replayButton != null)
         {
             replayButton.onClick.RemoveListener(OnReplayPressed);
             replayButton.onClick.AddListener(OnReplayPressed);
+
+            // Hide by default
+            replayButton.gameObject.SetActive(false);
         }
     }
 
@@ -98,6 +107,7 @@ public class ARMediaManager : MonoBehaviour
         {
             StopAllAudio();
             _activeNode = null;
+            HideReplay();
         }
     }
 
@@ -105,11 +115,12 @@ public class ARMediaManager : MonoBehaviour
     {
         if (node == null) return;
 
-        // switch active node if needed
+        // If switching pages, stop old one
         if (_activeNode != null && _activeNode != node)
         {
             _activeNode.OnBecameInactiveByManager();
             StopAllAudio();
+            HideReplay();
         }
 
         _activeNode = node;
@@ -118,12 +129,13 @@ public class ARMediaManager : MonoBehaviour
 
         if (!canResume)
         {
-            node.StartFromBeginning(); // starts spline + visuals
+            HideReplay();
+            node.StartFromBeginning();
             PlayPageAudioFromBeginning(node.PageId, node.LoopBgmUntilVoiceEnds, node.StopBgmWhenVoiceEnds);
         }
         else
         {
-            // resume audio + visuals
+            HideReplay();
             ResumeAll();
             node.ResumeVisuals();
         }
@@ -136,25 +148,45 @@ public class ARMediaManager : MonoBehaviour
 
         PauseAll();
         node.PauseVisuals();
+
+        // Do NOT show replay on lost; it should show only after voice completes while page is active/tracked
     }
 
     private void OnReplayPressed()
     {
         if (_activeNode == null) return;
 
+        HideReplay();
         StopAllAudio();
+
         _activeNode.StartFromBeginning();
         PlayPageAudioFromBeginning(_activeNode.PageId, _activeNode.LoopBgmUntilVoiceEnds, _activeNode.StopBgmWhenVoiceEnds);
     }
 
     private void OnLanguageChanged(string newLanguage)
     {
-        // If user changes language while a page is tracked, restart only the audio from beginning
+        // If language changes while tracked, restart only audio from beginning
         if (_activeNode == null) return;
         if (!_activeNode.IsTracked) return;
 
+        HideReplay();
         StopAllAudio();
         PlayPageAudioFromBeginning(_activeNode.PageId, _activeNode.LoopBgmUntilVoiceEnds, _activeNode.StopBgmWhenVoiceEnds);
+    }
+
+    private void HideReplay()
+    {
+        if (replayButton != null)
+            replayButton.gameObject.SetActive(false);
+    }
+
+    private void ShowReplayIfActiveAndTracked()
+    {
+        if (replayButton == null) return;
+        if (_activeNode == null) return;
+        if (!_activeNode.IsTracked) return;
+
+        replayButton.gameObject.SetActive(true);
     }
 
     private void PauseAll()
@@ -200,7 +232,7 @@ public class ARMediaManager : MonoBehaviour
         }
     }
 
-    private void PlayPageAudioFromBeginning(string pageId, bool loopBgmUntilVoiceEnds, bool stopBgmWhenVoiceEnds)
+    private void PlayPageAudioFromBeginning(string pageId, bool loopBgmRequested, bool stopBgmWhenVoiceEnds)
     {
         if (audioDatabase == null) return;
 
@@ -209,10 +241,10 @@ public class ARMediaManager : MonoBehaviour
         if (!audioDatabase.TryGetPageAudio(lang, pageId, out var pageAudio) || pageAudio == null)
             return;
 
-        // Start BGM first (if any)
-        StartBgm(pageAudio, loopBgmUntilVoiceEnds);
+        // Start BGM (optional)
+        StartBgm(pageAudio, loopBgmRequested);
 
-        // Voice sequence coroutine
+        // Start voice sequence
         _voiceIndex = 0;
         _stage = VoiceStage.DelayBefore;
         _delayTimer = 0f;
@@ -221,7 +253,7 @@ public class ARMediaManager : MonoBehaviour
         _voiceRoutine = StartCoroutine(VoiceSequenceRoutine(pageAudio, stopBgmWhenVoiceEnds));
     }
 
-    private void StartBgm(ARAudioLocalizationDatabase.PageAudio pageAudio, bool loopBgm)
+    private void StartBgm(ARAudioLocalizationDatabase.PageAudio pageAudio, bool loopBgmRequested)
     {
         if (_bgmSource == null) return;
         if (pageAudio == null || pageAudio.bgmClips == null || pageAudio.bgmClips.Count == 0) return;
@@ -230,10 +262,14 @@ public class ARMediaManager : MonoBehaviour
         if (seg == null || seg.clip == null) return;
 
         _bgmSource.clip = seg.clip;
-        _bgmSource.loop = loopBgm || seg.loop;
-        _bgmSource.volume = Mathf.Clamp(seg.volume, 0f, 2f);
 
-        // delayBefore for bgm
+        // If either requested OR segment itself says loop, loop it.
+        _bgmSource.loop = loopBgmRequested || seg.loop;
+
+        // Apply master volume (0..2)
+        float v = Mathf.Clamp(seg.volume * masterVolume, 0f, 2f);
+        _bgmSource.volume = v;
+
         if (seg.delayBefore > 0f)
             StartCoroutine(DelayedPlay(_bgmSource, seg.delayBefore));
         else
@@ -250,7 +286,9 @@ public class ARMediaManager : MonoBehaviour
             t -= Time.deltaTime;
             yield return null;
         }
-        if (src != null && src.clip != null) src.Play();
+
+        if (src != null && src.clip != null)
+            src.Play();
     }
 
     private IEnumerator VoiceSequenceRoutine(ARAudioLocalizationDatabase.PageAudio pageAudio, bool stopBgmWhenVoiceEnds)
@@ -276,22 +314,30 @@ public class ARMediaManager : MonoBehaviour
                 yield return null;
             }
 
-            // Play clip
+            // Play voice
             _stage = VoiceStage.Playing;
             _voiceSource.clip = seg.clip;
             _voiceSource.loop = seg.loop;
-            _voiceSource.volume = Mathf.Clamp(seg.volume, 0f, 2f);
+
+            // Apply master volume (0..2)
+            float v = Mathf.Clamp(seg.volume * masterVolume, 0f, 2f);
+            _voiceSource.volume = v;
+
             _voiceSource.Play();
 
-            // Wait until finished (or loop)
-            while (_voiceSource != null && _voiceSource.clip != null && (_voiceSource.isPlaying || _paused))
+            // Wait until clip finishes (if loop, it never ends until stopped)
+            while (_voiceSource != null && _voiceSource.clip != null)
             {
-                if (_paused) yield return null;
-                else
+                if (_paused)
                 {
-                    if (!seg.loop && !_voiceSource.isPlaying) break;
                     yield return null;
+                    continue;
                 }
+
+                if (!seg.loop && !_voiceSource.isPlaying)
+                    break;
+
+                yield return null;
             }
 
             // Delay after
@@ -306,13 +352,18 @@ public class ARMediaManager : MonoBehaviour
             _voiceIndex++;
         }
 
+        // Voice finished بالكامل
         _stage = VoiceStage.None;
         _voiceRoutine = null;
 
+        // Stop BGM only if requested
         if (stopBgmWhenVoiceEnds && _bgmSource != null)
         {
             _bgmSource.Stop();
             _bgmSource.clip = null;
         }
+
+        // Show Replay ONLY when voice is completed
+        ShowReplayIfActiveAndTracked();
     }
 }
