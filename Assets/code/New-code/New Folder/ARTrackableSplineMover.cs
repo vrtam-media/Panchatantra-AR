@@ -1,16 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
-[DisallowMultipleComponent]
 public class ARTrackableSplineMover : MonoBehaviour
 {
-    [Header("Spline")]
-    public SplineContainer splineContainer;
-    public int splineIndex = 0;
-
     [Serializable]
     public struct Segment
     {
@@ -20,174 +16,180 @@ public class ARTrackableSplineMover : MonoBehaviour
         [Min(0f)] public float waitAfterSeconds;
     }
 
-    [Header("Movement Plan (runs once)")]
-    public List<Segment> segments = new List<Segment>()
-    {
-        new Segment { startT = 0f, endT = 1f, moveSeconds = 2f, waitAfterSeconds = 0f }
-    };
+    [Header("Spline")]
+    [SerializeField] private SplineContainer splineContainer;
+    [SerializeField] private int splineIndex = 0;
+
+    [Header("Target")]
+    [SerializeField] private Transform objectToMove;
 
     [Header("Rotation")]
-    public bool faceAlongSpline = true;
-    public Vector3 up = Vector3.up;
+    [SerializeField] private bool faceAlongSpline = false;
+    [SerializeField] private Vector3 upAxis = Vector3.up;
 
-    // State
+    [Header("Plan")]
+    [SerializeField] private List<Segment> segments = new();
+
+    [Header("Animator")]
+    [SerializeField] private Animator animatorToControl;
+    [SerializeField] private bool playAnimatorWhileMoving = true;
+    [SerializeField] private bool freezeAnimatorOnComplete = true;
+
+    public bool IsPlaying { get; private set; }
     public bool IsFinished { get; private set; }
-    public bool IsPlaying => _isPlaying;
-    public bool IsPaused => _isPaused;
+    public bool IsPaused { get; private set; }
 
-    // Compatibility aliases (so older scripts stop breaking)
-    public bool IsCompleted => IsFinished;
+    private Coroutine _planRoutine;
+    private Spline _spline;
+    private bool _playRequested;
 
-    // Events (supports both styles you tried earlier)
-    public event Action OnPlanCompleted;
-    public event Action<ARTrackableSplineMover> OnPlanCompletedWithMover;
+    private static Vector3 ToV3(float3 v) => new Vector3(v.x, v.y, v.z);
 
-    int _segmentIndex;
-    float _segmentTimer;
-    bool _isPlaying;
-    bool _isPaused;
-
-    void Awake()
+    private void Awake()
     {
-        // Keep initial pose stable in editor and play mode
-        if (!Application.isPlaying) return;
-        ResetToStartInternal(setFinishedFalse: true);
+        if (objectToMove == null) objectToMove = transform;
+
+        if (animatorToControl == null && objectToMove != null)
+            animatorToControl = objectToMove.GetComponentInChildren<Animator>(true);
+
+        CacheSpline();
     }
 
-    void OnEnable()
+    private void CacheSpline()
     {
-        if (!Application.isPlaying) return;
-        // Do NOT force reset here. Enable/disable should not snap unless you explicitly call reset.
+        if (splineContainer == null) return;
+        if (splineIndex < 0 || splineIndex >= splineContainer.Splines.Count) return;
+        _spline = splineContainer.Splines[splineIndex];
     }
 
-    void Update()
+    public void PlayOnce()
     {
-        if (!_isPlaying || _isPaused || IsFinished) return;
+        _playRequested = true;
+        IsFinished = false;
+        IsPaused = false;
 
-        var spline = GetSpline();
-        if (spline == null) { FinishPlan(); return; }
-
-        if (segments == null || segments.Count == 0) { FinishPlan(); return; }
-        if (_segmentIndex >= segments.Count) { FinishPlan(); return; }
-
-        var seg = segments[_segmentIndex];
-
-        float dur = Mathf.Max(0.0001f, seg.moveSeconds);
-        float t01 = Mathf.Clamp01(_segmentTimer / dur);
-        float t = Mathf.Lerp(seg.startT, seg.endT, t01);
-
-        ApplySplinePose(spline, t);
-
-        _segmentTimer += Time.deltaTime;
-
-        // Segment move done
-        if (_segmentTimer >= seg.moveSeconds)
-        {
-            // Hard lock at exact endT to avoid tiny drift
-            ApplySplinePose(spline, seg.endT);
-
-            // Wait phase
-            if (seg.waitAfterSeconds > 0f)
-            {
-                // Convert timer into "move + wait" without snapping anywhere
-                float extra = _segmentTimer - seg.moveSeconds;
-                if (extra < seg.waitAfterSeconds) return;
-            }
-
-            // Advance to next segment
-            _segmentIndex++;
-            _segmentTimer = 0f;
-
-            if (_segmentIndex >= segments.Count)
-            {
-                FinishPlan();
-            }
-        }
-    }
-
-    Spline GetSpline()
-    {
-        if (splineContainer == null) return null;
-        if (splineIndex < 0 || splineIndex >= splineContainer.Splines.Count) return null;
-        return splineContainer.Splines[splineIndex];
-    }
-
-    void ApplySplinePose(Spline spline, float t)
-    {
-        if (spline == null) return;
-
-        // Unity Splines returns float3 (Mathematics)
-        float3 pos = spline.EvaluatePosition(t);
-        transform.localPosition = (Vector3)pos;
-
-        if (!faceAlongSpline) return;
-
-        float3 tan = spline.EvaluateTangent(t);
-        float tanLenSq = math.lengthsq(tan);
-        if (tanLenSq < 1e-8f) return;
-
-        // FIX: float3 has no ".normalized", use math.normalizesafe
-        float3 fwd3 = math.normalizesafe(tan);
-        Vector3 forward = (Vector3)fwd3;
-
-        Vector3 upVec = up.sqrMagnitude > 1e-8f ? up.normalized : Vector3.up;
-        transform.localRotation = Quaternion.LookRotation(forward, upVec);
-    }
-
-    void FinishPlan()
-    {
-        _isPlaying = false;
-        _isPaused = false;
-        IsFinished = true;
-
-        OnPlanCompleted?.Invoke();
-        OnPlanCompletedWithMover?.Invoke(this);
-    }
-
-    void ResetToStartInternal(bool setFinishedFalse)
-    {
-        var spline = GetSpline();
-        if (spline != null && segments != null && segments.Count > 0)
-        {
-            ApplySplinePose(spline, segments[0].startT);
-        }
-
-        _segmentIndex = 0;
-        _segmentTimer = 0f;
-        _isPaused = false;
-        _isPlaying = false;
-
-        if (setFinishedFalse) IsFinished = false;
-    }
-
-    // Public API (use these)
-    public void StartFromBeginning()
-    {
-        ResetToStartInternal(setFinishedFalse: true);
-        _isPlaying = true;
-        _isPaused = false;
+        if (_planRoutine == null)
+            _planRoutine = StartCoroutine(PlayPlanRoutine());
     }
 
     public void Pause()
     {
-        if (!_isPlaying || IsFinished) return;
-        _isPaused = true;
+        IsPaused = true;
+        if (animatorToControl != null) animatorToControl.speed = 0f;
     }
 
     public void Resume()
     {
-        if (!_isPlaying || IsFinished) return;
-        _isPaused = false;
+        IsPaused = false;
+        if (animatorToControl != null) animatorToControl.speed = 1f;
     }
 
-    public void StopAndReset()
+    public void Stop()
     {
-        ResetToStartInternal(setFinishedFalse: true);
+        IsPlaying = false;
+        if (_planRoutine != null)
+        {
+            StopCoroutine(_planRoutine);
+            _planRoutine = null;
+        }
     }
 
-    // Backwards compatible wrappers (so your other scripts stop erroring)
-    public void ResetToStart() => ResetToStartInternal(setFinishedFalse: true);
-    public void ResetMover() => ResetToStartInternal(setFinishedFalse: true);
-    public void StopMover() => StopAndReset();
-    public void PlayOnce() => StartFromBeginning();
+    public void ResetToStart()
+    {
+        CacheSpline();
+        if (_spline == null || splineContainer == null || objectToMove == null) return;
+        if (segments == null || segments.Count == 0) return;
+        SetAtT(segments[0].startT);
+        IsFinished = false;
+    }
+
+    private IEnumerator PlayPlanRoutine()
+    {
+        CacheSpline();
+        if (!_playRequested || _spline == null || splineContainer == null || objectToMove == null || segments.Count == 0)
+        {
+            _planRoutine = null;
+            yield break;
+        }
+
+        // snap to A immediately
+        SetAtT(segments[0].startT);
+
+        IsPlaying = true;
+        if (animatorToControl != null && playAnimatorWhileMoving) animatorToControl.speed = 1f;
+
+        foreach (var seg in segments)
+        {
+            yield return MoveAlongSpline(seg.startT, seg.endT, seg.moveSeconds);
+
+            if (seg.waitAfterSeconds > 0f)
+                yield return WaitPausable(seg.waitAfterSeconds);
+        }
+
+        IsPlaying = false;
+        IsFinished = true;
+        _playRequested = false;
+        _planRoutine = null;
+
+        if (animatorToControl != null && playAnimatorWhileMoving && freezeAnimatorOnComplete)
+            animatorToControl.speed = 0f;
+    }
+
+    private IEnumerator MoveAlongSpline(float startT, float endT, float seconds)
+    {
+        if (seconds <= 0f)
+        {
+            SetAtT(endT);
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < seconds)
+        {
+            if (IsPaused) { yield return null; continue; }
+
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / seconds);
+            t = t * t * (3f - 2f * t); // smoothstep
+
+            float along = Mathf.Lerp(startT, endT, t);
+            SetAtT(along);
+
+            yield return null;
+        }
+
+        SetAtT(endT);
+    }
+
+    private IEnumerator WaitPausable(float seconds)
+    {
+        float remaining = seconds;
+        while (remaining > 0f)
+        {
+            if (!IsPaused) remaining -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void SetAtT(float t)
+    {
+        if (_spline == null || splineContainer == null || objectToMove == null) return;
+
+        t = Mathf.Clamp01(t);
+
+        // spline gives local-space => convert to world space (this fixes the upward offset)
+        Vector3 localPos = ToV3(SplineUtility.EvaluatePosition(_spline, t));
+        Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
+
+        Quaternion worldRot = objectToMove.rotation;
+        if (faceAlongSpline)
+        {
+            Vector3 localTan = ToV3(SplineUtility.EvaluateTangent(_spline, t));
+            Vector3 worldTan = splineContainer.transform.TransformDirection(localTan).normalized;
+            Vector3 worldUp = splineContainer.transform.TransformDirection(upAxis).normalized;
+            worldRot = Quaternion.LookRotation(worldTan, worldUp);
+        }
+
+        objectToMove.SetPositionAndRotation(worldPos, worldRot);
+    }
 }

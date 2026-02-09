@@ -1,8 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[DisallowMultipleComponent]
 public class ARMediaManager : MonoBehaviour
 {
     [Header("Global UI")]
@@ -10,266 +10,309 @@ public class ARMediaManager : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private ARAudioLocalizationDatabase audioDatabase;
-    [SerializeField] private AudioSource voiceSource;
-    [SerializeField] private AudioSource bgmSource;
-
-    [Range(0f, 2f)]
-    [SerializeField] private float defaultVoiceVolume = 0.6f;
-
-    [Range(0f, 2f)]
-    [SerializeField] private float defaultBgmVolume = 0.6f;
 
     [Header("Behavior")]
-    [Min(0f)]
-    [SerializeField] private float resumeGraceSeconds = 2f;
-
+    [SerializeField, Min(0f)] private float resumeGraceSeconds = 2f;
     [SerializeField] private string defaultLanguage = "English";
 
-    private ARTrackedPageNode _activePage;
+    private AudioSource _voiceSource;
+    private AudioSource _bgmSource;
 
-    private Coroutine _lostGraceRoutine;
+    private readonly HashSet<ARTrackedPageNode> _nodes = new();
+    private ARTrackedPageNode _activeNode;
+
     private Coroutine _voiceRoutine;
+    private bool _paused;
 
-    private bool _audioPaused;
-    private bool _voiceFinished;
+    private int _voiceIndex;
+    private float _delayTimer;
+    private enum VoiceStage { None, DelayBefore, Playing, DelayAfter }
+    private VoiceStage _stage = VoiceStage.None;
 
     private void Awake()
     {
+        EnsureAudioSources();
+
+        if (!PlayerPrefs.HasKey(ARGlobalLanguage.PlayerPrefsKey))
+        {
+            ARGlobalLanguage.SetCurrentLanguage(string.IsNullOrWhiteSpace(defaultLanguage) ? "English" : defaultLanguage);
+        }
+
         if (replayButton != null)
         {
-            replayButton.onClick.RemoveListener(OnReplayClicked);
-            replayButton.onClick.AddListener(OnReplayClicked);
-            replayButton.gameObject.SetActive(false);
+            replayButton.onClick.RemoveListener(OnReplayPressed);
+            replayButton.onClick.AddListener(OnReplayPressed);
         }
-
-        if (voiceSource == null)
-            voiceSource = GetComponent<AudioSource>();
-
-        if (voiceSource == null)
-            voiceSource = gameObject.AddComponent<AudioSource>();
-
-        voiceSource.playOnAwake = false;
-        voiceSource.loop = false;
-        voiceSource.volume = Mathf.Clamp(defaultVoiceVolume, 0f, 2f);
-
-        if (bgmSource == null)
-            bgmSource = gameObject.AddComponent<AudioSource>();
-
-        bgmSource.playOnAwake = false;
-        bgmSource.loop = true;
-        bgmSource.volume = Mathf.Clamp(defaultBgmVolume, 0f, 2f);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (_activePage == null) return;
+        ARGlobalLanguage.OnLanguageChanged += OnLanguageChanged;
+    }
 
-        // Never show replay while tracking is lost
-        if (!_activePage.IsTracked)
+    private void OnDisable()
+    {
+        ARGlobalLanguage.OnLanguageChanged -= OnLanguageChanged;
+
+        if (replayButton != null)
+            replayButton.onClick.RemoveListener(OnReplayPressed);
+    }
+
+    private void EnsureAudioSources()
+    {
+        var sources = GetComponents<AudioSource>();
+        if (sources.Length == 0)
         {
-            if (replayButton != null) replayButton.gameObject.SetActive(false);
-            return;
+            _voiceSource = gameObject.AddComponent<AudioSource>();
+            _bgmSource = gameObject.AddComponent<AudioSource>();
         }
-
-        bool visualsDone = _activePage.IsVisualFinished();
-        bool audioDone = _voiceFinished;
-
-        if (visualsDone && audioDone)
+        else if (sources.Length == 1)
         {
-            if (replayButton != null) replayButton.gameObject.SetActive(true);
+            _voiceSource = sources[0];
+            _bgmSource = gameObject.AddComponent<AudioSource>();
         }
         else
         {
-            if (replayButton != null) replayButton.gameObject.SetActive(false);
+            _voiceSource = sources[0];
+            _bgmSource = sources[1];
+        }
+
+        _voiceSource.playOnAwake = false;
+        _bgmSource.playOnAwake = false;
+    }
+
+    public float ResumeGraceSeconds => resumeGraceSeconds;
+
+    public void RegisterNode(ARTrackedPageNode node)
+    {
+        if (node == null) return;
+        _nodes.Add(node);
+    }
+
+    public void UnregisterNode(ARTrackedPageNode node)
+    {
+        if (node == null) return;
+        _nodes.Remove(node);
+
+        if (_activeNode == node)
+        {
+            StopAllAudio();
+            _activeNode = null;
         }
     }
 
-    public void HandlePageFound(ARTrackedPageNode page)
+    public void NotifyTrackingFound(ARTrackedPageNode node)
     {
-        if (page == null) return;
+        if (node == null) return;
 
-        if (_activePage != page)
+        // switch active node if needed
+        if (_activeNode != null && _activeNode != node)
         {
-            StopAllForCurrentPage();
-            _activePage = page;
+            _activeNode.OnBecameInactiveByManager();
+            StopAllAudio();
         }
 
-        if (_lostGraceRoutine != null)
+        _activeNode = node;
+
+        bool canResume = node.CanResume(resumeGraceSeconds);
+
+        if (!canResume)
         {
-            StopCoroutine(_lostGraceRoutine);
-            _lostGraceRoutine = null;
-        }
-
-        if (replayButton != null) replayButton.gameObject.SetActive(false);
-
-        bool resume = (Time.time - page.LastLostTime) <= resumeGraceSeconds;
-
-        if (resume)
-        {
-            page.ResumeAll();
-            ResumeAudio();
+            node.StartFromBeginning(); // starts spline + visuals
+            PlayPageAudioFromBeginning(node.PageId, node.LoopBgmUntilVoiceEnds, node.StopBgmWhenVoiceEnds);
         }
         else
         {
-            page.RestartAllPageContent();
-            StartAudioForPage(page);
+            // resume audio + visuals
+            ResumeAll();
+            node.ResumeVisuals();
         }
     }
 
-    public void HandlePageLost(ARTrackedPageNode page)
+    public void NotifyTrackingLost(ARTrackedPageNode node)
     {
-        if (page == null) return;
-        if (_activePage != page) return;
+        if (node == null) return;
+        if (_activeNode != node) return;
 
-        if (replayButton != null) replayButton.gameObject.SetActive(false);
-
-        page.PauseAll();
-        PauseAudio();
-
-        if (_lostGraceRoutine != null) StopCoroutine(_lostGraceRoutine);
-        _lostGraceRoutine = StartCoroutine(LostGraceThenReset(page));
+        PauseAll();
+        node.PauseVisuals();
     }
 
-    private IEnumerator LostGraceThenReset(ARTrackedPageNode page)
+    private void OnReplayPressed()
     {
-        float t = 0f;
-        while (t < resumeGraceSeconds)
-        {
-            t += Time.deltaTime;
-            yield return null;
-        }
+        if (_activeNode == null) return;
 
-        if (_activePage == page && !page.IsTracked)
-        {
-            StopAllForCurrentPage();
-            page.StopAndResetAll();
-        }
-
-        _lostGraceRoutine = null;
+        StopAllAudio();
+        _activeNode.StartFromBeginning();
+        PlayPageAudioFromBeginning(_activeNode.PageId, _activeNode.LoopBgmUntilVoiceEnds, _activeNode.StopBgmWhenVoiceEnds);
     }
 
-    private void OnReplayClicked()
+    private void OnLanguageChanged(string newLanguage)
     {
-        if (_activePage == null) return;
+        // If user changes language while a page is tracked, restart only the audio from beginning
+        if (_activeNode == null) return;
+        if (!_activeNode.IsTracked) return;
 
-        if (replayButton != null) replayButton.gameObject.SetActive(false);
-
-        _activePage.RestartAllPageContent();
-        StartAudioForPage(_activePage);
+        StopAllAudio();
+        PlayPageAudioFromBeginning(_activeNode.PageId, _activeNode.LoopBgmUntilVoiceEnds, _activeNode.StopBgmWhenVoiceEnds);
     }
 
-    private void StopAllForCurrentPage()
+    private void PauseAll()
     {
+        _paused = true;
+
+        if (_voiceSource != null && _voiceSource.isPlaying) _voiceSource.Pause();
+        if (_bgmSource != null && _bgmSource.isPlaying) _bgmSource.Pause();
+    }
+
+    private void ResumeAll()
+    {
+        _paused = false;
+
+        if (_voiceSource != null && _voiceSource.clip != null) _voiceSource.UnPause();
+        if (_bgmSource != null && _bgmSource.clip != null) _bgmSource.UnPause();
+    }
+
+    private void StopAllAudio()
+    {
+        _paused = false;
+
         if (_voiceRoutine != null)
         {
             StopCoroutine(_voiceRoutine);
             _voiceRoutine = null;
         }
 
-        if (voiceSource != null) voiceSource.Stop();
-        if (bgmSource != null) bgmSource.Stop();
+        _stage = VoiceStage.None;
+        _voiceIndex = 0;
+        _delayTimer = 0f;
 
-        _audioPaused = false;
-        _voiceFinished = false;
+        if (_voiceSource != null)
+        {
+            _voiceSource.Stop();
+            _voiceSource.clip = null;
+        }
+
+        if (_bgmSource != null)
+        {
+            _bgmSource.Stop();
+            _bgmSource.clip = null;
+        }
     }
 
-    private void StartAudioForPage(ARTrackedPageNode page)
+    private void PlayPageAudioFromBeginning(string pageId, bool loopBgmUntilVoiceEnds, bool stopBgmWhenVoiceEnds)
     {
-        _voiceFinished = false;
-        _audioPaused = false;
+        if (audioDatabase == null) return;
 
-        if (audioDatabase == null)
-        {
-            _voiceFinished = true;
+        string lang = ARGlobalLanguage.GetCurrentLanguage();
+
+        if (!audioDatabase.TryGetPageAudio(lang, pageId, out var pageAudio) || pageAudio == null)
             return;
-        }
 
-        string lang = ARGlobalLanguage.GetLanguageOrDefault(defaultLanguage);
+        // Start BGM first (if any)
+        StartBgm(pageAudio, loopBgmUntilVoiceEnds);
 
-        if (!audioDatabase.TryGetPageAudio(lang, page.PageId, out var pageAudio) || pageAudio == null)
-        {
-            _voiceFinished = true;
-            return;
-        }
-
-        // BGM
-        if (pageAudio.bgmClips != null && pageAudio.bgmClips.Count > 0)
-        {
-            var seg = pageAudio.bgmClips[0];
-            if (seg.clip != null)
-            {
-                bgmSource.clip = seg.clip;
-                bgmSource.volume = Mathf.Clamp(seg.volume > 0f ? seg.volume : defaultBgmVolume, 0f, 2f);
-                bgmSource.loop = page.LoopBgmUntilVoiceEnds;
-                bgmSource.Play();
-            }
-        }
-        else
-        {
-            bgmSource.Stop();
-        }
+        // Voice sequence coroutine
+        _voiceIndex = 0;
+        _stage = VoiceStage.DelayBefore;
+        _delayTimer = 0f;
 
         if (_voiceRoutine != null) StopCoroutine(_voiceRoutine);
-        _voiceRoutine = StartCoroutine(PlayVoiceSequence(page, pageAudio));
+        _voiceRoutine = StartCoroutine(VoiceSequenceRoutine(pageAudio, stopBgmWhenVoiceEnds));
     }
 
-    private IEnumerator PlayVoiceSequence(ARTrackedPageNode page, ARAudioLocalizationDatabase.PageAudio pageAudio)
+    private void StartBgm(ARAudioLocalizationDatabase.PageAudio pageAudio, bool loopBgm)
     {
-        if (pageAudio.voiceClips == null || pageAudio.voiceClips.Count == 0)
+        if (_bgmSource == null) return;
+        if (pageAudio == null || pageAudio.bgmClips == null || pageAudio.bgmClips.Count == 0) return;
+
+        var seg = pageAudio.bgmClips[0];
+        if (seg == null || seg.clip == null) return;
+
+        _bgmSource.clip = seg.clip;
+        _bgmSource.loop = loopBgm || seg.loop;
+        _bgmSource.volume = Mathf.Clamp(seg.volume, 0f, 2f);
+
+        // delayBefore for bgm
+        if (seg.delayBefore > 0f)
+            StartCoroutine(DelayedPlay(_bgmSource, seg.delayBefore));
+        else
+            _bgmSource.Play();
+    }
+
+    private IEnumerator DelayedPlay(AudioSource src, float delay)
+    {
+        if (src == null) yield break;
+
+        float t = delay;
+        while (t > 0f)
         {
-            _voiceFinished = true;
-            yield break;
+            t -= Time.deltaTime;
+            yield return null;
         }
+        if (src != null && src.clip != null) src.Play();
+    }
 
-        for (int i = 0; i < pageAudio.voiceClips.Count; i++)
+    private IEnumerator VoiceSequenceRoutine(ARAudioLocalizationDatabase.PageAudio pageAudio, bool stopBgmWhenVoiceEnds)
+    {
+        if (_voiceSource == null) yield break;
+        if (pageAudio == null || pageAudio.voiceClips == null) yield break;
+
+        while (_voiceIndex < pageAudio.voiceClips.Count)
         {
-            var seg = pageAudio.voiceClips[i];
-            if (seg.clip == null) continue;
-
-            yield return WaitSecondsPausable(seg.delayBefore);
-
-            voiceSource.clip = seg.clip;
-            voiceSource.volume = Mathf.Clamp(seg.volume > 0f ? seg.volume : defaultVoiceVolume, 0f, 2f);
-            voiceSource.Play();
-
-            while (voiceSource.isPlaying)
+            var seg = pageAudio.voiceClips[_voiceIndex];
+            if (seg == null || seg.clip == null)
             {
-                while (_audioPaused) yield return null;
+                _voiceIndex++;
+                continue;
+            }
+
+            // Delay before
+            _stage = VoiceStage.DelayBefore;
+            _delayTimer = seg.delayBefore;
+            while (_delayTimer > 0f)
+            {
+                if (!_paused) _delayTimer -= Time.deltaTime;
                 yield return null;
             }
 
-            yield return WaitSecondsPausable(seg.delayAfter);
+            // Play clip
+            _stage = VoiceStage.Playing;
+            _voiceSource.clip = seg.clip;
+            _voiceSource.loop = seg.loop;
+            _voiceSource.volume = Mathf.Clamp(seg.volume, 0f, 2f);
+            _voiceSource.Play();
+
+            // Wait until finished (or loop)
+            while (_voiceSource != null && _voiceSource.clip != null && (_voiceSource.isPlaying || _paused))
+            {
+                if (_paused) yield return null;
+                else
+                {
+                    if (!seg.loop && !_voiceSource.isPlaying) break;
+                    yield return null;
+                }
+            }
+
+            // Delay after
+            _stage = VoiceStage.DelayAfter;
+            _delayTimer = seg.delayAfter;
+            while (_delayTimer > 0f)
+            {
+                if (!_paused) _delayTimer -= Time.deltaTime;
+                yield return null;
+            }
+
+            _voiceIndex++;
         }
 
-        _voiceFinished = true;
+        _stage = VoiceStage.None;
+        _voiceRoutine = null;
 
-        if (page != null && page.StopBgmWhenVoiceEnds)
-            bgmSource.Stop();
-    }
-
-    private IEnumerator WaitSecondsPausable(float seconds)
-    {
-        float wait = Mathf.Max(0f, seconds);
-        float t = 0f;
-        while (t < wait)
+        if (stopBgmWhenVoiceEnds && _bgmSource != null)
         {
-            if (!_audioPaused)
-                t += Time.deltaTime;
-            yield return null;
+            _bgmSource.Stop();
+            _bgmSource.clip = null;
         }
-    }
-
-    private void PauseAudio()
-    {
-        _audioPaused = true;
-        if (voiceSource != null && voiceSource.isPlaying) voiceSource.Pause();
-        if (bgmSource != null && bgmSource.isPlaying) bgmSource.Pause();
-    }
-
-    private void ResumeAudio()
-    {
-        _audioPaused = false;
-        if (voiceSource != null) voiceSource.UnPause();
-        if (bgmSource != null) bgmSource.UnPause();
     }
 }

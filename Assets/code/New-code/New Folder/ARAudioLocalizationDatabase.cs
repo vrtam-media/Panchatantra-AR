@@ -2,124 +2,75 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AR/Audio Localization Database")]
+[CreateAssetMenu(menuName = "AR/Audio Localization Database", fileName = "ARAudioLocalizationDatabase")]
 public class ARAudioLocalizationDatabase : ScriptableObject
 {
     [Serializable]
     public class AudioSegment
     {
-        [Tooltip("Audio clip to play.")]
         public AudioClip clip;
-
-        [Min(0f)]
-        [Tooltip("Seconds to wait before playing this clip.")]
-        public float delayBefore = 0f;
-
-        [Min(0f)]
-        [Tooltip("Seconds to wait after this clip finishes (before next clip).")]
-        public float delayAfter = 0f;
-
-        [Range(0f, 2f)]
-        [Tooltip("Per-clip volume multiplier. Default 0.6, max 2.")]
-        public float volume = 0.6f;
+        [Min(0f)] public float delayBefore = 0f;
+        [Min(0f)] public float delayAfter = 0f;
+        [Range(0f, 2f)] public float volume = 1f;
+        public bool loop = false;
     }
 
     [Serializable]
     public class PageAudio
     {
-        [Tooltip("Must match ARTrackedPageNode Page Id (example: S1_P1_P_3_4).")]
         public string pageId;
-
-        [Header("Voice Clips (sequential)")]
-        public List<AudioSegment> voiceClips = new List<AudioSegment>();
-
-        [Header("BGM Clips (sequential)")]
-        public List<AudioSegment> bgmClips = new List<AudioSegment>();
+        public List<AudioSegment> voiceClips = new();
+        public List<AudioSegment> bgmClips = new();
     }
 
     [Serializable]
     public class LanguagePack
     {
-        public string languageName = "English";
-        public List<PageAudio> pages = new List<PageAudio>();
+        public string languageName;
+        public List<PageAudio> pages = new();
     }
 
-    [SerializeField] private List<LanguagePack> languagePacks = new List<LanguagePack>();
+    [SerializeField] private string defaultLanguage = "English";
+    [SerializeField] private List<LanguagePack> languagePacks = new();
 
-    // -----------------------------
-    // Public API (recommended)
-    // -----------------------------
-    public bool TryGetPageAudio(string language, string pageId, out PageAudio pageAudio)
+    public string DefaultLanguage => string.IsNullOrWhiteSpace(defaultLanguage) ? "English" : defaultLanguage;
+
+    public bool TryGetPageAudio(string languageName, string pageId, out PageAudio pageAudio)
     {
         pageAudio = null;
         if (string.IsNullOrWhiteSpace(pageId)) return false;
 
-        // 1) exact language
-        var pack = FindLanguage(language);
-        if (pack != null)
-        {
-            pageAudio = FindPage(pack, pageId);
-            if (pageAudio != null) return true;
-        }
-
-        // 2) fallback English
-        var english = FindLanguage("English");
-        if (english != null)
-        {
-            pageAudio = FindPage(english, pageId);
-            if (pageAudio != null) return true;
-        }
-
+        if (TryGetPageAudioInternal(languageName, pageId, out pageAudio)) return true;
+        if (TryGetPageAudioInternal(DefaultLanguage, pageId, out pageAudio)) return true;
         return false;
     }
 
-    // -----------------------------
-    // Compatibility helpers (older scripts)
-    // -----------------------------
-    public PageAudio GetPage(string language, string pageId)
+    private bool TryGetPageAudioInternal(string languageName, string pageId, out PageAudio pageAudio)
     {
-        TryGetPageAudio(language, pageId, out var page);
-        return page;
-    }
+        pageAudio = null;
+        if (languagePacks == null || languagePacks.Count == 0) return false;
 
-    public IReadOnlyList<LanguagePack> GetAllLanguagePacks() => languagePacks;
+        string langKey = Normalize(languageName);
+        string pageKey = Normalize(pageId);
 
-    // -----------------------------
-    // Internals
-    // -----------------------------
-    private LanguagePack FindLanguage(string language)
-    {
-        if (languagePacks == null) return null;
-
-        // If caller passes empty, treat as English
-        if (string.IsNullOrWhiteSpace(language))
-            language = "English";
-
-        for (int i = 0; i < languagePacks.Count; i++)
+        foreach (var pack in languagePacks)
         {
-            var p = languagePacks[i];
-            if (p == null) continue;
+            if (pack == null) continue;
+            if (Normalize(pack.languageName) != langKey) continue;
 
-            if (string.Equals(p.languageName, language, StringComparison.OrdinalIgnoreCase))
-                return p;
+            foreach (var page in pack.pages)
+            {
+                if (page == null) continue;
+                if (Normalize(page.pageId) == pageKey)
+                {
+                    pageAudio = page;
+                    return true;
+                }
+            }
+            return false;
         }
-
-        return null;
+        return false;
     }
 
-    private PageAudio FindPage(LanguagePack pack, string pageId)
-    {
-        if (pack == null || pack.pages == null) return null;
-
-        for (int i = 0; i < pack.pages.Count; i++)
-        {
-            var pg = pack.pages[i];
-            if (pg == null) continue;
-
-            if (string.Equals(pg.pageId, pageId, StringComparison.Ordinal))
-                return pg;
-        }
-
-        return null;
-    }
+    private static string Normalize(string s) => (s ?? "").Trim().ToLowerInvariant();
 }

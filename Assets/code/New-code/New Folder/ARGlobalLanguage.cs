@@ -1,60 +1,39 @@
+using System;
 using UnityEngine;
 
-public class ARGlobalLanguage : MonoBehaviour
+public static class ARGlobalLanguage
 {
-    private const string PlayerPrefsKey = "AR_SELECTED_LANGUAGE";
+    public const string PlayerPrefsKey = "AR_CURRENT_LANGUAGE";
 
-    [SerializeField] private string defaultLanguage = "English";
+    public static event Action<string> OnLanguageChanged;
 
-    public static string CurrentLanguage { get; private set; } = "English";
-    public static ARGlobalLanguage Instance { get; private set; }
-
-    private void Awake()
+    public static string GetCurrentLanguage()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        var saved = PlayerPrefs.GetString(PlayerPrefsKey, "");
-        if (!string.IsNullOrWhiteSpace(saved))
-            CurrentLanguage = saved;
-        else if (!string.IsNullOrWhiteSpace(defaultLanguage))
-            CurrentLanguage = defaultLanguage;
+        return PlayerPrefs.GetString(PlayerPrefsKey, "English");
     }
 
-    public static void SetLanguage(string lang)
+    public static void SetCurrentLanguage(string language)
     {
-        if (string.IsNullOrWhiteSpace(lang)) return;
+        if (string.IsNullOrWhiteSpace(language)) return;
 
-        CurrentLanguage = lang.Trim();
-        PlayerPrefs.SetString(PlayerPrefsKey, CurrentLanguage);
+        string current = GetCurrentLanguage();
+        if (string.Equals(current, language, StringComparison.Ordinal)) return;
+
+        PlayerPrefs.SetString(PlayerPrefsKey, language);
         PlayerPrefs.Save();
+
+        OnLanguageChanged?.Invoke(language);
     }
 
-    public static string GetLanguageOrDefault(string fallback)
+    // Backward compatible API (your LanguageSelectAndOpenScene expects this)
+    public static void SetLanguage(string language)
     {
-        var saved = PlayerPrefs.GetString(PlayerPrefsKey, "");
-        if (!string.IsNullOrWhiteSpace(saved))
-        {
-            CurrentLanguage = saved.Trim();
-            return CurrentLanguage;
-        }
+        SetCurrentLanguage(language);
+    }
 
-        if (!string.IsNullOrWhiteSpace(CurrentLanguage))
-            return CurrentLanguage;
-
-        if (!string.IsNullOrWhiteSpace(fallback))
-        {
-            CurrentLanguage = fallback.Trim();
-            return CurrentLanguage;
-        }
-
-        CurrentLanguage = "English";
-        return CurrentLanguage;
+    // Optional alias if you ever referenced it elsewhere
+    public static string GetLanguage()
+    {
+        return GetCurrentLanguage();
     }
 }

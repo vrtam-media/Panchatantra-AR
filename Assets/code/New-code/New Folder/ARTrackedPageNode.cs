@@ -1,260 +1,225 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-[DisallowMultipleComponent]
 public class ARTrackedPageNode : MonoBehaviour
 {
     [Header("IDs")]
-    [SerializeField] private string pageId = "";
+    [SerializeField] private string pageId;
 
     [Header("References")]
     [SerializeField] private ARMediaManager mediaManager;
 
     [Header("Videos")]
-    [SerializeField] private List<VideoPlayer> mainVideos = new List<VideoPlayer>();
-    [SerializeField] private List<VideoPlayer> backgroundLoopVideos = new List<VideoPlayer>();
+    [SerializeField] private List<VideoPlayer> mainVideos = new();
+    [SerializeField] private List<VideoPlayer> backgroundLoopVideos = new();
 
     [Header("Animators (optional)")]
-    [SerializeField] private List<Animator> animators = new List<Animator>();
+    [SerializeField] private List<Animator> animators = new();
 
     [Header("Spline movers (optional)")]
-    [SerializeField] private List<ARTrackableSplineMover> splineMovers = new List<ARTrackableSplineMover>();
+    [SerializeField] private List<ARTrackableSplineMover> splineMovers = new();
 
     [Header("Video Freeze (per page)")]
-    [SerializeField] private FreezeMode freezeMode = FreezeMode.None;
-    [SerializeField] private float freezeFirstSeconds = 0f;
-    [SerializeField] private float freezeLastSeconds = 0f;
+    [SerializeField] private VuforiaVideoFrameFreezeController.FreezeMode freezeMode = VuforiaVideoFrameFreezeController.FreezeMode.None;
+    [Min(0f)] public float freezeFirstSeconds = 0f;
+    [Min(0f)] public float freezeLastSeconds = 0f;
 
     [Header("BGM behavior")]
     [SerializeField] private bool loopBgmUntilVoiceEnds = true;
     [SerializeField] private bool stopBgmWhenVoiceEnds = true;
 
-    public enum FreezeMode { None, FirstSeconds, LastSeconds }
-
     private bool _isTracked;
     private float _lastLostTime = -999f;
 
-    private readonly HashSet<VideoPlayer> _endedMainVideos = new HashSet<VideoPlayer>();
-    private bool _visualCompletedFired;
-
-    public event Action OnVisualCompleted; // for manager compatibility
-
     public string PageId => pageId;
     public bool IsTracked => _isTracked;
-    public float LastLostTime => _lastLostTime;
-
     public bool LoopBgmUntilVoiceEnds => loopBgmUntilVoiceEnds;
     public bool StopBgmWhenVoiceEnds => stopBgmWhenVoiceEnds;
 
-    public FreezeMode PageFreezeMode => freezeMode;
-    public float FreezeFirstSeconds => freezeFirstSeconds;
-    public float FreezeLastSeconds => freezeLastSeconds;
-
     private void Awake()
     {
-        foreach (var vp in mainVideos)
+        if (mediaManager == null)
         {
-            if (vp == null) continue;
-            vp.loopPointReached -= OnMainVideoEnded;
-            vp.loopPointReached += OnMainVideoEnded;
+#if UNITY_2023_1_OR_NEWER
+            mediaManager = Object.FindFirstObjectByType<ARMediaManager>();
+#else
+            mediaManager = Object.FindObjectOfType<ARMediaManager>();
+#endif
+        }
+
+        if (splineMovers.Count == 0)
+        {
+            var mover = GetComponentInChildren<ARTrackableSplineMover>(true);
+            if (mover != null) splineMovers.Add(mover);
+        }
+
+        if (animators.Count == 0)
+        {
+            var anim = GetComponentInChildren<Animator>(true);
+            if (anim != null) animators.Add(anim);
         }
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (!_visualCompletedFired && IsVisualFinished())
-        {
-            _visualCompletedFired = true;
-            OnVisualCompleted?.Invoke();
-        }
+        if (mediaManager != null) mediaManager.RegisterNode(this);
     }
 
-    // Called by VuforiaTrackHook (keep names)
+    private void OnDisable()
+    {
+        if (mediaManager != null) mediaManager.UnregisterNode(this);
+    }
+
+    // Called by VuforiaTrackHook
     public void NotifyFound()
     {
         _isTracked = true;
-        mediaManager?.HandlePageFound(this);
+
+        if (mediaManager != null)
+            mediaManager.NotifyTrackingFound(this);
+        else
+            StartFromBeginning();
     }
 
+    // Called by VuforiaTrackHook
     public void NotifyLost()
     {
         _isTracked = false;
         _lastLostTime = Time.time;
-        mediaManager?.HandlePageLost(this);
+
+        if (mediaManager != null)
+            mediaManager.NotifyTrackingLost(this);
+        else
+            PauseVisuals();
     }
 
-    // Backward-compatible wrappers (older manager versions)
-    public void Pause() => PauseAll();
-    public void Resume() => ResumeAll();
-    public void StartFromBeginning() => RestartAllPageContent();
-    public void StopAndReset() => StopAndResetAll();
-
-    public void RestartAllPageContent()
+    public bool CanResume(float graceSeconds)
     {
-        StopAndResetAll();
-        PlayAll();
+        if (_lastLostTime < 0f) return false;
+        return (Time.time - _lastLostTime) <= graceSeconds;
     }
 
-    public void PlayAll()
+    public void OnBecameInactiveByManager()
     {
-        _visualCompletedFired = false;
+        PauseVisuals();
+    }
 
-        _endedMainVideos.Clear();
-        foreach (var vp in mainVideos)
-        {
-            if (vp == null) continue;
-            vp.time = 0;
-            vp.Play();
-        }
+    public void StartFromBeginning()
+    {
+        // Videos restart
+        RestartVideos(mainVideos);
+        RestartVideos(backgroundLoopVideos);
 
-        foreach (var vp in backgroundLoopVideos)
+        // Animators restart
+        for (int i = 0; i < animators.Count; i++)
         {
-            if (vp == null) continue;
-            vp.isLooping = true;
-            vp.time = 0;
-            vp.Play();
-        }
-
-        foreach (var a in animators)
-        {
+            var a = animators[i];
             if (a == null) continue;
             a.speed = 1f;
-            a.Play(0, 0, 0f);
+            a.Rebind();
             a.Update(0f);
         }
 
-        foreach (var m in splineMovers)
+        // Spline restart and play
+        for (int i = 0; i < splineMovers.Count; i++)
         {
+            var m = splineMovers[i];
             if (m == null) continue;
-            m.StartFromBeginning();
-        }
-    }
 
-    public void PauseAll()
-    {
-        foreach (var vp in mainVideos) if (vp != null) vp.Pause();
-        foreach (var vp in backgroundLoopVideos) if (vp != null) vp.Pause();
-
-        foreach (var a in animators) if (a != null) a.speed = 0f;
-        foreach (var m in splineMovers) if (m != null) m.Pause();
-    }
-
-    public void ResumeAll()
-    {
-        foreach (var vp in mainVideos) if (vp != null) vp.Play();
-        foreach (var vp in backgroundLoopVideos) if (vp != null) vp.Play();
-
-        foreach (var a in animators)
-        {
-            if (a == null) continue;
-            if (!IsAnimatorFinished(a)) a.speed = 1f;
-        }
-
-        foreach (var m in splineMovers) if (m != null) m.Resume();
-    }
-
-    public void StopAndResetAll()
-    {
-        _visualCompletedFired = false;
-        _endedMainVideos.Clear();
-
-        foreach (var vp in mainVideos)
-        {
-            if (vp == null) continue;
-            vp.Stop();
-            vp.time = 0;
-        }
-
-        foreach (var vp in backgroundLoopVideos)
-        {
-            if (vp == null) continue;
-            vp.Stop();
-            vp.time = 0;
-        }
-
-        foreach (var a in animators)
-        {
-            if (a == null) continue;
-            a.speed = 0f;
-            a.Play(0, 0, 0f);
-            a.Update(0f);
-        }
-
-        foreach (var m in splineMovers)
-        {
-            if (m == null) continue;
+            m.Stop();
             m.ResetToStart();
+            m.PlayOnce();
         }
     }
 
-    public bool AreMainVideosFinished()
+    public void PauseVisuals()
     {
-        if (mainVideos == null || mainVideos.Count == 0) return true;
+        // Pause videos (only if active)
+        PauseVideos(mainVideos);
+        PauseVideos(backgroundLoopVideos);
 
-        int validCount = 0;
-        foreach (var vp in mainVideos)
+        // Pause animators
+        for (int i = 0; i < animators.Count; i++)
         {
-            if (vp == null) continue;
-            validCount++;
-            if (!_endedMainVideos.Contains(vp)) return false;
-        }
-
-        return validCount == 0 || _endedMainVideos.Count >= validCount;
-    }
-
-    public bool AreAnimatorsFinished()
-    {
-        if (animators == null || animators.Count == 0) return true;
-
-        foreach (var a in animators)
-        {
+            var a = animators[i];
             if (a == null) continue;
-            if (!IsAnimatorFinished(a)) return false;
-        }
-
-        return true;
-    }
-
-    public bool AreSplineMoversFinished()
-    {
-        if (splineMovers == null || splineMovers.Count == 0) return true;
-
-        foreach (var m in splineMovers)
-        {
-            if (m == null) continue;
-            if (!m.IsFinished) return false;
-        }
-
-        return true;
-    }
-
-    public bool IsVisualFinished()
-    {
-        return AreMainVideosFinished() && AreAnimatorsFinished() && AreSplineMoversFinished();
-    }
-
-    private bool IsAnimatorFinished(Animator a)
-    {
-        if (a.runtimeAnimatorController == null) return true;
-
-        var st = a.GetCurrentAnimatorStateInfo(0);
-        bool finished = !a.IsInTransition(0) && st.normalizedTime >= 1f;
-
-        if (finished)
-        {
-            a.Play(st.fullPathHash, 0, 1f);
-            a.Update(0f);
             a.speed = 0f;
         }
 
-        return finished;
+        // Pause spline movers
+        for (int i = 0; i < splineMovers.Count; i++)
+        {
+            var m = splineMovers[i];
+            if (m == null) continue;
+            m.Pause();
+        }
     }
 
-    private void OnMainVideoEnded(VideoPlayer vp)
+    public void ResumeVisuals()
     {
-        if (vp == null) return;
-        _endedMainVideos.Add(vp);
+        // Resume videos
+        ResumeVideos(mainVideos);
+        ResumeVideos(backgroundLoopVideos);
+
+        // Resume animators
+        for (int i = 0; i < animators.Count; i++)
+        {
+            var a = animators[i];
+            if (a == null) continue;
+            a.speed = 1f;
+        }
+
+        // Resume spline movers
+        for (int i = 0; i < splineMovers.Count; i++)
+        {
+            var m = splineMovers[i];
+            if (m == null) continue;
+            m.Resume();
+        }
+    }
+
+    private static void RestartVideos(List<VideoPlayer> list)
+    {
+        if (list == null) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var vp = list[i];
+            if (vp == null) continue;
+            if (!vp.gameObject.activeInHierarchy) continue;
+
+            vp.time = 0;
+            vp.Play();
+        }
+    }
+
+    private static void PauseVideos(List<VideoPlayer> list)
+    {
+        if (list == null) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var vp = list[i];
+            if (vp == null) continue;
+            if (!vp.gameObject.activeInHierarchy) continue;
+
+            if (vp.isPlaying) vp.Pause();
+        }
+    }
+
+    private static void ResumeVideos(List<VideoPlayer> list)
+    {
+        if (list == null) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var vp = list[i];
+            if (vp == null) continue;
+            if (!vp.gameObject.activeInHierarchy) continue;
+
+            // VideoPlayer has no UnPause, Play() resumes from paused frame
+            vp.Play();
+        }
     }
 }

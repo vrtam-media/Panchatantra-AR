@@ -1025,6 +1025,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &126256525
@@ -1039,7 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &126256526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,13 +1076,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
   splineContainer: {fileID: 0}
   splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
   segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
+  faceAlongSpline: 0
+  up: {x: 0, y: 1, z: 0}
 --- !u!1 &141375614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2258,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARMediaManager
   replayButton: {fileID: 1839091514}
   audioDatabase: {fileID: 11400000, guid: c7409ed92b6c34a41a5ae2ca3d84414e, type: 2}
+  voiceSource: {fileID: 397100722}
+  bgmSource: {fileID: 397100726}
+  defaultVoiceVolume: 0.6
+  defaultBgmVolume: 0.6
   resumeGraceSeconds: 2
   defaultLanguage: English
 --- !u!82 &397100726
@@ -2487,6 +2490,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &397886800
@@ -2501,7 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &397886801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3942,6 +3948,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &748189282
@@ -3956,7 +3965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &748189283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4189,7 +4198,6 @@ GameObject:
   - component: {fileID: 872302810}
   - component: {fileID: 872302814}
   - component: {fileID: 872302816}
-  - component: {fileID: 872302817}
   m_Layer: 0
   m_Name: ImageTarget page-5-6 (1)
   m_TagString: Untagged
@@ -4267,7 +4275,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 872302817}
+  mPreview: {fileID: 0}
 --- !u!4 &872302812
 Transform:
   m_ObjectHideFlags: 0
@@ -4306,6 +4314,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &872302816
@@ -4320,26 +4331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 872302814}
---- !u!114 &872302817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872302808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 872302811}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 5-6
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 872302811}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
+  PageNode: {fileID: 872302814}
 --- !u!1 &875639594
 GameObject:
   m_ObjectHideFlags: 0
@@ -5211,6 +5203,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1044559237
@@ -5225,7 +5220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &1044559238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5259,13 +5254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
   splineContainer: {fileID: 0}
   splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
   segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
+  faceAlongSpline: 0
+  up: {x: 0, y: 1, z: 0}
 --- !u!1 &1130805499
 GameObject:
   m_ObjectHideFlags: 0
@@ -6246,6 +6237,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1219454658
@@ -6260,7 +6254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &1219454659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7326,6 +7320,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1405175064
@@ -7340,7 +7337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &1405175065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7940,7 +7937,6 @@ GameObject:
   - component: {fileID: 1562336164}
   - component: {fileID: 1562336166}
   - component: {fileID: 1562336168}
-  - component: {fileID: 1562336169}
   m_Layer: 0
   m_Name: ImageTarget page-3-4
   m_TagString: Untagged
@@ -8018,7 +8014,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1562336169}
+  mPreview: {fileID: 0}
 --- !u!4 &1562336159
 Transform:
   m_ObjectHideFlags: 0
@@ -8182,6 +8178,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1562336166
@@ -8196,7 +8195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 1562336164}
+  PageNode: {fileID: 1562336164}
 --- !u!114 &1562336168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8211,36 +8210,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
   splineContainer: {fileID: 1141752244}
   splineIndex: 0
-  objectToMove: {fileID: 1816011482}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
   segments:
   - startT: 0
     endT: 0.971
     moveSeconds: 3.2
     waitAfterSeconds: 8.16
-  animatorToControl: {fileID: 1816011484}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
---- !u!114 &1562336169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562336155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1562336158}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 3-4
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1562336158}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
+  faceAlongSpline: 0
+  up: {x: 0, y: 1, z: 0}
 --- !u!1 &1573001622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9781,6 +9757,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1815694544
@@ -9795,7 +9774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &1815694545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9829,13 +9808,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
   splineContainer: {fileID: 0}
   splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
   segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
+  faceAlongSpline: 0
+  up: {x: 0, y: 1, z: 0}
 --- !u!1001 &1816011481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10899,6 +10874,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &1949823888
@@ -10913,7 +10891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &1949823889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11201,6 +11179,9 @@ MonoBehaviour:
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
+  forcedVisibleRoots: []
+  forceRenderersVisibleWhilePlaying: 1
+  forceObjectsActiveWhilePlaying: 1
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
 --- !u!114 &2020628000
@@ -11215,7 +11196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  PageNode: {fileID: 0}
 --- !u!114 &2020628001
 MonoBehaviour:
   m_ObjectHideFlags: 0

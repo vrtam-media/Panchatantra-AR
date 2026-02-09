@@ -1,43 +1,38 @@
 using UnityEngine;
 using Vuforia;
 
-[RequireComponent(typeof(ObserverBehaviour))]
 public class VuforiaTrackHook : MonoBehaviour
 {
-    public ARTrackedPageNode PageNode;
-
+    [SerializeField] private ARTrackedPageNode pageNode;
     private ObserverBehaviour _observer;
-    private bool _isTracked;
 
     private void Awake()
     {
+        if (pageNode == null) pageNode = GetComponent<ARTrackedPageNode>();
         _observer = GetComponent<ObserverBehaviour>();
     }
 
     private void OnEnable()
     {
         if (_observer != null)
-            _observer.OnTargetStatusChanged += OnStatusChanged;
+            _observer.OnTargetStatusChanged += OnTargetStatusChanged;
     }
 
     private void OnDisable()
     {
         if (_observer != null)
-            _observer.OnTargetStatusChanged -= OnStatusChanged;
+            _observer.OnTargetStatusChanged -= OnTargetStatusChanged;
     }
 
-    private void OnStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
+    private void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus targetStatus)
     {
+        if (pageNode == null) return;
+
         bool trackedNow =
-            status.Status == Status.TRACKED ||
-            status.Status == Status.EXTENDED_TRACKED;
+            targetStatus.Status == Status.TRACKED ||
+            targetStatus.Status == Status.EXTENDED_TRACKED;
 
-        if (trackedNow == _isTracked) return;
-        _isTracked = trackedNow;
-
-        if (PageNode == null) return;
-
-        if (_isTracked) PageNode.NotifyFound();
-        else PageNode.NotifyLost();
+        if (trackedNow) pageNode.NotifyFound();
+        else pageNode.NotifyLost();
     }
 }
