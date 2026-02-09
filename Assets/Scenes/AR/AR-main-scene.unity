@@ -358,7 +358,6 @@ GameObject:
   - component: {fileID: 106870071}
   - component: {fileID: 106870070}
   - component: {fileID: 106870069}
-  - component: {fileID: 106870073}
   - component: {fileID: 106870074}
   m_Layer: 0
   m_Name: king-l4
@@ -390,7 +389,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106870067}
   m_Enabled: 1
-  m_VideoClip: {fileID: 0}
+  m_VideoClip: {fileID: 32900000, guid: 53f6daf2b085a074c97a94965d99b1b9, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -410,11 +409,11 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -497,38 +496,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106870067}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &106870073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106870067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7887f9e7eddb245b7378fc653d1cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaVideoFreezeSystem
-  videoClip: {fileID: 32900000, guid: 53f6daf2b085a074c97a94965d99b1b9, type: 3}
-  vuforiaObserver: {fileID: 1219454654}
-  treatExtendedTrackedAsTracked: 1
-  loopEveryTime: 1
-  freezeFirstEveryLoop: 1
-  freezeLastEveryLoop: 1
-  freezeFirst:
-    enabled: 1
-    audio: {fileID: 8300000, guid: 43c122b25a5f2434cae9326eaa0927b3, type: 3}
-    volume: 1
-    source: {fileID: 106870074}
-  freezeLast:
-    enabled: 0
-    audio: {fileID: 0}
-    volume: 1
-    source: {fileID: 0}
-  muteAll: 0
-  controlVideoAudio: 1
-  videoAudioVolume: 1
-  videoAudioSource: {fileID: 0}
 --- !u!82 &106870074
 AudioSource:
   m_ObjectHideFlags: 0
@@ -642,15 +609,15 @@ GameObject:
   - component: {fileID: 126256516}
   - component: {fileID: 126256523}
   - component: {fileID: 126256525}
-  - component: {fileID: 126256526}
   - component: {fileID: 126256527}
+  - component: {fileID: 126256528}
   m_Layer: 0
   m_Name: ImageTarget page-cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &126256516
 AudioSource:
   m_ObjectHideFlags: 0
@@ -852,7 +819,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126256514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883e4c30192ef024a8239ed6d07f3bee, type: 3}
   m_Name: 
@@ -987,7 +954,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 126256526}
+  mPreview: {fileID: 126256528}
 --- !u!4 &126256521
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,12 +983,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1_P1_P_cover_page
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
-  splineMovers: []
+  animators:
+  - {fileID: 6157340629863882228}
+  splineMovers:
+  - {fileID: 126256527}
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -1039,8 +1008,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
---- !u!114 &126256526
+  pageNode: {fileID: 126256523}
+--- !u!114 &126256527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126256514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
+  splineContainer: {fileID: 1794670165}
+  splineIndex: 0
+  objectToMove: {fileID: 6940958084904414007}
+  faceAlongSpline: 0
+  upAxis: {x: 0, y: 1, z: 0}
+  segments:
+  - startT: 0
+    endT: 0.957
+    moveSeconds: 2
+    waitAfterSeconds: 21
+  animatorToControl: {fileID: 6157340629863882228}
+  playAnimatorWhileMoving: 1
+  freezeAnimatorOnComplete: 1
+--- !u!114 &126256528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1059,27 +1053,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 126256520}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &126256527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126256514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
-  segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
 --- !u!1 &141375614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,10 +1521,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 859488200}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 28ff98f3e90b7a44faefd75e4f882a4f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 859488201}
   m_SourcePrefab: {fileID: 100100000, guid: 28ff98f3e90b7a44faefd75e4f882a4f, type: 3}
 --- !u!4 &233360144 stripped
 Transform:
@@ -2259,6 +2228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARMediaManager
   replayButton: {fileID: 1839091514}
   audioDatabase: {fileID: 11400000, guid: c7409ed92b6c34a41a5ae2ca3d84414e, type: 2}
+  masterVolume: 1
   resumeGraceSeconds: 2
   defaultLanguage: English
 --- !u!82 &397100726
@@ -2378,7 +2348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &397886794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,14 +2448,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
-  backgroundLoopVideos: []
+  pageId: S1_P1_P_7_8
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 2145162598}
+  backgroundLoopVideos:
+  - {fileID: 1653115325}
   animators: []
   splineMovers: []
-  freezeMode: 0
-  freezeFirstSeconds: 0
+  freezeMode: 1
+  freezeFirstSeconds: 2
   freezeLastSeconds: 0
   loopBgmUntilVoiceEnds: 1
   stopBgmWhenVoiceEnds: 1
@@ -2501,7 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 397886798}
 --- !u!114 &397886801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3445,7 +3417,6 @@ GameObject:
   - component: {fileID: 681593254}
   - component: {fileID: 681593253}
   - component: {fileID: 681593252}
-  - component: {fileID: 681593257}
   m_Layer: 0
   m_Name: 'king tata '
   m_TagString: Untagged
@@ -3461,7 +3432,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681593251}
   m_Enabled: 1
-  m_VideoClip: {fileID: 0}
+  m_VideoClip: {fileID: 32900000, guid: c1b1e468a430d794aa47a0b2707c9afc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -3481,11 +3452,11 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -3583,38 +3554,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1457958527}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &681593257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681593251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7887f9e7eddb245b7378fc653d1cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaVideoFreezeSystem
-  videoClip: {fileID: 32900000, guid: c1b1e468a430d794aa47a0b2707c9afc, type: 3}
-  vuforiaObserver: {fileID: 1405175059}
-  treatExtendedTrackedAsTracked: 1
-  loopEveryTime: 1
-  freezeFirstEveryLoop: 1
-  freezeLastEveryLoop: 1
-  freezeFirst:
-    enabled: 0
-    audio: {fileID: 0}
-    volume: 1
-    source: {fileID: 0}
-  freezeLast:
-    enabled: 0
-    audio: {fileID: 0}
-    volume: 1
-    source: {fileID: 0}
-  muteAll: 0
-  controlVideoAudio: 1
-  videoAudioVolume: 1
-  videoAudioSource: {fileID: 0}
 --- !u!1 &693335728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,7 +3724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &748189277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3933,9 +3872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1_P1_P_11_12
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 1852800254}
   backgroundLoopVideos: []
   animators: []
   splineMovers: []
@@ -3956,7 +3896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 748189280}
 --- !u!114 &748189283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,21 +4101,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &859488201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859488199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e43d07c8938ea0a4a80c93c3cbcbb524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaAnimatorPauseResume
-  vuforiaObserver: {fileID: 1815694536}
-  animator: {fileID: 859488200}
-  normalSpeed: 1.15
 --- !u!1 &872302808
 GameObject:
   m_ObjectHideFlags: 0
@@ -4868,20 +4793,17 @@ GameObject:
   - component: {fileID: 1044559229}
   - component: {fileID: 1044559228}
   - component: {fileID: 1044559227}
-  - component: {fileID: 1044559231}
-  - component: {fileID: 1044559230}
-  - component: {fileID: 1044559233}
   - component: {fileID: 1044559235}
   - component: {fileID: 1044559237}
-  - component: {fileID: 1044559238}
   - component: {fileID: 1044559239}
+  - component: {fileID: 1044559240}
   m_Layer: 0
   m_Name: ImageTarget page-13-14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1044559227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,7 +4874,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1044559238}
+  mPreview: {fileID: 1044559240}
 --- !u!4 &1044559229
 Transform:
   m_ObjectHideFlags: 0
@@ -4969,227 +4891,6 @@ Transform:
   - {fileID: 1990885823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1044559230
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044559225}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1044559231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044559225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883e4c30192ef024a8239ed6d07f3bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaDualAudioPlaylistLooper
-  vuforiaObserver: {fileID: 1044559228}
-  voiceSource: {fileID: 1044559230}
-  voiceMasterVolume: 1
-  voicePlaylist:
-  - clip: {fileID: 8300000, guid: 55feac97495e1e142bb2087fcc382baf, type: 3}
-    volume: 1
-    delayAfter: 0
-  bgmSource: {fileID: 1044559233}
-  bgmMasterVolume: 0.454
-  bgmPlaylist:
-  - clip: {fileID: 8300000, guid: 1380987e0ff841e4582902ac32eb55e9, type: 3}
-    volume: 0.221
-    delayAfter: 0
-  startOnlyWhenTracked: 1
-  treatExtendedTrackedAsTracked: 1
---- !u!82 &1044559233
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044559225}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1044559235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5202,12 +4903,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1_P1_P_13_14
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
-  splineMovers: []
+  animators:
+  - {fileID: 851094558}
+  splineMovers:
+  - {fileID: 1044559239}
   freezeMode: 0
   freezeFirstSeconds: 0
   freezeLastSeconds: 0
@@ -5225,8 +4928,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
---- !u!114 &1044559238
+  pageNode: {fileID: 1044559235}
+--- !u!114 &1044559239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044559225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
+  splineContainer: {fileID: 1507690612}
+  splineIndex: 0
+  objectToMove: {fileID: 851094556}
+  faceAlongSpline: 0
+  upAxis: {x: 0, y: 1, z: 0}
+  segments:
+  - startT: 0
+    endT: 0.979
+    moveSeconds: 3
+    waitAfterSeconds: 25.12
+  animatorToControl: {fileID: 851094558}
+  playAnimatorWhileMoving: 1
+  freezeAnimatorOnComplete: 1
+--- !u!114 &1044559240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5245,27 +4973,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1044559228}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1044559239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044559225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
-  segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
 --- !u!1 &1130805499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5652,11 +5359,11 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -6089,7 +5796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1219454653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6237,9 +5944,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1_P1_P_9_10
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 106870069}
   backgroundLoopVideos: []
   animators: []
   splineMovers: []
@@ -6260,7 +5968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 1219454656}
 --- !u!114 &1219454659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7169,7 +6877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1405175058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7317,9 +7025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1_P1_P_15_16
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 681593252}
   backgroundLoopVideos: []
   animators: []
   splineMovers: []
@@ -7340,7 +7049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 1405175062}
 --- !u!114 &1405175065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8672,7 +8381,7 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
@@ -9390,20 +9099,17 @@ GameObject:
   - component: {fileID: 1815694537}
   - component: {fileID: 1815694536}
   - component: {fileID: 1815694535}
-  - component: {fileID: 1815694538}
-  - component: {fileID: 1815694540}
-  - component: {fileID: 1815694539}
   - component: {fileID: 1815694542}
   - component: {fileID: 1815694544}
-  - component: {fileID: 1815694545}
   - component: {fileID: 1815694546}
+  - component: {fileID: 1815694547}
   m_Layer: 0
   m_Name: ImageTarget page-19-20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1815694535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9522,7 +9228,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1815694545}
+  mPreview: {fileID: 1815694547}
 --- !u!4 &1815694537
 Transform:
   m_ObjectHideFlags: 0
@@ -9539,227 +9245,6 @@ Transform:
   - {fileID: 542766082}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1815694538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815694533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883e4c30192ef024a8239ed6d07f3bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaDualAudioPlaylistLooper
-  vuforiaObserver: {fileID: 1815694536}
-  voiceSource: {fileID: 1815694540}
-  voiceMasterVolume: 1
-  voicePlaylist:
-  - clip: {fileID: 8300000, guid: 9eea1076db13a4f46914b980772027f2, type: 3}
-    volume: 0.988
-    delayAfter: 0
-  bgmSource: {fileID: 1815694539}
-  bgmMasterVolume: 1
-  bgmPlaylist:
-  - clip: {fileID: 8300000, guid: 1380987e0ff841e4582902ac32eb55e9, type: 3}
-    volume: 0.306
-    delayAfter: 0
-  startOnlyWhenTracked: 1
-  treatExtendedTrackedAsTracked: 1
---- !u!82 &1815694539
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815694533}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!82 &1815694540
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815694533}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1815694542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9772,11 +9257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
+  pageId: S1_P1_P_19_20
+  mediaManager: {fileID: 397100725}
   mainVideos: []
   backgroundLoopVideos: []
-  animators: []
+  animators:
+  - {fileID: 859488200}
   splineMovers: []
   freezeMode: 0
   freezeFirstSeconds: 0
@@ -9795,8 +9281,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
---- !u!114 &1815694545
+  pageNode: {fileID: 1815694542}
+--- !u!114 &1815694546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815694533}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
+  splineContainer: {fileID: 0}
+  splineIndex: 0
+  objectToMove: {fileID: 0}
+  faceAlongSpline: 0
+  upAxis: {x: 0, y: 1, z: 0}
+  segments: []
+  animatorToControl: {fileID: 0}
+  playAnimatorWhileMoving: 1
+  freezeAnimatorOnComplete: 1
+--- !u!114 &1815694547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9815,27 +9322,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1815694536}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1815694546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815694533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b9c88eb8d60540ab964d67fffad2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARTrackableSplineMover
-  splineContainer: {fileID: 0}
-  splineIndex: 0
-  objectToMove: {fileID: 0}
-  faceAlongSpline: 0
-  upAxis: {x: 0, y: 1, z: 0}
-  segments: []
-  animatorToControl: {fileID: 0}
-  playAnimatorWhileMoving: 1
-  freezeAnimatorOnComplete: 1
 --- !u!1001 &1816011481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10149,7 +9635,6 @@ GameObject:
   - component: {fileID: 1852800252}
   - component: {fileID: 1852800251}
   - component: {fileID: 1852800254}
-  - component: {fileID: 1852800256}
   - component: {fileID: 1852800255}
   m_Layer: 0
   m_Name: king v l-4
@@ -10280,11 +9765,11 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -10385,38 +9870,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1852800256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852800249}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7887f9e7eddb245b7378fc653d1cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaVideoFreezeSystem
-  videoClip: {fileID: 32900000, guid: 2dd5e7cdea258cf4d85c24e6ea6e18d2, type: 3}
-  vuforiaObserver: {fileID: 748189278}
-  treatExtendedTrackedAsTracked: 1
-  loopEveryTime: 1
-  freezeFirstEveryLoop: 1
-  freezeLastEveryLoop: 1
-  freezeFirst:
-    enabled: 1
-    audio: {fileID: 8300000, guid: 60a514700e13d484684118c93c2afa57, type: 3}
-    volume: 1
-    source: {fileID: 1852800255}
-  freezeLast:
-    enabled: 0
-    audio: {fileID: 0}
-    volume: 1
-    source: {fileID: 0}
-  muteAll: 0
-  controlVideoAudio: 1
-  videoAudioVolume: 1
-  videoAudioSource: {fileID: 0}
 --- !u!1 &1893980391
 GameObject:
   m_ObjectHideFlags: 0
@@ -10742,7 +10195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1949823882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10890,9 +10343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1_P1_P_1_2
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 283124615}
   backgroundLoopVideos: []
   animators: []
   splineMovers: []
@@ -10913,7 +10367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 1949823886}
 --- !u!114 &1949823889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10942,7 +10396,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1990885823}
-  - component: {fileID: 1990885824}
   m_Layer: 0
   m_Name: all
   m_TagString: Untagged
@@ -10969,61 +10422,6 @@ Transform:
   - {fileID: 851094556}
   m_Father: {fileID: 1044559229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1990885824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990885822}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ac5a69d8e3bba4ca6122e90bb93948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayerStack
-  cameraTransform: {fileID: 1198933753}
-  layers: []
-  enforceEqualGap: 1
-  separationAxisLocal: {x: 0, y: 1, z: 0}
-  layerGap: 0.01
-  allowManualLayerEdits: 1
-  parallaxPlane: 0
-  parallaxStrength: 0.1649
-  nearLayerMultiplier: 1
-  useDepthCurve: 1
-  depthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  positionDeadzone: 0.0005
-  maxPositionDelta: 0.03
-  enableRotationParallax: 0
-  rotationInfluence: 0.15
-  rotationClampDegrees: 8
-  follow: 14
-  previewInEditMode: 0
-  autoRefreshWhenLayersChange: 1
-  recaptureAnchorOnLayerRefresh: 1
 --- !u!1 &2020627992
 GameObject:
   m_ObjectHideFlags: 0
@@ -11044,7 +10442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2020627994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11192,9 +10590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c89c3d7f04d6a42a009e2aa17becf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARTrackedPageNode
-  pageId: 
-  mediaManager: {fileID: 0}
-  mainVideos: []
+  pageId: S1_P1_P_17_18
+  mediaManager: {fileID: 397100725}
+  mainVideos:
+  - {fileID: 1154762679}
   backgroundLoopVideos: []
   animators: []
   splineMovers: []
@@ -11215,7 +10614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3b818d900754c98cbfc1825da798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VuforiaTrackHook
-  pageNode: {fileID: 0}
+  pageNode: {fileID: 2020627998}
 --- !u!114 &2020628001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11326,10 +10725,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2049359059}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 156c7dda85a0868488de142074dc5858,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2049359060}
   m_SourcePrefab: {fileID: 100100000, guid: 156c7dda85a0868488de142074dc5858, type: 3}
 --- !u!4 &2049359057 stripped
 Transform:
@@ -11365,21 +10760,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2049359060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049359058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e43d07c8938ea0a4a80c93c3cbcbb524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VuforiaAnimatorPauseResume
-  vuforiaObserver: {fileID: 1044559228}
-  animator: {fileID: 2049359059}
-  normalSpeed: 1
 --- !u!1 &2115671181
 GameObject:
   m_ObjectHideFlags: 0
