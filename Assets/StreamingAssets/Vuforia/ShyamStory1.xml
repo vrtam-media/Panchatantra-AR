@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="9a" size="200.000000 200.000000" />
+    <ImageTarget name="9" size="200.000000 200.000000" />
+    <ImageTarget name="22-23combined" size="400.000000 199.959686" />
+    <ImageTarget name="23" size="200.000000 200.000000" />
+    <ImageTarget name="22" size="200.000000 200.000000" />
+    <ImageTarget name="20-21combined" size="400.000000 199.959686" />
+    <ImageTarget name="21" size="200.000000 200.000000" />
+    <ImageTarget name="20" size="200.000000 200.000000" />
+    <ImageTarget name="18-19combined" size="400.000000 199.959686" />
+    <ImageTarget name="19" size="200.000000 200.000000" />
+    <ImageTarget name="18" size="200.000000 200.000000" />
+    <ImageTarget name="16-17combined" size="400.000000 199.959686" />
+    <ImageTarget name="17" size="200.000000 200.000000" />
+    <ImageTarget name="16" size="200.000000 200.000000" />
+    <ImageTarget name="14-15combined" size="400.000000 199.959686" />
+    <ImageTarget name="15" size="200.000000 200.000000" />
+    <ImageTarget name="14" size="200.000000 200.000000" />
+    <ImageTarget name="12-13combined" size="400.000000 199.959686" />
+    <ImageTarget name="13" size="200.000000 200.000000" />
+    <ImageTarget name="12" size="200.000000 200.000000" />
+    <ImageTarget name="8-9combined2" size="400.000000 199.959686" />
+    <ImageTarget name="10-11combined2" size="400.000000 199.959686" />
+    <ImageTarget name="11" size="200.000000 200.000000" />
+    <ImageTarget name="10" size="200.000000 200.000000" />
+    <ImageTarget name="8" size="200.000000 200.000000" />
+    <ImageTarget name="6-7combined" size="400.000000 199.959686" />
+    <ImageTarget name="7" size="200.000000 200.000000" />
+    <ImageTarget name="6" size="200.000000 200.000000" />
+    <ImageTarget name="4-5combined" size="400.000000 199.959686" />
+    <ImageTarget name="5" size="200.000000 200.000000" />
+    <ImageTarget name="4" size="200.000000 200.000000" />
+    <ImageTarget name="2-3combined" size="400.000000 199.959686" />
+    <ImageTarget name="3" size="200.000000 200.000000" />
+    <ImageTarget name="2" size="200.000000 200.000000" />
+  </Tracking>
+</QCARConfig>
