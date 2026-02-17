@@ -8,9 +8,9 @@
       "hash": "0d7af7585efc0001d7a664ff78b9429d33263d86"
     },
     "com.ptc.vuforia.engine": {
-      "version": "file:com.ptc.vuforia.engine-11.4.4.tgz",
+      "version": "file:com.ptc.vuforia.engine",
       "depth": 0,
-      "source": "local-tarball",
+      "source": "embedded",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
         "com.unity.inputsystem": "1.11.2",
