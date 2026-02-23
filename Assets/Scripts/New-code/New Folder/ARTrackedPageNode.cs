@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -21,7 +22,10 @@ public class ARTrackedPageNode : MonoBehaviour
     [SerializeField] private List<ARTrackableSplineMover> splineMovers = new();
 
     [Header("Video Freeze (per page)")]
-    [SerializeField] private VuforiaVideoFrameFreezeController.FreezeMode freezeMode = VuforiaVideoFrameFreezeController.FreezeMode.None;
+    [SerializeField]
+    private VuforiaVideoFrameFreezeController.FreezeMode freezeMode =
+        VuforiaVideoFrameFreezeController.FreezeMode.None;
+
     [Min(0f)] public float freezeFirstSeconds = 0f;
     [Min(0f)] public float freezeLastSeconds = 0f;
 
@@ -36,6 +40,8 @@ public class ARTrackedPageNode : MonoBehaviour
     public bool IsTracked => _isTracked;
     public bool LoopBgmUntilVoiceEnds => loopBgmUntilVoiceEnds;
     public bool StopBgmWhenVoiceEnds => stopBgmWhenVoiceEnds;
+
+    private readonly Dictionary<VideoPlayer, VideoFreezeRuntime> _videoRuntime = new();
 
     private void Awake()
     {
@@ -59,6 +65,16 @@ public class ARTrackedPageNode : MonoBehaviour
             var anim = GetComponentInChildren<Animator>(true);
             if (anim != null) animators.Add(anim);
         }
+
+        RebuildVideoRuntimeCache();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var kv in _videoRuntime)
+            kv.Value.Dispose();
+
+        _videoRuntime.Clear();
     }
 
     private void OnEnable()
@@ -69,6 +85,27 @@ public class ARTrackedPageNode : MonoBehaviour
     private void OnDisable()
     {
         if (mediaManager != null) mediaManager.UnregisterNode(this);
+    }
+
+    private void RebuildVideoRuntimeCache()
+    {
+        _videoRuntime.Clear();
+        AddToRuntime(mainVideos);
+        AddToRuntime(backgroundLoopVideos);
+    }
+
+    private void AddToRuntime(List<VideoPlayer> list)
+    {
+        if (list == null) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var vp = list[i];
+            if (vp == null) continue;
+            if (_videoRuntime.ContainsKey(vp)) continue;
+
+            _videoRuntime.Add(vp, new VideoFreezeRuntime(this, vp));
+        }
     }
 
     // Called by VuforiaTrackHook
@@ -107,9 +144,13 @@ public class ARTrackedPageNode : MonoBehaviour
 
     public void StartFromBeginning()
     {
-        // Videos restart
-        RestartVideos(mainVideos);
-        RestartVideos(backgroundLoopVideos);
+        RebuildVideoRuntimeCache();
+
+        // Main videos: apply freeze mode
+        RestartVideosWithFreeze(mainVideos, freezeMode, freezeFirstSeconds, freezeLastSeconds);
+
+        // Background loops: usually should not freeze, just restart
+        RestartVideosNoFreeze(backgroundLoopVideos);
 
         // Animators restart
         for (int i = 0; i < animators.Count; i++)
@@ -135,11 +176,9 @@ public class ARTrackedPageNode : MonoBehaviour
 
     public void PauseVisuals()
     {
-        // Pause videos (only if active)
         PauseVideos(mainVideos);
         PauseVideos(backgroundLoopVideos);
 
-        // Pause animators
         for (int i = 0; i < animators.Count; i++)
         {
             var a = animators[i];
@@ -147,7 +186,6 @@ public class ARTrackedPageNode : MonoBehaviour
             a.speed = 0f;
         }
 
-        // Pause spline movers
         for (int i = 0; i < splineMovers.Count; i++)
         {
             var m = splineMovers[i];
@@ -158,11 +196,9 @@ public class ARTrackedPageNode : MonoBehaviour
 
     public void ResumeVisuals()
     {
-        // Resume videos
         ResumeVideos(mainVideos);
         ResumeVideos(backgroundLoopVideos);
 
-        // Resume animators
         for (int i = 0; i < animators.Count; i++)
         {
             var a = animators[i];
@@ -170,7 +206,6 @@ public class ARTrackedPageNode : MonoBehaviour
             a.speed = 1f;
         }
 
-        // Resume spline movers
         for (int i = 0; i < splineMovers.Count; i++)
         {
             var m = splineMovers[i];
@@ -179,7 +214,31 @@ public class ARTrackedPageNode : MonoBehaviour
         }
     }
 
-    private static void RestartVideos(List<VideoPlayer> list)
+    private void RestartVideosWithFreeze(
+        List<VideoPlayer> list,
+        VuforiaVideoFrameFreezeController.FreezeMode mode,
+        float firstSeconds,
+        float lastSeconds)
+    {
+        if (list == null) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var vp = list[i];
+            if (vp == null) continue;
+            if (!vp.gameObject.activeInHierarchy) continue;
+
+            if (_videoRuntime.TryGetValue(vp, out var rt))
+                rt.RestartWithFreeze(mode, firstSeconds, lastSeconds);
+            else
+            {
+                vp.time = 0;
+                vp.Play();
+            }
+        }
+    }
+
+    private static void RestartVideosNoFreeze(List<VideoPlayer> list)
     {
         if (list == null) return;
 
@@ -194,7 +253,7 @@ public class ARTrackedPageNode : MonoBehaviour
         }
     }
 
-    private static void PauseVideos(List<VideoPlayer> list)
+    private void PauseVideos(List<VideoPlayer> list)
     {
         if (list == null) return;
 
@@ -204,11 +263,14 @@ public class ARTrackedPageNode : MonoBehaviour
             if (vp == null) continue;
             if (!vp.gameObject.activeInHierarchy) continue;
 
-            if (vp.isPlaying) vp.Pause();
+            if (_videoRuntime.TryGetValue(vp, out var rt))
+                rt.Pause();
+            else if (vp.isPlaying)
+                vp.Pause();
         }
     }
 
-    private static void ResumeVideos(List<VideoPlayer> list)
+    private void ResumeVideos(List<VideoPlayer> list)
     {
         if (list == null) return;
 
@@ -218,8 +280,205 @@ public class ARTrackedPageNode : MonoBehaviour
             if (vp == null) continue;
             if (!vp.gameObject.activeInHierarchy) continue;
 
-            // VideoPlayer has no UnPause, Play() resumes from paused frame
-            vp.Play();
+            if (_videoRuntime.TryGetValue(vp, out var rt))
+                rt.Resume();
+            else
+                vp.Play();
+        }
+    }
+
+    private sealed class VideoFreezeRuntime
+    {
+        private readonly MonoBehaviour _host;
+        private readonly VideoPlayer _vp;
+
+        private VuforiaVideoFrameFreezeController.FreezeMode _mode;
+        private float _firstSeconds;
+        private float _lastSeconds;
+
+        private Coroutine _firstRoutine;
+        private Coroutine _lastRoutine;
+
+        private bool _frameHooked;
+        private bool _pausedOnFirstFrame;
+
+        public VideoFreezeRuntime(MonoBehaviour host, VideoPlayer vp)
+        {
+            _host = host;
+            _vp = vp;
+
+            _vp.loopPointReached += OnLoopPointReached;
+            _vp.waitForFirstFrame = true;
+        }
+
+        public void Dispose()
+        {
+            StopRoutinesInternal();
+
+            if (_vp != null)
+                _vp.loopPointReached -= OnLoopPointReached;
+        }
+
+        public void RestartWithFreeze(
+            VuforiaVideoFrameFreezeController.FreezeMode mode,
+            float firstSeconds,
+            float lastSeconds)
+        {
+            _mode = mode;
+            _firstSeconds = Mathf.Max(0f, firstSeconds);
+            _lastSeconds = Mathf.Max(0f, lastSeconds);
+
+            StopRoutinesInternal();
+
+            if (_vp == null) return;
+            if (!_vp.gameObject.activeInHierarchy) return;
+
+            _vp.Stop();
+            _vp.time = 0;
+
+            if (ModeHasFirst(_mode))
+                _firstRoutine = _host.StartCoroutine(FreezeFirstRoutine());
+            else
+                _vp.Play();
+        }
+
+        public void Pause()
+        {
+            StopRoutinesInternal();
+            if (_vp == null) return;
+            _vp.Pause();
+        }
+
+        public void Resume()
+        {
+            if (_vp == null) return;
+            _vp.Play();
+        }
+
+        private void OnLoopPointReached(VideoPlayer source)
+        {
+            if (_vp == null) return;
+            if (!ModeHasLast(_mode)) return;
+            if (_lastRoutine != null) return;
+
+            _lastRoutine = _host.StartCoroutine(FreezeLastRoutine());
+        }
+
+        private IEnumerator FreezeFirstRoutine()
+        {
+            _pausedOnFirstFrame = false;
+
+            _vp.waitForFirstFrame = true;
+            _vp.sendFrameReadyEvents = true;
+
+            if (!_frameHooked)
+            {
+                _vp.frameReady += OnFrameReady;
+                _frameHooked = true;
+            }
+
+            _vp.Prepare();
+
+            float timeout = Time.realtimeSinceStartup + 5f;
+            while (!_vp.isPrepared && Time.realtimeSinceStartup < timeout)
+                yield return null;
+
+            _vp.time = 0;
+            _vp.Play();
+
+            float waitFirstFrameTimeout = Time.realtimeSinceStartup + 0.75f;
+            while (!_pausedOnFirstFrame && Time.realtimeSinceStartup < waitFirstFrameTimeout)
+                yield return null;
+
+            if (!_pausedOnFirstFrame)
+                _vp.Pause();
+
+            CleanupFrameReadyHook();
+
+            if (_firstSeconds > 0f)
+            {
+                yield return new WaitForSeconds(_firstSeconds);
+                _vp.Play();
+            }
+            // else: hold first frame indefinitely (paused)
+
+            _firstRoutine = null;
+        }
+
+        private void OnFrameReady(VideoPlayer source, long frameIdx)
+        {
+            if (_pausedOnFirstFrame) return;
+
+            if (frameIdx <= 0)
+            {
+                _pausedOnFirstFrame = true;
+                source.Pause();
+            }
+        }
+
+        private IEnumerator FreezeLastRoutine()
+        {
+            // Ensure last frame is displayed before pause
+            if (_vp.frameCount > 0)
+            {
+                _vp.frame = (long)_vp.frameCount - 1;
+            }
+            else if (_vp.length > 0.0001)
+            {
+                double t = _vp.length - 0.033;
+                if (t < 0) t = 0;
+                _vp.time = t;
+            }
+
+            _vp.Pause();
+
+            if (_lastSeconds > 0f)
+                yield return new WaitForSeconds(_lastSeconds);
+
+            // Keep paused on last frame (if lastSeconds == 0, it stays indefinitely)
+            _lastRoutine = null;
+        }
+
+        private void StopRoutinesInternal()
+        {
+            if (_firstRoutine != null)
+            {
+                _host.StopCoroutine(_firstRoutine);
+                _firstRoutine = null;
+            }
+
+            if (_lastRoutine != null)
+            {
+                _host.StopCoroutine(_lastRoutine);
+                _lastRoutine = null;
+            }
+
+            CleanupFrameReadyHook();
+        }
+
+        private void CleanupFrameReadyHook()
+        {
+            if (_vp == null) return;
+
+            _vp.sendFrameReadyEvents = false;
+
+            if (_frameHooked)
+            {
+                _vp.frameReady -= OnFrameReady;
+                _frameHooked = false;
+            }
+        }
+
+        private static bool ModeHasFirst(VuforiaVideoFrameFreezeController.FreezeMode mode)
+        {
+            var s = mode.ToString();
+            return s.Contains("First");
+        }
+
+        private static bool ModeHasLast(VuforiaVideoFrameFreezeController.FreezeMode mode)
+        {
+            var s = mode.ToString();
+            return s.Contains("Last");
         }
     }
 }
