@@ -70,6 +70,11 @@ MonoBehaviour:
         delayAfter: 0
         volume: 0.907
         loop: 0
+      - clip: {fileID: 8300000, guid: 47226d97f67c82e4e8774be0b742b63e, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
       bgmClips: []
     - pageId: S1_P1_P_11_12
       voiceClips:
@@ -114,7 +119,7 @@ MonoBehaviour:
         delayAfter: 0
         volume: 0.907
         loop: 0
-      - clip: {fileID: 8300000, guid: bb4e1c5fbf19a624599d2704366f98f4, type: 3}
+      - clip: {fileID: 8300000, guid: ba8e67b1b02ec7c49891ce55322e38fe, type: 3}
         delayBefore: 0
         delayAfter: 0
         volume: 0.907
