@@ -36,7 +36,7 @@ public class ParallexWithAnimation : MonoBehaviour
 
     [Header("Depth animation (immersive feel)")]
     [Tooltip("X: 0 far -> 1 near. Y: weight multiplier. For your case: FAR should be stronger than NEAR.")]
-    public AnimationCurve depthWeightCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0.1f); // CHANGED default
+    public AnimationCurve depthWeightCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0.1f);
 
     [Tooltip("Clamp XY offset magnitude (0 = no clamp).")]
     public float maxOffset = 0.03f;
@@ -47,6 +47,13 @@ public class ParallexWithAnimation : MonoBehaviour
 
     [Header("Layer smoothing")]
     [Range(0.01f, 0.5f)] public float layerSmoothTime = 0.10f;
+
+    [Header("Render order (prevents overlap flicker / vanishing)")]
+    public bool enforceStableRenderOrder = true;
+    public bool nearLayerOnTop = true;        // last layer draws on top
+    public int sortingOrderBase = 0;
+    public int sortingOrderStep = 1;
+    public bool setSiblingOrderFallback = true; // for UI Images (no Canvas/SpriteRenderer on layer root)
 
     Vector3 camPosAnchorLocal;
     Quaternion camRotAnchorLocal;
@@ -65,8 +72,12 @@ public class ParallexWithAnimation : MonoBehaviour
 
     void Start()
     {
-        Reanchor();
+        // FIX #2: Apply gap first, then Reanchor so baseLocalPositions matches runtime positions
         ApplyEqualGapKeepOtherAxes();
+        Reanchor();
+
+        // FIX #1: Ensure stable render order when layers overlap
+        ApplyStableRenderOrder();
     }
 
     void OnEnable()
@@ -103,8 +114,12 @@ public class ParallexWithAnimation : MonoBehaviour
         if (baseLocalPositions == null || baseLocalPositions.Length != layers.Count ||
             layerVel == null || layerVel.Length != layers.Count)
         {
-            Reanchor();
+            // FIX #2: same ordering fix here too
             ApplyEqualGapKeepOtherAxes();
+            Reanchor();
+
+            // Keep render order stable if list changed
+            ApplyStableRenderOrder();
         }
 
         float dt = Time.deltaTime;
@@ -137,9 +152,8 @@ public class ParallexWithAnimation : MonoBehaviour
             Transform layer = layers[i];
             if (!layer) continue;
 
-            float t = (layers.Count == 1) ? 1f : (float)i / (layers.Count - 1); // 0 far -> 1 near
+            float t = (layers.Count == 1) ? 1f : (float)i / (layers.Count - 1);
 
-            // CHANGED: far should move MORE, near should move LESS
             float w = Mathf.Max(0f, depthWeightCurve.Evaluate(1f - t));
 
             float dirT = ShouldInvert(i, layers.Count, invertTranslation) ? -1f : 1f;
@@ -181,6 +195,9 @@ public class ParallexWithAnimation : MonoBehaviour
         if (!applyGapInEditMode) return;
         if (Application.isPlaying) return;
         ApplyEqualGapKeepOtherAxes();
+
+        // Optional preview of stable ordering in editor
+        ApplyStableRenderOrder();
     }
 #endif
 
@@ -200,6 +217,52 @@ public class ParallexWithAnimation : MonoBehaviour
             else p.z = a0 + gap * i;
 
             layers[i].localPosition = p;
+        }
+    }
+
+    void ApplyStableRenderOrder()
+    {
+        if (!enforceStableRenderOrder) return;
+        if (layers == null || layers.Count == 0) return;
+
+        // sibling fallback only works if all layers share the same parent
+        bool sameParent = true;
+        Transform parent = null;
+        for (int i = 0; i < layers.Count; i++)
+        {
+            if (!layers[i]) continue;
+            if (parent == null) parent = layers[i].parent;
+            else if (layers[i].parent != parent) { sameParent = false; break; }
+        }
+
+        for (int i = 0; i < layers.Count; i++)
+        {
+            Transform layer = layers[i];
+            if (!layer) continue;
+
+            int idx = nearLayerOnTop ? i : (layers.Count - 1 - i);
+            int order = sortingOrderBase + idx * sortingOrderStep;
+
+            var sr = layer.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sortingOrder = order;
+                continue;
+            }
+
+            var canvas = layer.GetComponent<Canvas>();
+            if (canvas != null)
+            {
+                canvas.overrideSorting = true;
+                canvas.sortingOrder = order;
+                continue;
+            }
+
+            if (setSiblingOrderFallback && sameParent && parent != null)
+            {
+                // For UI Images under same parent: later sibling draws on top
+                layer.SetSiblingIndex(i);
+            }
         }
     }
 
