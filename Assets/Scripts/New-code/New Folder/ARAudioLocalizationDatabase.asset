@@ -135,12 +135,161 @@ MonoBehaviour:
       bgmClips: []
     - pageId: S1_P1_P_19_20
       voiceClips:
+      - clip: {fileID: 8300000, guid: 0393c44923268b1438fd74d593eb4d4c, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
       - clip: {fileID: 8300000, guid: 0c6550c35bd53a546b76030d6b45a0ac, type: 3}
         delayBefore: 0
         delayAfter: 0
         volume: 0.907
         loop: 0
-      - clip: {fileID: 8300000, guid: 0393c44923268b1438fd74d593eb4d4c, type: 3}
+      bgmClips: []
+    - pageId: S3_P1_P_1_2
+      voiceClips:
+      - clip: {fileID: 8300000, guid: c16b81136f71ce848adb9788d2cdd516, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 1.512
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 387a87e002bd1c843860467d893f35a9, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_5_6
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 75cba8775e6becf4895b7a1ef60457f3, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_7_8
+      voiceClips:
+      - clip: {fileID: 8300000, guid: e4bddbc3658bef44baa70329366cbaa5, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_9_10
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 1d4e85a32dd1c6e4f93a9d101b0da1ec, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_11_12
+      voiceClips:
+      - clip: {fileID: 8300000, guid: bfa80857816cb5246a44fccbea4cddef, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_13_14
+      voiceClips:
+      - clip: {fileID: 8300000, guid: e752e2480a5e5f1438433f634f23b6dd, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S3_P1_P_15_16
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 5f74809f7a467754495ddf4e4aaec76d, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_1_2
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 4a8fef8ca737f1540bcd821e325101b9, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 9ae360a23b88db14daa7cd79f23073a6, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      - clip: {fileID: 8300000, guid: 7de5283aa7c4e1c46be07104fc0a9cb3, type: 3}
+        delayBefore: 0.2
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_5_6
+      voiceClips:
+      - clip: {fileID: 8300000, guid: a45b4c3da6dcd034195ca5e1683a4546, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_7_8
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 1c4b1e8ff07bbab4fb143853cc593064, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_9_10
+      voiceClips:
+      - clip: {fileID: 8300000, guid: f9a3647d80b39e346a21c7c57de4b651, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_11_12
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 8fac3b2138173b44c82b9f3c0d142ec5, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_13_14
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 1ba1ed6f1345dce4dab18c63d12cde8e, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_15_16
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 101badd657ed06047a5e05b45e3dde94, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_17_18
+      voiceClips:
+      - clip: {fileID: 8300000, guid: f5463891b3411c8429f4177c5329b823, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S2_P2_P_19_20
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 72bc1350d1528364d9cb797e0f151aa1, type: 3}
         delayBefore: 0
         delayAfter: 0
         volume: 0.907

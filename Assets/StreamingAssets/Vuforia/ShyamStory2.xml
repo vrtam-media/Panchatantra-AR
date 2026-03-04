@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="46-47combined" size="400.000000 199.959686" />
+    <ImageTarget name="47" size="200.000000 200.000000" />
+    <ImageTarget name="46" size="200.000000 200.000000" />
+    <ImageTarget name="44-45" size="400.000000 199.959686" />
+    <ImageTarget name="45" size="200.000000 200.000000" />
+    <ImageTarget name="44" size="200.000000 200.000000" />
+    <ImageTarget name="42-43combined" size="400.000000 199.959686" />
+    <ImageTarget name="43" size="200.000000 200.000000" />
+    <ImageTarget name="42" size="200.000000 200.000000" />
+    <ImageTarget name="40-41combined" size="400.000000 199.959686" />
+    <ImageTarget name="41" size="200.000000 200.000000" />
+    <ImageTarget name="40" size="200.000000 200.000000" />
+    <ImageTarget name="38-39combined" size="400.000000 199.959686" />
+    <ImageTarget name="39" size="200.000000 200.000000" />
+    <ImageTarget name="38" size="200.000000 200.000000" />
+    <ImageTarget name="36-37combined" size="400.000000 199.959686" />
+    <ImageTarget name="37" size="200.000000 200.000000" />
+    <ImageTarget name="36" size="200.000000 200.000000" />
+    <ImageTarget name="34-35combined" size="400.000000 199.959686" />
+    <ImageTarget name="35" size="200.000000 200.000000" />
+    <ImageTarget name="34" size="200.000000 200.000000" />
+    <ImageTarget name="32-33combined" size="400.000000 199.959686" />
+    <ImageTarget name="33" size="200.000000 200.000000" />
+    <ImageTarget name="32" size="200.000000 200.000000" />
+    <ImageTarget name="30-31combined" size="400.000000 199.959686" />
     <ImageTarget name="31" size="200.000000 200.000000" />
     <ImageTarget name="30" size="200.000000 200.000000" />
     <ImageTarget name="28-29" size="400.000000 199.959686" />

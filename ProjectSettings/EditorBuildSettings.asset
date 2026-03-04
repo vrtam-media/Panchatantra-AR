@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AR/AR-story1_test_demo.unity
+    guid: 1800ef55c2ccb6c40aed2f67cd2f6365
+  - enabled: 1
     path: Assets/Scenes/AR/AR-main-scene-arun_story_1.unity
     guid: beba1d99aa5f1124787e7b79334d7efc
+  - enabled: 1
+    path: Assets/Scenes/AR/AR-main-scene-arun_story_2.unity
+    guid: 7182296f80fd8184eb1951e6cb54c909
+  - enabled: 1
+    path: Assets/Scenes/AR/AR-main-scene-arun_story_3.unity
+    guid: c229df0895993e849883625a893cf18b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

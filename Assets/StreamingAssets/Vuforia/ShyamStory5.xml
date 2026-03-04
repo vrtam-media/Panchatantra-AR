@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="108-109combined" size="400.000000 199.959686" />
+    <ImageTarget name="109" size="200.000000 200.000000" />
+    <ImageTarget name="108" size="200.000000 200.000000" />
+    <ImageTarget name="106-107combined" size="400.000000 199.959686" />
+    <ImageTarget name="107" size="200.000000 200.000000" />
+    <ImageTarget name="106" size="200.000000 200.000000" />
+    <ImageTarget name="104-105combined" size="400.000000 199.959686" />
+    <ImageTarget name="105" size="200.000000 200.000000" />
+    <ImageTarget name="104" size="200.000000 200.000000" />
+    <ImageTarget name="102-103combined" size="400.000000 199.959686" />
+    <ImageTarget name="103" size="200.000000 200.000000" />
+    <ImageTarget name="102" size="200.000000 200.000000" />
+    <ImageTarget name="100-101combined" size="400.000000 199.959686" />
+    <ImageTarget name="101" size="200.000000 200.000000" />
+    <ImageTarget name="100" size="200.000000 200.000000" />
+    <ImageTarget name="98-99combined" size="400.000000 199.959686" />
+    <ImageTarget name="99" size="200.000000 200.000000" />
+    <ImageTarget name="98" size="200.000000 200.000000" />
+    <ImageTarget name="96-97combined" size="400.000000 199.959686" />
+    <ImageTarget name="97" size="200.000000 200.000000" />
+    <ImageTarget name="96" size="200.000000 200.000000" />
+    <ImageTarget name="94-95combined" size="400.000000 199.959686" />
+    <ImageTarget name="95" size="200.000000 200.000000" />
+    <ImageTarget name="94" size="200.000000 200.000000" />
+    <ImageTarget name="92-93combined" size="400.000000 199.959686" />
+    <ImageTarget name="93" size="200.000000 200.000000" />
+    <ImageTarget name="92" size="200.000000 200.000000" />
+    <ImageTarget name="90-91combined" size="400.000000 199.959686" />
+    <ImageTarget name="91" size="200.000000 200.000000" />
+    <ImageTarget name="90" size="200.000000 200.000000" />
+    <ImageTarget name="88-89combined" size="400.000000 199.959686" />
+    <ImageTarget name="89" size="200.000000 200.000000" />
+    <ImageTarget name="88" size="200.000000 200.000000" />
+    <ImageTarget name="86-87combined" size="400.000000 199.959686" />
+    <ImageTarget name="87" size="200.000000 200.000000" />
+    <ImageTarget name="86" size="200.000000 200.000000" />
+  </Tracking>
+</QCARConfig>
