@@ -1,0 +1,1357 @@
+fileFormatVersion: 2
+guid: 6c4469e954d243a4c85f068741f6c2d2
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 300
+      lastFrame: 640
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 300
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: fox story 4 animation 02(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:DeformationSystem
+      parentName: fox story 4 animation 02(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:Root_M
+      parentName: fox_02_rig:fox_02_rig:DeformationSystem
+      position: {x: 3.07702e-18, y: 0.33853507, z: -0.011474}
+      rotation: {x: -0.51837116, y: 0.48092765, z: 0.51837116, w: -0.48092765}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:Rump_L
+      parentName: fox_02_rig:fox_02_rig:Root_M
+      position: {x: 0.02152254, y: 0.015581789, z: 0.051692206}
+      rotation: {x: -0.9513956, y: -0.19584422, z: -0.14854261, w: 0.1855443}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999976}
+    - name: fox_02_rig:fox_02_rig:Hip_L
+      parentName: fox_02_rig:fox_02_rig:Rump_L
+      position: {x: 0.1147348, y: -3.796963e-16, z: 3.375078e-16}
+      rotation: {x: 0.012301892, y: 0.022991568, z: -0.4716103, w: -0.88142145}
+      scale: {x: 1.0000004, y: 0.9999999, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Knee_L
+      parentName: fox_02_rig:fox_02_rig:Hip_L
+      position: {x: 0.1139993, y: 0, z: 8.700013e-11}
+      rotation: {x: 0.015961792, y: 0.022943925, z: 0.38809955, w: -0.92119354}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:Ankle_L
+      parentName: fox_02_rig:fox_02_rig:Knee_L
+      position: {x: 0.08377914, y: -1.24345e-16, z: -7.9936054e-17}
+      rotation: {x: 0.99298346, y: 0.09436749, z: 0.071069606, w: -0.005270473}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Toes_L
+      parentName: fox_02_rig:fox_02_rig:Ankle_L
+      position: {x: 0.02988662, y: 0.041698687, z: 2.3725089e-10}
+      rotation: {x: -0.8425201, y: -0.5380986, z: 0.024029074, w: 0.0056887213}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999998}
+    - name: fox_02_rig:fox_02_rig:Rump_R
+      parentName: fox_02_rig:fox_02_rig:Root_M
+      position: {x: 0.02152254, y: 0.015581789, z: -0.051692206}
+      rotation: {x: 0.19584411, y: -0.9513956, z: 0.18554421, w: 0.14854255}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Hip_R
+      parentName: fox_02_rig:fox_02_rig:Rump_R
+      position: {x: -0.1147348, y: 3.907985e-16, z: -3.019807e-16}
+      rotation: {x: -0.012301765, y: -0.022991585, z: 0.47161028, w: 0.8814215}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:Knee_R
+      parentName: fox_02_rig:fox_02_rig:Hip_R
+      position: {x: -0.1139993, y: 5.3290707e-17, z: -8.699997e-11}
+      rotation: {x: -0.01596178, y: -0.022943951, z: -0.38809976, w: 0.9211935}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:Ankle_R
+      parentName: fox_02_rig:fox_02_rig:Knee_R
+      position: {x: -0.08377914, y: 2.309264e-16, z: 7.1054265e-17}
+      rotation: {x: -0.9929835, y: -0.09436762, z: -0.07106957, w: 0.005270328}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Toes_R
+      parentName: fox_02_rig:fox_02_rig:Ankle_R
+      position: {x: -0.02988662, y: -0.041698687, z: -1.5578269e-10}
+      rotation: {x: 0.8425202, y: 0.5380985, z: -0.02402911, w: -0.005688641}
+      scale: {x: 1.0000001, y: 0.9999997, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:Spine1_M
+      parentName: fox_02_rig:fox_02_rig:Root_M
+      position: {x: -0.05432243, y: 6.661338e-17, z: -1.24900095e-17}
+      rotation: {x: -0, y: -0, z: -0, w: -1}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:Spine2_M
+      parentName: fox_02_rig:fox_02_rig:Spine1_M
+      position: {x: -0.06755536, y: 9.85878e-16, z: -2.070898e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000004}
+    - name: fox_02_rig:fox_02_rig:Chest_M
+      parentName: fox_02_rig:fox_02_rig:Spine2_M
+      position: {x: -0.06353297, y: -1.776357e-16, z: -1.692378e-17}
+      rotation: {x: 0.000000029802319, y: -0.000000029802319, z: 0.053868733, w: 0.99854803}
+      scale: {x: 0.9999996, y: 0.99999934, z: 0.9999996}
+    - name: fox_02_rig:fox_02_rig:Neck1_M
+      parentName: fox_02_rig:fox_02_rig:Chest_M
+      position: {x: -0.1428033, y: -1.4210849e-16, z: -5.77316e-17}
+      rotation: {x: -0.00000005527651, y: 0.000000063624434, z: 0.032392792, w: 0.9994752}
+      scale: {x: 0.99999964, y: 0.9999997, z: 0.99999976}
+    - name: fox_02_rig:fox_02_rig:Head_M
+      parentName: fox_02_rig:fox_02_rig:Neck1_M
+      position: {x: -0.087676205, y: -7.1054265e-17, z: 8.881784e-18}
+      rotation: {x: 0.0000000025087663, y: 0.00000005697622, z: 0.084479086, w: -0.9964253}
+      scale: {x: 1.0000025, y: 1.0000014, z: 1.000002}
+    - name: fox_02_rig:fox_02_rig:FaceJoint_M
+      parentName: fox_02_rig:fox_02_rig:Head_M
+      position: {x: -0.002019453, y: 0.028204829, z: -6.852306e-16}
+      rotation: {x: 0.5175463, y: -0.48181516, z: -0.5175463, w: -0.48181516}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -8.1777696e-16, y: 0.05504833, z: 0.03241487}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain0_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.038071487, y: -0.0048412387, z: 0.03430612}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain1_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.04037513, y: 0.000214281, z: 0.03573912}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain2_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.04490452, y: 0.004808839, z: 0.03693308}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLidMain3_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.050980892, y: 0.00938418, z: 0.03696078}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain4_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.05827586, y: 0.0137289595, z: 0.03554235}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain5_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.06723087, y: 0.015983108, z: 0.0328595}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLidMain6_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.076199055, y: 0.01613293, z: 0.029249629}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain7_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.08372284, y: 0.014151149, z: 0.02511151}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain8_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.08903627, y: 0.009941841, z: 0.02104766}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain9_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.09187064, y: 0.003807728, z: 0.01907487}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter0_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.02822033, y: -0.005673567, z: 0.0462968}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter1_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.03281308, y: 0.007045965, z: 0.045236457}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter2_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.04077002, y: 0.01742605, z: 0.04239013}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter3_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.051460087, y: 0.023608059, z: 0.03848097}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter4_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.06301319, y: 0.02558419, z: 0.03430711}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter5_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.07388208, y: 0.024153799, z: 0.029875139}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter6_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.083300196, y: 0.020414408, z: 0.0255025}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter7_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.09072075, y: 0.014297189, z: 0.02218978}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter8_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.09475266, y: 0.007376292, z: 0.02096704}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter9_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.09682121, y: 0.0001261225, z: 0.021175759}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain1_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.0409877, y: -0.008732388, z: 0.03487754}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain2_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.04691216, y: -0.009059212, z: 0.03651244}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain3_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.053953335, y: -0.0094239535, z: 0.037455168}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain4_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.062604986, y: -0.009701343, z: 0.03682862}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain5_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.07261637, y: -0.008883842, z: 0.03385862}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain6_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.08223964, y: -0.006312826, z: 0.02866613}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain7_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.08891603, y: -0.0019623758, z: 0.02256323}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter1_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.038148157, y: -0.01586122, z: 0.04599913}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter2_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.04877888, y: -0.0203705, z: 0.04489302}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter3_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.058851898, y: -0.02161169, z: 0.04295489}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter4_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.06873601, y: -0.021199081, z: 0.03987401}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter5_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.07813246, y: -0.01889652, z: 0.0358659}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter6_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.08675051, y: -0.014548, z: 0.031202158}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter7_R
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: 0.09317846, y: -0.0076871417, z: 0.026066579}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain0_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.038071487, y: -0.0048412387, z: 0.03430612}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain1_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.04037513, y: 0.000214281, z: 0.03573912}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLidMain2_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.04490452, y: 0.004808839, z: 0.03693308}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLidMain3_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.050980892, y: 0.00938418, z: 0.03696078}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain4_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.05827586, y: 0.0137289595, z: 0.03554235}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:upperLidMain5_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.06723087, y: 0.015983108, z: 0.0328595}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain6_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.076199055, y: 0.01613293, z: 0.029249629}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain7_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.08372284, y: 0.014151149, z: 0.02511151}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidMain8_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.08903627, y: 0.009941841, z: 0.02104766}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:upperLidMain9_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.09187064, y: 0.003807728, z: 0.01907487}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter0_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.02822033, y: -0.005673567, z: 0.0462968}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter1_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.03281308, y: 0.007045965, z: 0.045236457}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter2_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.04077002, y: 0.01742605, z: 0.04239013}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter3_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.051460087, y: 0.023608059, z: 0.03848097}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter4_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.06301319, y: 0.02558419, z: 0.03430711}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter5_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.07388208, y: 0.024153799, z: 0.029875139}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter6_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.083300196, y: 0.020414408, z: 0.0255025}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter7_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.09072075, y: 0.014297189, z: 0.02218978}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter8_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.09475266, y: 0.007376292, z: 0.02096704}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLidOuter9_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.09682121, y: 0.0001261225, z: 0.021175759}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain1_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.0409877, y: -0.008732388, z: 0.03487754}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain2_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.04691216, y: -0.009059212, z: 0.03651244}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain3_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.053953335, y: -0.0094239535, z: 0.037455168}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain4_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.062604986, y: -0.009701343, z: 0.03682862}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain5_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.07261637, y: -0.008883842, z: 0.03385862}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain6_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.08223964, y: -0.006312826, z: 0.02866613}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:lowerLidMain7_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.08891603, y: -0.0019623758, z: 0.02256323}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter1_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.038148157, y: -0.01586122, z: 0.04599913}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter2_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.04877888, y: -0.0203705, z: 0.04489302}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter3_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.058851898, y: -0.02161169, z: 0.04295489}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter4_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.06873601, y: -0.021199081, z: 0.03987401}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter5_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.07813246, y: -0.01889652, z: 0.0358659}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter6_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.08675051, y: -0.014548, z: 0.031202158}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuter7_L
+      parentName: fox_02_rig:fox_02_rig:EyeLidJoints_M
+      position: {x: -0.09317846, y: -0.0076871417, z: 0.026066579}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:LipJoints_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 5.543217e-15, y: -0.02191929, z: 0.1934796}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint0_M
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 5.022935e-10, y: -0.003899025, z: -0.02928936}
+      rotation: {x: -0.000000023872264, y: -0.05310526, z: 0.000000005849411, w: 0.9985889}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint1_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.0073909806, y: -0.004472747, z: -0.02849865}
+      rotation: {x: -0.000000023872264, y: -0.05310526, z: 0.000000005849411, w: 0.9985889}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint2_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.01202413, y: -0.003973476, z: -0.027698249}
+      rotation: {x: -0.000000015431334, y: 0.24936463, z: -0.0000000031070828, w: 0.9684097}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint3_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.0157115, y: -0.0060863546, z: -0.034814}
+      rotation: {x: -0.000000015905886, y: 0.5025618, z: -0.00000003019306, w: 0.8645413}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint4_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.02076361, y: -0.0076783057, z: -0.044366606}
+      rotation: {x: -0.000000020921997, y: 0.5205208, z: -0.000000013755457, w: 0.85384905}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint5_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.027331468, y: -0.008391203, z: -0.057799708}
+      rotation: {x: -0.0000000116578445, y: 0.5323778, z: -0.000000019537412, w: 0.84650695}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint6_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.03575467, y: -0.004770301, z: -0.0761425}
+      rotation: {x: -0.000000013112916, y: 0.529739, z: -0.0000000048732103, w: 0.8481607}
+      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint7_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04231274, y: -0.00045152768, z: -0.092525445}
+      rotation: {x: -0.0000000099088595, y: 0.53322107, z: -0.000000006888232, w: 0.84597594}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint8_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04589917, y: 0.0035613908, z: -0.1035988}
+      rotation: {x: -0.000000014794843, y: 0.53750867, z: -0.0000000037901002, w: 0.84325826}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint9_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.046945218, y: 0.006829986, z: -0.111056894}
+      rotation: {x: -0.000000009527548, y: 0.544346, z: -0.0000000071761135, w: 0.8388608}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint10_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.047778957, y: 0.009342203, z: -0.117226295}
+      rotation: {x: -0.0000000029921647, y: 0.569673, z: -0.000000011791702, w: 0.8218715}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint11_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04765274, y: 0.01092127, z: -0.1221353}
+      rotation: {x: -0.000000008243275, y: 0.61427385, z: -0.000000008323448, w: 0.78909296}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint12_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.046924837, y: 0.01140246, z: -0.12603919}
+      rotation: {x: -0.000000010456604, y: 0.66795963, z: -0.000000006370691, w: 0.74419755}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint13_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04695403, y: 0.01046626, z: -0.1298351}
+      rotation: {x: -0.000000008393049, y: 0.32475293, z: -0.000000018164167, w: 0.94579893}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint14_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04513256, y: 0.007571672, z: -0.1303822}
+      rotation: {x: -0.000000036893002, y: -0.12153497, z: -1.3373924e-10, w: 0.9925872}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:cornerLipJoint_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04434962, y: 0.002078356, z: -0.1290027}
+      rotation: {x: -0.000000036893002, y: -0.12153497, z: -1.3373924e-10, w: 0.9925872}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint0_M
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.00000156045, y: -0.01391981, z: -0.057517}
+      rotation: {x: -0.000000021899439, y: 0.10489596, z: 0.0000000014077923, w: 0.99448323}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint1_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.0077302805, y: -0.01376413, z: -0.05916676}
+      rotation: {x: -0.000000021899439, y: 0.10489596, z: 0.0000000014077923, w: 0.99448323}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint2_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.016267419, y: -0.01238785, z: -0.06433957}
+      rotation: {x: 0.00000004023959, y: 0.39400372, z: -0.000000014815003, w: 0.91910887}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint3_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.01951195, y: -0.01319801, z: -0.0734907}
+      rotation: {x: -0.000000021668912, y: 0.5564108, z: -0.000000027111868, w: 0.83090734}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint4_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.02347748, y: -0.012356941, z: -0.081846416}
+      rotation: {x: -0.000000023659902, y: 0.52548033, z: -0.000000012046628, w: 0.85080576}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint5_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.0282589, y: -0.0107447, z: -0.091632925}
+      rotation: {x: -0.00000002336554, y: 0.523725, z: -0.00000001224181, w: 0.8518874}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint6_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.0327972, y: -0.008680189, z: -0.101650104}
+      rotation: {x: -0.0000000019229462, y: 0.51665246, z: -0.00000002523321, w: 0.8561952}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint7_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.03638901, y: -0.0060981703, z: -0.1094058}
+      rotation: {x: -0.0000000018000028, y: 0.5263817, z: 0.0000000018112933, w: 0.85024846}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint8_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.03897546, y: -0.003736636, z: -0.117536}
+      rotation: {x: -8.01335e-10, y: 0.53807527, z: 0.0000000010908137, w: 0.8428968}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint9_R
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: 0.04120756, y: -0.0013997429, z: -0.124104}
+      rotation: {x: 0.000000013866264, y: 0.3928489, z: -0.00000001613011, w: 0.91960305}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint1_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.0073907697, y: -0.004474596, z: -0.028497739}
+      rotation: {x: -0.000000035401392, y: 0.05310527, z: -7.575429e-10, w: 0.9985889}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint2_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.01202383, y: -0.003973884, z: -0.02769925}
+      rotation: {x: -0.000000015395155, y: -0.24936466, z: 0.000000006577716, w: 0.96840966}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint3_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.0157115, y: -0.006086394, z: -0.034814}
+      rotation: {x: -0.00000002975969, y: -0.5025618, z: 0.000000033991498, w: 0.8645413}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint4_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.02076361, y: -0.007678347, z: -0.044366606}
+      rotation: {x: -0.000000037326373, y: -0.5205209, z: 0.000000043144905, w: 0.85384893}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint5_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.027331468, y: -0.00839123, z: -0.05779972}
+      rotation: {x: -0.000000010259073, y: -0.5323777, z: 0.000000005222005, w: 0.84650695}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint6_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.03575467, y: -0.004770294, z: -0.0761425}
+      rotation: {x: -0.000000013668519, y: -0.529739, z: 0.000000016793326, w: 0.8481607}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint7_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04231273, y: -0.0004514925, z: -0.09252543}
+      rotation: {x: -0.000000017784604, y: -0.53322107, z: 4.865406e-10, w: 0.84597594}
+      scale: {x: 1.0000001, y: 1, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint8_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04589917, y: 0.0035614308, z: -0.1035988}
+      rotation: {x: -0.00000002093415, y: -0.5375087, z: 0.000000026076107, w: 0.84325826}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint9_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.046945218, y: 0.006830021, z: -0.111056894}
+      rotation: {x: -0.000000017747697, y: -0.54434603, z: 0.000000014350558, w: 0.8388608}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint10_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.047778957, y: 0.009342229, z: -0.117226295}
+      rotation: {x: -0.000000013783046, y: -0.56967294, z: 0.000000017272844, w: 0.8218715}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint11_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04765274, y: 0.010921289, z: -0.1221353}
+      rotation: {x: -0.000000016229254, y: -0.61427385, z: 0.00000001598319, w: 0.78909296}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint12_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.046924837, y: 0.01140247, z: -0.12603919}
+      rotation: {x: -0.000000015517472, y: -0.74419755, z: 0.000000017694349, w: 0.66795963}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint13_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04695403, y: 0.01046626, z: -0.1298351}
+      rotation: {x: -0.0000000013619847, y: 0.94579893, z: -0.000000029412968, w: -0.32475284}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upperLipJoint14_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04513256, y: 0.007571672, z: -0.1303822}
+      rotation: {x: -0.000000021040918, y: 0.12153502, z: 0.0000000042325463, w: 0.99258715}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:cornerLipJoint_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04434962, y: 0.002078356, z: -0.1290027}
+      rotation: {x: -0.000000021040918, y: 0.12153502, z: 0.0000000042325463, w: 0.99258715}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint1_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.0077260397, y: -0.01377601, z: -0.05919961}
+      rotation: {x: -0.000000023689317, y: -0.10489597, z: -0.0000000014427408, w: 0.99448323}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint2_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.01626369, y: -0.01239053, z: -0.064323574}
+      rotation: {x: -0.000000020937513, y: -0.39400366, z: 0.00000003713887, w: 0.91910887}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint3_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.019512368, y: -0.01319452, z: -0.073477216}
+      rotation: {x: -0.0000000055474536, y: -0.5564108, z: -0.000000005416576, w: 0.8309074}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint4_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.023473188, y: -0.0123613905, z: -0.08184797}
+      rotation: {x: -0.00000000777405, y: -0.52548033, z: 0.0000000066914634, w: 0.85080576}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint5_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.028262788, y: -0.010738149, z: -0.09162256}
+      rotation: {x: -0.0000000104312985, y: -0.52372503, z: 0.000000005033927, w: 0.85188735}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint6_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.03279717, y: -0.008680266, z: -0.101650394}
+      rotation: {x: -0.000000022385946, y: -0.51665246, z: 0.000000011350261, w: 0.8561952}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint7_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.03638662, y: -0.0061003766, z: -0.1094045}
+      rotation: {x: -4.820464e-10, y: -0.5263817, z: 0.000000011218136, w: 0.85024846}
+      scale: {x: 1.0000004, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint8_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.038975537, y: -0.003736476, z: -0.1175359}
+      rotation: {x: -0.000000006962062, y: -0.5380753, z: 0.000000007379686, w: 0.84289676}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLipJoint9_L
+      parentName: fox_02_rig:fox_02_rig:LipJoints_M
+      position: {x: -0.04120756, y: -0.001399738, z: -0.124104}
+      rotation: {x: -0.000000002679804, y: -0.39284888, z: 0.000000006942134, w: 0.91960305}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:CheekBoneJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.09788432, y: 0.01953075, z: 0.0719312}
+      rotation: {x: -0.00000008940696, y: -0.8193534, z: 0.000000100582824, w: 0.57328874}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:CheekBoneJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.09788432, y: 0.01953075, z: 0.0719312}
+      rotation: {x: -0.000000059604645, y: -0.5732888, z: 0.000000067055225, w: 0.81935346}
+      scale: {x: 0.9999998, y: 0.9999999, z: 0.99999964}
+    - name: fox_02_rig:fox_02_rig:NoseSideJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.027180549, y: 0.02360264, z: 0.120257296}
+      rotation: {x: 0.000000029802322, y: 0.9713223, z: -0.00000013411045, w: -0.23776677}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:NoseSideJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.027180549, y: 0.02360264, z: 0.120257296}
+      rotation: {x: -0.000000059604645, y: -0.23776667, z: 0.000000044703484, w: 0.9713223}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:NoseBridgeJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.5939246e-16, y: 0.03802067, z: 0.1257184}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:NoseCornerJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.028190099, y: -0.002781489, z: 0.1802832}
+      rotation: {x: -0, y: 0.9919698, z: -0.00000017881392, w: -0.12647523}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:NoseCornerJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.028190099, y: -0.002781489, z: 0.1802832}
+      rotation: {x: -0.00000017881389, y: -0.12647516, z: 0.000000014901158, w: 0.99196976}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:NoseUnderJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.5495173e-16, y: -0.0062942896, z: 0.19853969}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:FrownBulgeJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.086827315, y: -0.029322628, z: 0.059271988}
+      rotation: {x: -0.000000059604638, y: -0.8036865, z: 0.00000013038515, w: 0.5950529}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:FrownBulgeJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.086827315, y: -0.029322628, z: 0.059271988}
+      rotation: {x: -0.00000008940696, y: -0.59505296, z: 0.0000000372529, w: 0.8036865}
+      scale: {x: 1.0000004, y: 0.9999999, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:SmileBulgeJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.08666417, y: -0.001879542, z: 0.07765449}
+      rotation: {x: -0.000000029802319, y: -0.8362577, z: 0.00000014156102, w: 0.54833657}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:SmileBulgeJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.08666417, y: -0.001879542, z: 0.07765449}
+      rotation: {x: -0.000000059604645, y: -0.54833657, z: 0.000000067055225, w: 0.8362578}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:CheekJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.1142259, y: -0.01822567, z: 0.053689048}
+      rotation: {x: -0.000000059604638, y: -0.7816591, z: 0.000000104308114, w: 0.6237059}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:CheekJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.1142259, y: -0.01822567, z: 0.053689048}
+      rotation: {x: -0.000000059604638, y: -0.6237059, z: 0.000000111758695, w: 0.78165907}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:ChinCreaseJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.238654e-16, y: -0.04120281, z: 0.14968}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:NoseJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.6827434e-16, y: 0.0080345515, z: 0.20015341}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:NostrilJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.024211831, y: 0.0061372737, z: 0.19253719}
+      rotation: {x: 0.000000029802319, y: 0.9950712, z: -0.00000016391276, w: -0.09916356}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000005}
+    - name: fox_02_rig:fox_02_rig:NostrilJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.024211831, y: 0.0061372737, z: 0.19253719}
+      rotation: {x: -0.000000059604638, y: -0.09916358, z: -0, w: 0.9950712}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:EyeBrowInnerJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.0138957, y: 0.1055133, z: 0.1032786}
+      rotation: {x: 0.00000008940697, y: 0.95099115, z: -0.00000014901161, w: -0.30921823}
+      scale: {x: 0.99999964, y: 0.9999999, z: 0.99999976}
+    - name: fox_02_rig:fox_02_rig:EyeBrowInnerJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.0138957, y: 0.1055133, z: 0.1032786}
+      rotation: {x: -0.00000008940696, y: -0.30921826, z: 0.00000004470348, w: 0.9509911}
+      scale: {x: 0.99999976, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:EyeBrowOuterJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.09380764, y: 0.1225665, z: 0.050337408}
+      rotation: {x: -0.000000029802319, y: -0.7686782, z: 0.00000007823109, w: 0.63963574}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:EyeBrowOuterJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.09380764, y: 0.1225665, z: 0.050337408}
+      rotation: {x: -0.000000029802319, y: -0.63963586, z: 0.00000008195638, w: 0.768678}
+      scale: {x: 1.0000004, y: 0.9999999, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:EyeBrowCenterJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.860379e-16, y: 0.1154791, z: 0.09656638}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:NoseCreaseJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.771561e-16, y: 0.09152743, z: 0.10074099}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuterJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.06631665, y: 0.0333373, z: 0.07330945}
+      rotation: {x: -0.00000020861623, y: 0.11475061, z: 0.000000029802319, w: 0.9933944}
+      scale: {x: 0.9999999, y: 0.92249995, z: 1}
+    - name: fox_02_rig:fox_02_rig:lowerLidOuterJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.06631665, y: 0.0333373, z: 0.07330945}
+      rotation: {x: -0.0000001192093, y: -0.11475057, z: 0.000000044703487, w: 0.9933944}
+      scale: {x: 0.9999999, y: 0.9225, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:JawJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.194245e-16, y: 0.01157879, z: 0.010907699}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.99999964, y: 0.9999996, z: 0.9999998}
+    - name: fox_02_rig:fox_02_rig:Tongue0Joint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -6.9722014e-16, y: -0.030862538, z: 0.02672343}
+      rotation: {x: -0.09099339, y: 0.7012276, z: -0.09099338, w: 0.70122766}
+      scale: {x: 1, y: 0.9999996, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:Tongue1Joint_M
+      parentName: fox_02_rig:fox_02_rig:Tongue0Joint_M
+      position: {x: -0.02094258, y: -7.1054265e-17, z: -4.440892e-18}
+      rotation: {x: -0.000000029802322, y: -0, z: 0.20484582, w: 0.97879434}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:Tongue2Joint_M
+      parentName: fox_02_rig:fox_02_rig:Tongue1Joint_M
+      position: {x: -0.02171127, y: 4.263256e-16, z: -1.3322679e-17}
+      rotation: {x: 0.0000000061800223, y: 0.0000000295411, z: -0.012693417, w: 0.9999194}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:Tongue3Joint_M
+      parentName: fox_02_rig:fox_02_rig:Tongue2Joint_M
+      position: {x: -0.01555688, y: 1.4210849e-16, z: -2.664535e-17}
+      rotation: {x: 0.000000005552128, y: 0.000000029123852, z: 0.0051936284, w: 0.9999866}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:lowerTeethJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.1054264e-16, y: -0.02972691, z: 0.09616624}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:upperTeethJoint_M
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -7.3718807e-16, y: -0.01851094, z: 0.1279379}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:EyeJoint_R
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: 0.061439436, y: 0.05504833, z: 0.03241487}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:IrisJoint_R
+      parentName: fox_02_rig:fox_02_rig:EyeJoint_R
+      position: {x: -0.00006603522, y: 0.0002175897, z: 0.028651668}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:PupilJoint_R
+      parentName: fox_02_rig:fox_02_rig:IrisJoint_R
+      position: {x: 0.000077362056, y: -0.00019165041, z: 0.0062559405}
+      rotation: {x: -0, y: -0, z: -1.05879135e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:EyeJoint_L
+      parentName: fox_02_rig:fox_02_rig:FaceJoint_M
+      position: {x: -0.061439436, y: 0.05504833, z: 0.03241487}
+      rotation: {x: -0.00000011920929, y: -0.00000011920929, z: 0.000000029802322,
+        w: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:IrisJoint_L
+      parentName: fox_02_rig:fox_02_rig:EyeJoint_L
+      position: {x: 0.00006603522, y: 0.0002175897, z: 0.028651668}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:PupilJoint_L
+      parentName: fox_02_rig:fox_02_rig:IrisJoint_L
+      position: {x: -0.000077362056, y: -0.00019165041, z: 0.0062559405}
+      rotation: {x: -0, y: -0, z: -1.05879135e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:joint1_L
+      parentName: fox_02_rig:fox_02_rig:Head_M
+      position: {x: -0.06501882, y: -0.040153407, z: 0.09375273}
+      rotation: {x: -0.20189987, y: -0.45120665, z: -0.8008388, w: 0.33809212}
+      scale: {x: 0.99999976, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:joint2_L
+      parentName: fox_02_rig:fox_02_rig:joint1_L
+      position: {x: 0.09530641, y: 2.4869e-16, z: 1.776357e-16}
+      rotation: {x: 0.16670257, y: -0.19091737, z: -0.20474616, w: 0.94543105}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: fox_02_rig:fox_02_rig:joint1_R
+      parentName: fox_02_rig:fox_02_rig:Head_M
+      position: {x: -0.06501882, y: -0.040153407, z: -0.09375273}
+      rotation: {x: 0.4512067, y: -0.20189983, z: 0.3380921, w: 0.8008388}
+      scale: {x: 0.99999976, y: 0.9999999, z: 1}
+    - name: fox_02_rig:fox_02_rig:joint2_R
+      parentName: fox_02_rig:fox_02_rig:joint1_R
+      position: {x: -0.09530641, y: -4.263256e-16, z: -4.618528e-16}
+      rotation: {x: 0.16670267, y: -0.19091739, z: -0.20474622, w: 0.94543105}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: fox_02_rig:fox_02_rig:Shoulder_L
+      parentName: fox_02_rig:fox_02_rig:Chest_M
+      position: {x: -0.07313195, y: -0.023339951, z: 0.09342018}
+      rotation: {x: 0.5482949, y: 0.4481129, z: 0.52513385, w: -0.47201908}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:ElbowPartial_L
+      parentName: fox_02_rig:fox_02_rig:Shoulder_L
+      position: {x: 0.1465654, y: 1.4210849e-16, z: 1.4210849e-16}
+      rotation: {x: -0.04401281, y: -0.30436206, z: 0.031133331, w: 0.95102966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:ElbowmiddleSlider1_L
+      parentName: fox_02_rig:fox_02_rig:ElbowPartial_L
+      position: {x: 0.001157257, y: -0.001479363, z: 0.030553838}
+      rotation: {x: -0.0059689456, y: 0.25081116, z: 0.01168242, w: 0.9679471}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:ElbowmiddleSlider3_L
+      parentName: fox_02_rig:fox_02_rig:ElbowPartial_L
+      position: {x: -0.001548375, y: 0.001499041, z: -0.030753428}
+      rotation: {x: -0.0059689456, y: 0.25081116, z: 0.01168242, w: 0.9679471}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:Elbow_L
+      parentName: fox_02_rig:fox_02_rig:Shoulder_L
+      position: {x: 0.1463683, y: 1.4210849e-16, z: 1.4210849e-16}
+      rotation: {x: -0.059135824, y: -0.026959466, z: 0.002925797, w: 0.99788153}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:Wrist_L
+      parentName: fox_02_rig:fox_02_rig:Elbow_L
+      position: {x: 0.11903659, y: 6.3948854e-16, z: 7.1054265e-17}
+      rotation: {x: -0.60806197, y: 0.06515422, z: 0.008475035, w: 0.7911661}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000008}
+    - name: fox_02_rig:fox_02_rig:IndexFinger0_L
+      parentName: fox_02_rig:fox_02_rig:Wrist_L
+      position: {x: 0.004273798, y: -0.002231068, z: -9.450218e-15}
+      rotation: {x: -0.008180677, y: -0.029435473, z: -0.07110632, w: 0.9970008}
+      scale: {x: 0.99999964, y: 0.9999998, z: 0.99999934}
+    - name: fox_02_rig:fox_02_rig:IndexFinger1_L
+      parentName: fox_02_rig:fox_02_rig:IndexFinger0_L
+      position: {x: 0.07202504, y: -1.021405e-16, z: 5.3290707e-16}
+      rotation: {x: 0.0039776894, y: -0.01007027, z: 0.038043898, w: 0.99921745}
+      scale: {x: 1.0000005, y: 0.99999994, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:IndexFinger2_L
+      parentName: fox_02_rig:fox_02_rig:IndexFinger1_L
+      position: {x: 0.017364351, y: 3.552714e-17, z: -3.552714e-16}
+      rotation: {x: 0.00001699803, y: -0.040077504, z: -0.00042452762, w: 0.9991965}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000007}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger0_L
+      parentName: fox_02_rig:fox_02_rig:Wrist_L
+      position: {x: 0.004395493, y: -8.8817837e-17, z: -4.973799e-16}
+      rotation: {x: -0.0043969, y: -0.07501645, z: -0.010663792, w: 0.99711555}
+      scale: {x: 0.99999994, y: 1, z: 0.9999998}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger1_L
+      parentName: fox_02_rig:fox_02_rig:MiddleFinger0_L
+      position: {x: 0.07092564, y: 1.776357e-17, z: 3.552714e-17}
+      rotation: {x: 0.0479591, y: -0.004039213, z: 0.030286485, w: 0.99838185}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger2_L
+      parentName: fox_02_rig:fox_02_rig:MiddleFinger1_L
+      position: {x: 0.02693973, y: -1.776357e-17, z: 4.263256e-16}
+      rotation: {x: 0.00032323968, y: -0.061614715, z: -0.000007694586, w: 0.9980999}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.000001}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger0_L
+      parentName: fox_02_rig:fox_02_rig:Wrist_L
+      position: {x: 0.003949279, y: 0.003540733, z: 1.151079e-14}
+      rotation: {x: -0.0021397169, y: 0.013063685, z: -0.07324709, w: -0.99722594}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger1_L
+      parentName: fox_02_rig:fox_02_rig:PinkyFinger0_L
+      position: {x: 0.05937675, y: 7.1054265e-17, z: -2.131628e-16}
+      rotation: {x: 0.032310285, y: -0.01059044, z: 0.028587036, w: 0.9990129}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.9999994}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger2_L
+      parentName: fox_02_rig:fox_02_rig:PinkyFinger1_L
+      position: {x: 0.0181836, y: 1.065814e-16, z: 1.065814e-16}
+      rotation: {x: 0.0022482625, y: -0.048338365, z: 0.0016481268, w: 0.9988271}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:RingFinger0_L
+      parentName: fox_02_rig:fox_02_rig:Wrist_L
+      position: {x: 0.004486764, y: 0.001673301, z: 5.6843415e-15}
+      rotation: {x: -0.0040140147, y: 0.0424162, z: -0.06952967, w: -0.9966697}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+    - name: fox_02_rig:fox_02_rig:RingFinger1_L
+      parentName: fox_02_rig:fox_02_rig:RingFinger0_L
+      position: {x: 0.072757326, y: -1.776357e-17, z: -1.776357e-16}
+      rotation: {x: 0.043421067, y: -0.0030455168, z: 0.03535906, w: 0.9984263}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:RingFinger2_L
+      parentName: fox_02_rig:fox_02_rig:RingFinger1_L
+      position: {x: 0.02275068, y: 2.131628e-16, z: 2.842171e-16}
+      rotation: {x: -0.0024843253, y: -0.12153727, z: 0.00045343582, w: 0.9925837}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger1_L
+      parentName: fox_02_rig:fox_02_rig:Wrist_L
+      position: {x: 0.017945379, y: -0.025848879, z: 0.01106711}
+      rotation: {x: 0.5355116, y: -0.23746382, z: 0.37956706, w: -0.71607757}
+      scale: {x: 0.99999976, y: 0.9999996, z: 0.9999999}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger2_L
+      parentName: fox_02_rig:fox_02_rig:ThumbFinger1_L
+      position: {x: 0.02522727, y: -3.552714e-17, z: -7.1054265e-17}
+      rotation: {x: -0, y: 0.027376235, z: 0.000000029802322, w: 0.99962527}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger3_L
+      parentName: fox_02_rig:fox_02_rig:ThumbFinger2_L
+      position: {x: 0.01669612, y: -2.4869e-16, z: -7.9936054e-17}
+      rotation: {x: -0.000000098950416, y: -0.03389613, z: 0.00000031034892, w: 0.99942535}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:Shoulder_R
+      parentName: fox_02_rig:fox_02_rig:Chest_M
+      position: {x: -0.07313195, y: -0.023339951, z: -0.09342018}
+      rotation: {x: -0.4481129, y: 0.5482948, z: -0.47201914, w: -0.52513385}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:ElbowPartial_R
+      parentName: fox_02_rig:fox_02_rig:Shoulder_R
+      position: {x: -0.1465654, y: -1.4210849e-16, z: -7.1054265e-17}
+      rotation: {x: -0.11313406, y: -0.35069942, z: -0.058265537, w: 0.92780155}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:ElbowmiddleSlider1_R
+      parentName: fox_02_rig:fox_02_rig:ElbowPartial_R
+      position: {x: -0.001157257, y: 0.001479363, z: -0.0316053}
+      rotation: {x: 0.07057842, y: 0.29097566, z: 0.09899747, w: 0.9489739}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000007}
+    - name: fox_02_rig:fox_02_rig:ElbowmiddleSlider3_R
+      parentName: fox_02_rig:fox_02_rig:ElbowPartial_R
+      position: {x: 0.001548375, y: -0.001499041, z: 0.03229633}
+      rotation: {x: 0.07057842, y: 0.29097566, z: 0.09899747, w: 0.9489739}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000007}
+    - name: fox_02_rig:fox_02_rig:Elbow_R
+      parentName: fox_02_rig:fox_02_rig:Shoulder_R
+      position: {x: -0.1463683, y: -1.4210849e-16, z: -7.1054265e-17}
+      rotation: {x: -0.059135795, y: -0.026959592, z: 0.002925753, w: 0.9978816}
+      scale: {x: 0.99999964, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:Wrist_R
+      parentName: fox_02_rig:fox_02_rig:Elbow_R
+      position: {x: -0.11903659, y: -2.4869e-16, z: -6.661338e-17}
+      rotation: {x: -0.6080619, y: 0.06515424, z: 0.008474999, w: 0.7911662}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:IndexFinger0_R
+      parentName: fox_02_rig:fox_02_rig:Wrist_R
+      position: {x: -0.004273798, y: 0.002231068, z: 9.130474e-15}
+      rotation: {x: -0.008180348, y: -0.029436043, z: -0.07110935, w: 0.9970005}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:IndexFinger1_R
+      parentName: fox_02_rig:fox_02_rig:IndexFinger0_R
+      position: {x: -0.07202504, y: 7.1054265e-17, z: -3.907985e-16}
+      rotation: {x: 0.003977735, y: -0.010069464, z: 0.03804258, w: 0.99921757}
+      scale: {x: 1.0000004, y: 1.0000004, z: 0.9999998}
+    - name: fox_02_rig:fox_02_rig:IndexFinger2_R
+      parentName: fox_02_rig:fox_02_rig:IndexFinger1_R
+      position: {x: -0.017364351, y: -7.1054265e-17, z: 4.263256e-16}
+      rotation: {x: 0.000016990583, y: -0.040077515, z: -0.00042456508, w: 0.9991965}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger0_R
+      parentName: fox_02_rig:fox_02_rig:Wrist_R
+      position: {x: -0.004395493, y: 7.1054265e-17, z: 1.776357e-16}
+      rotation: {x: -0.00439696, y: -0.075016394, z: -0.010663763, w: 0.9971156}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger1_R
+      parentName: fox_02_rig:fox_02_rig:MiddleFinger0_R
+      position: {x: -0.07092564, y: -1.776357e-17, z: 3.552714e-17}
+      rotation: {x: 0.047959138, y: -0.004039258, z: 0.030286515, w: 0.99838185}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1}
+    - name: fox_02_rig:fox_02_rig:MiddleFinger2_R
+      parentName: fox_02_rig:fox_02_rig:MiddleFinger1_R
+      position: {x: -0.02693973, y: -5.3290707e-17, z: -3.730349e-16}
+      rotation: {x: 0.00032325086, y: -0.061614662, z: -0.000007739057, w: 0.9980999}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger0_R
+      parentName: fox_02_rig:fox_02_rig:Wrist_R
+      position: {x: -0.003949279, y: -0.003540733, z: -1.179501e-14}
+      rotation: {x: 0.0021398058, y: -0.013063661, z: 0.07324439, w: 0.99722624}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger1_R
+      parentName: fox_02_rig:fox_02_rig:PinkyFinger0_R
+      position: {x: -0.05937675, y: -1.4210849e-16, z: 5.3290707e-16}
+      rotation: {x: 0.032310076, y: -0.010592268, z: 0.028586458, w: 0.99901295}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:PinkyFinger2_R
+      parentName: fox_02_rig:fox_02_rig:PinkyFinger1_R
+      position: {x: -0.0181836, y: -1.776357e-16, z: -7.1054265e-17}
+      rotation: {x: 0.0022482125, y: -0.0483384, z: 0.0016482177, w: 0.99882716}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:RingFinger0_R
+      parentName: fox_02_rig:fox_02_rig:Wrist_R
+      position: {x: -0.004486764, y: -0.001673301, z: -6.004086e-15}
+      rotation: {x: 0.0040139547, y: -0.042415496, z: 0.06952748, w: 0.9966699}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: fox_02_rig:fox_02_rig:RingFinger1_R
+      parentName: fox_02_rig:fox_02_rig:RingFinger0_R
+      position: {x: -0.072757326, y: -7.1054265e-17, z: 1.776357e-16}
+      rotation: {x: 0.043421283, y: -0.0030432288, z: 0.035357714, w: 0.9984263}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:RingFinger2_R
+      parentName: fox_02_rig:fox_02_rig:RingFinger1_R
+      position: {x: -0.02275068, y: -1.4210849e-16, z: -2.842171e-16}
+      rotation: {x: -0.0024843102, y: -0.121537365, z: 0.0004534381, w: 0.99258363}
+      scale: {x: 0.9999998, y: 0.99999994, z: 1}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger1_R
+      parentName: fox_02_rig:fox_02_rig:Wrist_R
+      position: {x: -0.017945379, y: 0.025848879, z: -0.01106711}
+      rotation: {x: -0.5355108, y: 0.23746581, z: -0.37956914, w: 0.71607655}
+      scale: {x: 0.99999994, y: 1.0000005, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger2_R
+      parentName: fox_02_rig:fox_02_rig:ThumbFinger1_R
+      position: {x: -0.02522727, y: -1.4210849e-16, z: 0}
+      rotation: {x: -0.00000005960465, y: 0.027376445, z: 0.000000014901163, w: 0.9996252}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:ThumbFinger3_R
+      parentName: fox_02_rig:fox_02_rig:ThumbFinger2_R
+      position: {x: -0.01669612, y: 1.4210849e-16, z: -8.8817837e-17}
+      rotation: {x: 0.000000023595927, y: -0.033896133, z: 0.00000020732813, w: 0.9994254}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000001}
+    - name: fox_02_rig:fox_02_rig:Tail0_M
+      parentName: fox_02_rig:fox_02_rig:Root_M
+      position: {x: 0.023825271, y: -0.05438649, z: 1.299794e-15}
+      rotation: {x: -0.37753946, y: -0.92599356, z: -0.000000044703484, w: 0.000000014901161}
+      scale: {x: 0.99999964, y: 0.99999964, z: 0.99999964}
+    - name: fox_02_rig:fox_02_rig:Tail1_M
+      parentName: fox_02_rig:fox_02_rig:Tail0_M
+      position: {x: -0.074234426, y: -2.131628e-16, z: 4.8849806e-17}
+      rotation: {x: 0.000000014575832, y: -0.000000004695259, z: -0.025730398, w: 0.9996689}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Tail2_M
+      parentName: fox_02_rig:fox_02_rig:Tail1_M
+      position: {x: -0.0877798, y: 4.263256e-16, z: 2.831069e-17}
+      rotation: {x: 0.000000035803723, y: -0.000000071173005, z: 0.060006045, w: 0.9981981}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Tail3_M
+      parentName: fox_02_rig:fox_02_rig:Tail2_M
+      position: {x: -0.09662697, y: -2.842171e-16, z: -5.551115e-19}
+      rotation: {x: -0.000000039598692, y: 0.000000072074876, z: 0.3113194, w: 0.9503054}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: fox_02_rig:fox_02_rig:Tail4_M
+      parentName: fox_02_rig:fox_02_rig:Tail3_M
+      position: {x: -0.1078584, y: 1.4210849e-16, z: 4.413137e-17}
+      rotation: {x: 0.000000018868546, y: -0.00000008825021, z: 0.373328, w: 0.9276995}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: fox_02_rig:fox_02_rig:Tail5_M
+      parentName: fox_02_rig:fox_02_rig:Tail4_M
+      position: {x: -0.09464998, y: 1.065814e-16, z: -1.308328e-16}
+      rotation: {x: 0.000000007938427, y: -0.000000003732181, z: 0.20699917, w: 0.9783411}
+      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+    - name: fox_02_rig:fox_02_rig:Geometry
+      parentName: fox story 4 animation 02(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:geo
+      parentName: fox_02_rig:fox_02_rig:Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:fox_02
+      parentName: fox_02_rig:fox_02_rig:geo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:body
+      parentName: fox_02_rig:fox_02_rig:fox_02
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:tougn
+      parentName: fox_02_rig:fox_02_rig:fox_02
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:teeth
+      parentName: fox_02_rig:fox_02_rig:fox_02
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:lower_teeth
+      parentName: fox_02_rig:fox_02_rig:teeth
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:upper_teeth
+      parentName: fox_02_rig:fox_02_rig:teeth
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:eye
+      parentName: fox_02_rig:fox_02_rig:fox_02
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:R_eye
+      parentName: fox_02_rig:fox_02_rig:eye
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fox_02_rig:fox_02_rig:L_eye
+      parentName: fox_02_rig:fox_02_rig:eye
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

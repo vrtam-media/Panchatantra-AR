@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="84-85combined" size="400.000000 199.959686" />
+    <ImageTarget name="85" size="200.000000 200.000000" />
+    <ImageTarget name="84" size="200.000000 200.000000" />
+    <ImageTarget name="82-83combined" size="400.000000 199.959686" />
+    <ImageTarget name="83" size="200.000000 200.000000" />
+    <ImageTarget name="82" size="200.000000 200.000000" />
+    <ImageTarget name="80-81combined" size="400.000000 199.959686" />
+    <ImageTarget name="81" size="200.000000 200.000000" />
+    <ImageTarget name="80" size="200.000000 200.000000" />
+    <ImageTarget name="78-79combined" size="400.000000 199.959686" />
+    <ImageTarget name="79" size="200.000000 200.000000" />
+    <ImageTarget name="78" size="200.000000 200.000000" />
+    <ImageTarget name="76-77combined" size="400.000000 199.959686" />
+    <ImageTarget name="77" size="200.000000 200.000000" />
+    <ImageTarget name="76" size="200.000000 200.000000" />
+    <ImageTarget name="74-75combined" size="400.000000 199.959686" />
+    <ImageTarget name="75" size="200.000000 200.000000" />
+    <ImageTarget name="74" size="200.000000 200.000000" />
+    <ImageTarget name="72-73combined" size="400.000000 199.959686" />
+    <ImageTarget name="73" size="200.000000 200.000000" />
+    <ImageTarget name="72" size="200.000000 200.000000" />
+    <ImageTarget name="70-71combined" size="400.000000 199.959686" />
+    <ImageTarget name="71" size="200.000000 200.000000" />
+    <ImageTarget name="70" size="200.000000 200.000000" />
+    <ImageTarget name="68-69combined" size="400.000000 199.959686" />
+    <ImageTarget name="69" size="200.000000 200.000000" />
+    <ImageTarget name="68" size="200.000000 200.000000" />
+    <ImageTarget name="66-67combined" size="400.000000 199.959686" />
+    <ImageTarget name="67" size="200.000000 200.000000" />
+    <ImageTarget name="66" size="200.000000 200.000000" />
+  </Tracking>
+</QCARConfig>
