@@ -3,7 +3,22 @@ guid: 43a0370897fb9e046986b6ea409b5340
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mop
+    second: {fileID: 2100000, guid: 63f6ab754979d6d45975a4cd973c118d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: servant_rig_aiStandardSurface6
+    second: {fileID: 2100000, guid: 5f087c49ec7a99548a99e79337e77821, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: servant_rig_servent1
+    second: {fileID: 2100000, guid: dfda528ee3ae08b488650137109ec1c8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

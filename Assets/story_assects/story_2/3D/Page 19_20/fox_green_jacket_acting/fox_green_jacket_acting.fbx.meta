@@ -3,7 +3,12 @@ guid: 608c98143fc6aaa46932e33b09bc8a4c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: new_fox_character_001
+    second: {fileID: 2100000, guid: bd8b448a2b559d9449b41a86b432eb38, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

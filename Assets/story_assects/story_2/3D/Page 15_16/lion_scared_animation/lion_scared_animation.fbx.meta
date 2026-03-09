@@ -3,7 +3,37 @@ guid: 8e7499ca2383747478c169c97602f05f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part1
+    second: {fileID: 2100000, guid: 3449f97571b5fb74bbcf96e5063a049f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part_02
+    second: {fileID: 2100000, guid: f85b8f247967d1442978baf41da19e3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: new_body
+    second: {fileID: 2100000, guid: d878372a83ce8e542a832a4840d84cf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_crown2
+    second: {fileID: 2100000, guid: 519032d96e5384e43a3cd41559e09eae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_gold
+    second: {fileID: 2100000, guid: 692f4873b621f21418b44e1766cabca8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_vest_and_jewllery
+    second: {fileID: 2100000, guid: 1c44155a9a956b54bb3897f4a9da6025, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

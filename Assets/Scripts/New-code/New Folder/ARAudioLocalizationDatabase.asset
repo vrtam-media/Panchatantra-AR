@@ -177,7 +177,12 @@ MonoBehaviour:
         delayAfter: 0
         volume: 0.907
         loop: 0
-      bgmClips: []
+      bgmClips:
+      - clip: {fileID: 0}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0
+        loop: 0
     - pageId: S3_P1_P_9_10
       voiceClips:
       - clip: {fileID: 8300000, guid: 1d4e85a32dd1c6e4f93a9d101b0da1ec, type: 3}
@@ -255,9 +260,9 @@ MonoBehaviour:
         volume: 0.907
         loop: 0
       bgmClips: []
-    - pageId: S2_P2_P_11_12
+    - pageId: S5_P5_P_11_12
       voiceClips:
-      - clip: {fileID: 8300000, guid: 8fac3b2138173b44c82b9f3c0d142ec5, type: 3}
+      - clip: {fileID: 8300000, guid: 1ea3ea65cb12faa4a867681e7f026259, type: 3}
         delayBefore: 0
         delayAfter: 0
         volume: 0.907
@@ -276,12 +281,12 @@ MonoBehaviour:
       - clip: {fileID: 8300000, guid: 101badd657ed06047a5e05b45e3dde94, type: 3}
         delayBefore: 0
         delayAfter: 0
-        volume: 0.907
+        volume: 1.299
         loop: 0
       bgmClips: []
     - pageId: S2_P2_P_17_18
       voiceClips:
-      - clip: {fileID: 8300000, guid: f5463891b3411c8429f4177c5329b823, type: 3}
+      - clip: {fileID: 8300000, guid: ae7912dc292c6ee4593e8455bc19682e, type: 3}
         delayBefore: 0
         delayAfter: 0
         volume: 0.907
@@ -293,6 +298,204 @@ MonoBehaviour:
         delayBefore: 0
         delayAfter: 0
         volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_1_2
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 8b05093f45f229643bb09081237f4804, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: c129a9e5b1d7a5e469afe7f1fc2f0ea6, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_5_6
+      voiceClips:
+      - clip: {fileID: 8300000, guid: f467c83d64d8d464c9b7d0ba70d73c9d, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_7_8
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 41c4ba4bc21d6874dab29646a3da44fe, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_9_10
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 9ae745a6825aeed40b91af3f8af81564, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_11_12
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 5f74809f7a467754495ddf4e4aaec76d, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_13_14
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 29efbc2727149a945bf42afb32e6ac03, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_17_18
+      voiceClips:
+      - clip: {fileID: 8300000, guid: c31c5f183a6e548408736713c7b35a84, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_19_20
+      voiceClips:
+      - clip: {fileID: 8300000, guid: dc0a835ad27c0ce499e93e452c67dda3, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_21_22
+      voiceClips:
+      - clip: {fileID: 8300000, guid: ae7912dc292c6ee4593e8455bc19682e, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_23_24
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 94828ec160eabe44ab9d4115abed65ea, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+    - pageId: S5_P5_P_15_16
+      voiceClips:
+      - clip: {fileID: 8300000, guid: c31c5f183a6e548408736713c7b35a84, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.907
+        loop: 0
+      bgmClips: []
+  - languageName: Sanskrit
+    pages:
+    - pageId: S1_P1_P_1_2
+      voiceClips:
+      - clip: {fileID: 8300000, guid: a0a3d05a84c453e41ae2e81671f279fd, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_3_4
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 81d29d740fd4bc041ac4b2600af88498, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_5_6
+      voiceClips:
+      - clip: {fileID: 8300000, guid: cad2b654bf9cb1441aacf0da2a0fbc3c, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      - clip: {fileID: 8300000, guid: 56af30b40b6da4744870b156acc09e29, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_7_8
+      voiceClips:
+      - clip: {fileID: 8300000, guid: df817d058b4881f4f9543885cbf34d03, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      - clip: {fileID: 8300000, guid: cdb7f6053e462bd49a27a564c3e31509, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_9_10
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 43c122b25a5f2434cae9326eaa0927b3, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      - clip: {fileID: 8300000, guid: ef45f3d3f5524984fa5b809e0cf97e58, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_11_12
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 60a514700e13d484684118c93c2afa57, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      - clip: {fileID: 8300000, guid: 50b7c645d650d0c418f3412938f63458, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_13_14
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 55feac97495e1e142bb2087fcc382baf, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_15_16
+      voiceClips:
+      - clip: {fileID: 8300000, guid: ef20e12232c606641a3bcf4037e55f1a, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_17_18
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 1dbdbfb9b95bd85408b31918190202cf, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
+        loop: 0
+      bgmClips: []
+    - pageId: S1_P1_P_19_20
+      voiceClips:
+      - clip: {fileID: 8300000, guid: 9eea1076db13a4f46914b980772027f2, type: 3}
+        delayBefore: 0
+        delayAfter: 0
+        volume: 0.656
         loop: 0
       bgmClips: []
   - languageName: Sanskrit

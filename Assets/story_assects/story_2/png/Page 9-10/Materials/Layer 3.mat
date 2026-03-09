@@ -29,9 +29,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ChromaKeyBrightnessRange: 0.721
+    - _ChromaKeyBrightnessRange: 0.958
     - _ChromaKeyHueRange: 0.1
-    - _ChromaKeySaturationRange: 0.9
+    - _ChromaKeySaturationRange: 1
     - _Cull: 2
     - _EdgeFeather: 0.0001
     - _ZWrite: 0

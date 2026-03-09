@@ -29,11 +29,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ChromaKeyBrightnessRange: 0.5
+    - _ChromaKeyBrightnessRange: 1
     - _ChromaKeyHueRange: 0.1
-    - _ChromaKeySaturationRange: 0.5
+    - _ChromaKeySaturationRange: 1
     - _Cull: 2
-    - _EdgeFeather: 0.15
+    - _EdgeFeather: 0.0001
     - _ZWrite: 0
     m_Colors:
     - _ChromaKeyColor: {r: 0, g: 0, b: 0.9921569, a: 1}

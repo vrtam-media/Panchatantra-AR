@@ -3,7 +3,47 @@ guid: 323baf89ee76fa24d92f8af6c6b420d7
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: merchant_02_merchant1
+    second: {fileID: 2100000, guid: 8f0fd30124e0bc442a5a63a92d65e42f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: merchant_02_teeth1
+    second: {fileID: 2100000, guid: c33306da7095fdd44a65403de31460cd, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: KRISHNA_TEETH_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: 8f6de7987e353cf4d98460778bcf9961, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: KRISHNA_TEETH_Normal.1001
+    second: {fileID: 2800000, guid: ca59917c41bc8924cb6f20bed5d182b6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: merxhant_001_merchant1_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: 9bef4e1e13659214ab4240115e8b0668, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: merxhant_001_merchant1_MetallicSmoothness.1001
+    second: {fileID: 2800000, guid: d970fd543fc360f4ba2cf86872ad3cc2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: merxhant_001_merchant1_Normal.1001
+    second: {fileID: 2800000, guid: d4dec7f4e87a10a489646a473296c5bd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: roughness
+    second: {fileID: 2800000, guid: 50645c620751c3348a1e5d35c8d5e097, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
