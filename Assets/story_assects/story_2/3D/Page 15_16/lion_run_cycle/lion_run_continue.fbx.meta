@@ -3,7 +3,102 @@ guid: aacb7b754b965c64bada987b49b618b8
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part1
+    second: {fileID: 2100000, guid: 1e12964c8220924498c2b5b078c7f20a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part_02
+    second: {fileID: 2100000, guid: 8f408864c85bb1a489f659b776f996a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: new_body
+    second: {fileID: 2100000, guid: bbd6d19bb5b54a74db95669677afe9dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_crown2
+    second: {fileID: 2100000, guid: 716dc36b107045245a58c988bedb721e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_gold
+    second: {fileID: 2100000, guid: 66eebf10c6f434d4e8bdddfd4033f166, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: veast_vest_and_jewllery
+    second: {fileID: 2100000, guid: 2f7319a9484cc10498acf9f5a9b0fdd7, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: lion3_lion_part_02_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: e5678dae52cecf14a88f6a25e6089630, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: lion3_lion_part_02_Normal.1001
+    second: {fileID: 2800000, guid: ff63d8fefc1eb35458e681cc550e39af, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part1_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: e7cc4cdcf04df3844834ecd5b99ff1ff, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: lion_lion_part1_Normal.1001
+    second: {fileID: 2800000, guid: d33d0d393e0202d42bf5649a6588447c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: new_lion_body_body_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: 871202f133d205f48b90a52cab9b869d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: new_lion_body_body_Normal.1001
+    second: {fileID: 2800000, guid: 658220943817cee4e9639b898453e155, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: roughness
+    second: {fileID: 2800000, guid: 3964e76d178e49e4fbf7ccc3d2b9c4ff, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: roughness_vest
+    second: {fileID: 2800000, guid: 2a1fb7dff215ede4c9254bb9d594c63d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: vest_and_jewelly_veast_crown_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: 154c5762901b3db48a8a889292d74f0d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: vest_and_jewelly_veast_crown_MetallicSmoothness.1001
+    second: {fileID: 2800000, guid: e10e855bef083a447b6a61358e2eba26, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: vest_and_jewelly_veast_vest_and_jewllery_AlbedoTransparency.1001
+    second: {fileID: 2800000, guid: a1f54929bb2bce847a82de270aa80176, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: vest_and_jewelly_veast_vest_and_jewllery_MetallicSmoothness.1001
+    second: {fileID: 2800000, guid: 50b5e67b85f31d74aa45c7a579312904, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: vest_and_jewelly_veast_vest_and_jewllery_Normal.1001
+    second: {fileID: 2800000, guid: 483a6ee9fdd00244a991dcddfb1617df, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
